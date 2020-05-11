@@ -1,0 +1,56 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Monitor de Procesos</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="MON_PROC" bx-btnAgregar="0" bx-onSelect="OnSelMonProc();" bx-procForm="1" bx-saveBtn="0" bx-cancelBtn="0">
+	<!--  acÃ¡ va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>Usuario:</td><td colspan=3><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="qr_usr_ejec"/></td>
+				<td><span class="bxBtn" onclick="BuscarMonitor();">Buscar</span></td>
+			</tr>
+			<tr>
+				<td>Proceso:</td><td><select style="width:150px;" name="qr_proceso" class="bxCtrl ui-widget ui-widget-content" bx-srvCombo="CITI.MON_PROC.PROC.CMB"></select></td>
+				<td></td>
+			</tr>
+		</table>
+		<p>
+			<div class="bxGrid" name="grillaProc" bx-servName="MON_PROC" bx-gridOnAdd="AlAgregarFila(curRow);" bx-gridOnDetails="VerDetalle(curRow);">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Id</td>
+						<td>Usuario</td>
+						<td>Proceso</td>
+						<td>Agendado</td>
+						<!--td>Iniciado</td>
+						<td>Finalizado</td!-->
+						<td>Estado</td>
+						<td>Observaciones</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type="text" style="width:70px;" name="id_proc" class="bxCtrl ui-widget ui-widget-content"  bx-ctrlField="ID_PROC"/></td>
+							<td><input type="text" style="width:70px;" name="usr_ejec" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="USR_EJEC"/></td>
+							<td><input type="text" style="width:120px;" name="proceso" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="PROCESO"/></td>
+							<td><input type="text" style="width:120px;" name="fec_agenda" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="FEC_AGENDA"/></td>
+							<!--td><input type="text" style="width:120px;" name="fec_inicio" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="FEC_INICIO"/></td>
+							<td><input type="text" style="width:120px;" name="fec_fin" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="FEC_FIN"/></td-->
+							<td><input type="text" style="width:80px;" name="estado" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ESTADO"/></td>
+							<td><input type="text" style="width:350px;" name="observaciones" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="OBSERVACIONES"/>
+							<input type="hidden" name="fec_inicio" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="FEC_INICIO"/>
+							<input type="hidden" name="fec_fin" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="FEC_FIN"/>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</p>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/mon_proc.js"></script>

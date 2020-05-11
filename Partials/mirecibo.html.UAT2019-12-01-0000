@@ -1,0 +1,40 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Mi Recibo</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="MIRECIBO" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();" >
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	
+	<p>
+		<div id="idDivRecibo" class="ui-widget ui-widget-content ui-corner-all bxSubKey" style="display: none;">
+			<div class="bxLabel">Liquidación:</div><input id="LIQUIDACION" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="LIQUIDACION" bx-ctrlField="LIQUIDACION" bx-ctrlKey="1" disabled/>
+		</div>	
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Descripción:</td><td><input type="Text" style="width:200px;" name="DESCRIPCION" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIPCION" disabled/></td>
+			</tr>	
+			<tr style="margin:500px;">			
+				<td>Año:</td><td><input type="Text" style="width:200px;" name="ANIO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ANIO" disabled/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>Mes:</td><td><input type="Text" style="width:200px;" name="MES" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="MES" disabled/></td>
+			</tr>	
+			<!--<tr style="margin:500px;">
+				<td>Decripción Corta:</td><td><input type="Text" style="width:200px;" name="descrip_corta" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP_CORTA"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>Sinergiada:</td><td><input type ="checkbox" name="CB_SINERGIADA" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CB_SINERGIADA" bx-checkTrue="Y" bx-checkFalse="N"/></td>				
+			</tr>	 -->		
+		</table>
+	</div>	
+	
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">			
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+
+<script type="text/javascript" src="/buxis/Partials/js/mirecibo.js"> </script>

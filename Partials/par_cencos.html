@@ -1,0 +1,36 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Centros de Costos</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_CENCOS" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivCencos" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Centro de Costo:</div><input id="QS_CENCOS" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="QS_CENCOS" bx-ctrlField="QS_CENCOS" bx-ctrlKey="1" disabled/>
+			<div class="bxLabel" style="margin-left:1em;">Empresa:</div><select type="text" style="width:250px;" class="bxCtrl ui-widget ui-widget-content" name="COD_EMP" bx-ctrlField="COD_EMP" bx-ctrlKey="1" bx-srvCombo="CITI.COD_EMP.CMB"></select>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Descripción:</td><td><input type="Text" style="width:200px;" name="descrip" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Banking:</td><td><select type="text" style="width:200px;" class="bxCtrl ui-widget ui-widget-content" name="cbhr_banking" bx-ctrlField="CBHR_BANKING" bx-srvCombo="CITI.BANKING.CMB"/></select><span class="bxCtrl" name="BANKING" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.BANKING.DESC"></span></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Sucursal:</td><td><select type="text" style="width:200px;" class="bxCtrl ui-widget ui-widget-content" name="sucursal" bx-ctrlField="SUCURSAL" bx-srvCombo="CITI.SUCURSAL_CC.CMB"/></select><span class="bxCtrl" name="SUCURSAL" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.SUCURSAL_CC.DESC"></span></td>
+			</tr>			
+		</table>
+	</div>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/par_cencos.js"></script>

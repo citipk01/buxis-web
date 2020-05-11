@@ -1,0 +1,42 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">DesProcesa Interfaz HRMS</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="HRMS_DES" bx-btnAgregar="0" bx-procForm="1" bx-cancelBtn="0" bx-OnSave="AlGrabar();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td></td><td></td>
+			</tr>
+			<tr>
+				<td>DesProceso de la Interfaz HRMS</td><td></td>
+			</tr>
+			<tr>
+				<td>Sin parámetros</td><td></td>
+			</tr>
+			<tr>
+				<td>Se eliminará la interfaz número: <span class="bxCtrl" name="cod_intfc" bx-ctrlField="COD_INTFC"></span></td><td></td>
+			</tr>
+			<tr>
+				<td>Que se validó el: <span class="bxCtrl" name="fec_stg" bx-ctrlField="FEC_STG"></span></td><td></td>
+			</tr>
+			<tr>
+				<td>Archivos Personales: <span class="bxCtrl" name="arch_pers" bx-ctrlField="ARCH_PERS"></span></td><td></td>
+			</tr>
+			<tr>
+				<td>Archivos Paramétricos: <span class="bxCtrl" name="arch_param" bx-ctrlField="ARCH_PARAM"></span></td><td></td>
+			</tr>
+			<tr>
+				<td>Estado: <span class="bxCtrl" name="estado_intfc" bx-ctrlField="ESTADO_INTFC"></span></td><td></td>
+			</tr>
+			<tr>
+				<td>Observaciones: <span class="bxCtrl" name="observaciones" bx-ctrlField="OBSERVACIONES"></span></td><td></td>
+			</tr>
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/hrms_des.js"></script>

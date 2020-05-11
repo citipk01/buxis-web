@@ -1,0 +1,39 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Genera Contabilidad</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="GEN_CONTA" bx-btnAgregar="0" bx-procForm="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>Liquidacion:</td><td colspan=3><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="cod_lq" bx-ctrlField="COD_LQ" bx-srvCombo="CITI.COD_LQ.CMB"/><span class="bxCtrl" name="desc_lq" bx-brwCodeDsc="cod_lq" bx-dscSrv="CITI.COD_LQ.DESC"></span></td>
+			</tr>
+			<tr>
+				<td>Tipo Proceso:</td><td><select style="width:150px;" name="tipo_proceso" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TIPO_PROCESO" bx-srvCombo="CITI.GEN_CONTA.TIPO.CMB"></select></td>
+			</tr>
+		</table>
+		<p>
+			<div class="bxGrid ui-widget-content ui-corner-all" name="grillaEmp" bx-servName="GEN_CONTA" bx-gridOnAdd="" bx-gridOnDel="">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Legajo</td>
+						<td style="width:300px;">Nombre</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="cod_mf" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_MF" bx-srvCombo="CITI.COD_MF.CMB" bx-ctrlKey="1" /></td>
+							<td><span class="bxCtrl" name="nom_mf" bx-brwCodeDsc="cod_mf" bx-dscSrv="CITI.NOM_MF.DESC"></span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</p>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/gen_conta.js"></script>

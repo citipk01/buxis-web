@@ -1,0 +1,42 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Cuentas Contables</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_CUENTASCONTABLES" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivCencos" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Fecha Efectiva:</div><input id="FECHA_EFECTIVA" type="text" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="FECHA_EFECTIVA" bx-ctrlField="FECHA_EFECTIVA" bx-ctrlKey="2"/>	
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" id="bxBtnSubKeyRewind" onclick="SubKeyRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" id="bxBtnSubKeyForward" onclick="SubKeyForward();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-plus" id="bxBtnAddSubKye" onclick="Agregar();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Cuenta:</td><td><input type="Text" style="width:200px" name="cuenta" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CUENTA" bx-ctrlKey="1"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Descripción:</td><td><input type="Text" style="width:300px;" name="descrip" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Descripción (Corta):</td><td><input type="Text" style="width:200px;" name="descrip_corta" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP_CORTA"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>Patrimonial:</td><td><input type ="checkbox" name="PATRIMONIAL" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="PATRIMONIAL" bx-checkTrue="Y" bx-checkFalse="N"/></td>				
+			</tr>				
+		</table>
+	</div>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/par_cuenta.js"></script>

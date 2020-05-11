@@ -1,0 +1,61 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Deducciones</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="DEDUCCIONES" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();" bx-btnAgregar="0">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+		<div class="bxLabel">Legajo: </div><input id="COD_MF" type="text" style="width:90px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="COD_MF" bx-ctrlField="COD_MF" bx-ctrlKey="1" disabled/>
+		<div class="bxLabel">Año: </div><input id="ANIO" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="ANIO" bx-ctrlField="ANIO" bx-ctrlKey="2" disabled/>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" id="bxBtnSubKeyRewind" onclick="SubKeyRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" id="bxBtnSubKeyForward" onclick="SubKeyForward();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-plus" id="bxBtnAddSubKye" onclick="Agregar();"></span>
+			</div>
+		</div>
+	</p>
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td id='SIRADIG'  style="display:none;" ><FONT COLOR = red>Informa F572 Siradig</FONT></td>
+			</tr>
+		</table>
+		<div class="bxGrid" name="grillaEmp" bx-servName="DEDUCCIONES" bx-gridOnAdd="addingRow(curRow);" bx-gridOnDel="deletingRow(curRow);">
+
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Fecha</td>
+						<td>Concepto</td>
+						<td>Anual?</td>
+						<td>Monto Deducción</td>
+						<td>Entidad</td>
+						<td style="width:200px;">Descripción</td>
+						<td>Cod.Liq.</td>
+						<td style="display:none;">ID</td>
+						<td style="display:none;">SIRADIG</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="ANIOMES_ESP" style="width:90px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ANIOMES_ESP" bx-onChange="CambioCampo(curCtrl);" /></td>
+							<td><select type="text" style="width:220px;" class="bxCtrl ui-widget ui-widget-content" name="TREG_ESP" bx-ctrlField="TREG_ESP" bx-srvCombo="CITI.TREG_ESP.CMB"/></select><span class="bxCtrl" name="TREG_ESP" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.TREG_ESP.DESC"></span></td>
+							<td><input type ="checkbox" name="TDES_ESP" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="TDES_ESP" bx-checkTrue="a" bx-checkFalse="m"/></td>
+							<td><input type ="text" name="MONTO_ESP" style="width:80px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="MONTO_ESP"/></td>
+							<td><input type ="text" name="OBSERVACION" style="width:80px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="OBSERVACION" bx-srvCombo="CITI.ENTIDAD.CMB" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><span class="bxCtrl" name="DESCRIPCION" style="width:200px" bx-brwCodeDsc="OBSERVACION" bx-dscSrv="CITI.ENTIDAD.DESC"></span></td>
+							<td><input type ="text" name="COD_LQ" style="width:80px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_LQ" disabled/></td>
+							<td><input type ="text" style="display:none;" name="DIFE_ESP" style="width:80px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="DIFE_ESP" bx-ctrlKey="1" disabled bx-req="0"/></td>
+							<td><input type ="text" style="display:none;" name="SIRADIG" style="width:80px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="SIRADIG"  disabled/></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/deducciones.js"></script>
+<script type="text/javascript" src="/buxis/Partials/js/jszip.js"></script>
+<script type="text/javascript" src="/buxis/Partials/js/xlsx.js"></script>
+<script type="text/javascript" src="/buxis/Partials/js/bxExcel.js"></script>

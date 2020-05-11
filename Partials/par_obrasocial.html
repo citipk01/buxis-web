@@ -1,0 +1,41 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Obra Social</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_OBRASOCIAL" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivCencos" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Obra Social:</div><input id="QS_OSOCIAL" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="QS_OSOCIAL" bx-ctrlField="QS_OSOCIAL" bx-ctrlKey="1" disabled/>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Descripción:</td><td><input type="Text" style="width:200px;" name="descrip" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>CBHR_CONTR_ANSAL:</td><td><input type="Text" style="width:200px;" name="cbhr_contr_ansal" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_CONTR_ANSAL"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>CBHR_DTO_OSOCIAL:</td><td><input type="Text" style="width:200px;" name="cbhr_dto_osocial" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_DTO_OSOCIAL"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>CBHR_OS_ANSES:</td><td><input type="Text" style="width:200px;" name="cbhr_os_anses" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_OS_ANSES"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>CBHR_OS_DISTRIB:</td><td><input type="Text" style="width:200px;" name="cbhr_os_distrib" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_OS_DISTRIB"/></td>
+			</tr>				
+		</table>
+	</div>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/par_obrasocial.js"></script>

@@ -1,0 +1,36 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Sueldo Anual</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="SUELAN" bx-btnAgregar="0" bx-procForm="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+		<p>
+			<div class="bxGrid" name="grillaEmp" bx-servName="SUELAN" bx-gridOnAdd="" bx-gridOnDel="">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Liquidacion</td>
+						<td style="width:300px;">Descripcion</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="cod_lq" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_LQ" bx-srvCombo="CITI.COD_LQ.CMB" bx-ctrlKey="1" /></td>
+							<td><span class="bxCtrl" name="desc_lq" bx-brwCodeDsc="cod_lq" bx-dscSrv="CITI.COD_LQ.DESC"></span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</p>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/sueldo_anual.js"></script>

@@ -1,0 +1,21 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Proceso Falla de Caja</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="GEN_FALLACAJA" bx-btnAgregar="0" bx-procForm="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>Año: </td><td><select style="width:120px;" name="ANIO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ANIO" bx-srvCombo="CITI.ANIO.CMB"></select></td>
+			</tr>
+			<tr>
+				<td>Mes: </td><td colspan=3><select style="width:120px;" name="MES" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="MES" bx-srvCombo="CITI.MES.CMB">   </select><span class="bxCtrl" name="desc_mes" bx-brwCodeDsc="MES" bx-dscSrv="CITI.MES.DESC"></span></td>
+			</tr>
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/gen_fallacaja.js"></script>

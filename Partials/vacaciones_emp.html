@@ -1,0 +1,90 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Solicitud de Vacaciones</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="VAC_SOL" bx-onSave="OnSaveVac();" bx-btnAgregar="0" bx-onSelect="OnSelVac();" >
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Periodo:</div><input id="periodo" type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="periodo" bx-ctrlField="PERIODO" bx-ctrlKey="2"/>
+			<div class="bxLabel" style="margin-left:1em;">Empresa:</div><select type="text" style="width:250px;" class="bxCtrl ui-widget ui-widget-content" name="cod_emp" bx-ctrlField="COD_EMP" bx-ctrlKey="2" bx-srvCombo="CITI.COD_EMP.CMB"></select>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" id="bxBtnSubKeyRewind" onclick="SubKeyRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" id="bxBtnSubKeyForward" onclick="SubKeyForward();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-plus" id="bxBtnAddSubKey" onclick="Agregar();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeleteSubKey" onclick="Eliminar();"></span>
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>Legajo:</td><td colspan=3><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="cod_mf" bx-ctrlField="COD_MF" bx-ctrlKey="1" bx-srvCombo="CITI.COD_MF.CMB"/><span class="bxCtrl" name="nom_mf" bx-brwCodeDsc="cod_mf" bx-dscSrv="CITI.NOM_MF.DESC"></span></td>
+			</tr>
+			<tr>
+				<td>Días Arrastre:</td><td><input type="Text" style="width:50px;" name="dias_arrastre" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DIAS_ARRASTRE"/></td>
+				<td style="width:100px;"></td>
+				<td>Fragmentación Max:</td><td><input type="Text" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" name="max_frag" bx-ctrlField="MAX_FRAG"/></td>
+			</tr>
+			<tr>
+				<td>Días Calculados:</td><td><input type="Text" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" name="dias_calculados" bx-ctrlField="DIAS_CALCULADOS"/></td>
+				<td style="width:100px;"></td>
+				<td>Días Tomados:</td><td><input type="Text" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" name="dias_tomados" bx-ctrlField="DIAS_TOMADOS"/></td>
+			</tr>
+			<tr>
+				<td>Días Totales:</td><td><input type="Text" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" name="dias_totales" /></td>
+				<td style="width:100px;"></td>
+				<!--<td>Días Restantes:</td><td><input type="Text" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" name="dias_restantes" /></td> --bx-onChange="CambioRestantes(curCtrl);"-->
+				<td>Días Restantes:</td><td><input type="Text" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" name="dias_restantes" bx-onChange="CambioRestantes(curCtrl);" bx-ctrlField="DIAS_RESTANTES"/></td> <!--bx-onChange="CambioRestantes(curCtrl);"-->
+			</tr>
+		</table>
+		<p>
+			<div class="bxGrid" name="grillaEmp" bx-servName="VAC_SOL" bx-gridOnAdd="GrillaAdd(curRow);" bx-gridOnDel="GrillaDel(curRow);">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Fec Ped</td>
+						<td>Fec Ini</td>
+						<td>Dias</td>
+						<td>Fec Fin</td>
+						<td>Plus Vac</td>
+						<td>Adelanto</td>
+						<td>Mes</td>
+						<td>Año</td>
+						<td>Aprobado</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<!--
+							<td><input type ="text" name="fec_pedido" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_PEDIDO"/></td>
+							<td><input type ="text" name="fec_ini" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_INI" bx-ctrlKey="1" /></td>
+							<td><input type ="text" name="dias" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="DIAS" /></td>
+							<td><input type ="text" name="fec_fin" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_FIN" ></td>
+							<td><input type ="checkbox" name="plus_vac" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="PLUS_VAC" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+							<td><input type ="checkbox" name="ade_vac" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ADE_VAC" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+							<td><input type ="text" name="mes" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="MES" /></td>
+							<td><input type ="text" name="anio" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ANIO"/></td>
+							<td><input type ="checkbox" name="aprob_vac" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="APROB_VAC" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+							-->
+
+							<td><input type ="text" name="fec_pedido" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_PEDIDO"/></td>
+							<td><input type ="text" name="fec_ini" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_INI" bx-ctrlKey="1" bx-onChange="CambioFecIni(curCtrl);"/></td>
+							<td><input type ="text" name="dias" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="DIAS" bx-onChange="CambioDias(curCtrl);"/></td>
+							<td><input type ="text" name="fec_fin" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_FIN" bx-onChange="CambioFecFin(curCtrl);"/></td>
+							<td><input type ="checkbox" name="plus_vac" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="PLUS_VAC" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+							<td><input type ="checkbox" name="ade_vac" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ADE_VAC" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+							<td><input type ="text" name="mes" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="MES" bx-onChange="CambioMes(curCtrl);"/></td>
+							<td><input type ="text" name="anio" style="width:50px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ANIO"/></td>
+							<td><input type ="checkbox" name="aprob_vac" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="APROB_VAC" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</p>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/vacaciones_emp.js"></script>

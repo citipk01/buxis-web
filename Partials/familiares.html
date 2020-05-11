@@ -1,0 +1,64 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Familiares</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="FAMILIARES" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();" bx-btnAgregar="0">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Nro. Familiar:</div><input id="NRO_FAM" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="NRO_FAM" bx-ctrlField="NRO_FAM" bx-ctrlKey="2" disabled/>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" id="bxBtnSubKeyRewind" onclick="SubKeyRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" id="bxBtnSubKeyForward" onclick="SubKeyForward();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-plus" id="bxBtnAddSubKye" onclick="Agregar();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Legajo:</td><td><input type="text" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="cod_mf" bx-ctrlField="COD_MF" bx-ctrlKey="1" bx-srvCombo="CITI.COD_MF.CMB"/><span class="bxCtrl" name="nom_mf" bx-brwCodeDsc="cod_mf" bx-dscSrv="CITI.NOM_MF.DESC"></span></td>
+				<td id='SIRADIG'><FONT COLOR = red>-- Informa F572 Siradig</FONT></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Nombre:</td><td><input type="Text" style="width:200px;" name="NOMBRE" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NOMBRE"/></td>
+				<td>Parentesco:</td><td><select type="text" style="width:135px;" class="bxCtrl ui-widget ui-widget-content" name="PARENTESCO" bx-ctrlField="PARENTESCO" bx-srvCombo="CITI.TIPO_FAM.CMB" bx-onChange="CalculaFechasGanancias();"/></select><span class="bxCtrl" name="TIPO_FAM" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.TIPO_FAM.DESC"></span></td>
+				<td>Sexo:</td><td><select input type="text" style="width:135px;" class="bxCtrl ui-widget ui-widget-content" name="SEXO" bx-ctrlField="SEXO" bx-srvCombo="CITI.SEXO.CMB"/></select><span class="bxCtrl" name="SEXO" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.SEXO.DESC"></span></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Tipo Doc.:</td><td><select type="text" style="width:200px;" class="bxCtrl ui-widget ui-widget-content" name="TIPODOCU" bx-ctrlField="TIPODOCU" bx-srvCombo="CITI.TIPODOCU.CMB"/></select><span class="bxCtrl" name="TIPODOCU" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.SEXO.DESC"></span></td>
+				<td>Nro. Doc.:</td><td><input type="Text" style="width:135px;" name="NUMDOCU" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NUMDOCU"/></td>
+				<td>Cuil:</td><td><input type="Text" style="width:135px;" name="CUIL" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CUIL"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Fecha de Nacimiento:</td><td><input type ="text" name="FECNAC_FAM" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FECNAC_FAM" bx-onChange="CalculaFechasGanancias();"/></td>
+				<td>País:</td><td><select type="text" style="width:135px;" class="bxCtrl ui-widget ui-widget-content" name="PAIS" bx-ctrlField="PAIS" bx-srvCombo="CITI.PAIS.CMB"/></select><span class="bxCtrl" name="PAIS" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.PAIS.DESC"></span></td>
+				<td>Fecha de Defunción:</td><td><input type ="text" name="FEC_DEFUN" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FEC_DEFUN"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Actúa 4ta Categoría:</td><td><input type ="checkbox" name="ACTUA_4TA" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ACTUA_4TA" bx-checkTrue="1" bx-checkFalse="0" bx-onChange="CalculaFechasGanancias();"/></td>
+				<td>Inicio Contrato:</td><td><input type ="text" name="FECALTA_GAN" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FECALTA_GAN"/></td>
+				<td>Vencimiento Contrato:</td><td><input type ="text" name="FECHAVENC" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FECHAVENC"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Actúa en Prepaga:</td><td><input type ="checkbox" name="CBHR_PREPAGA_SW" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CBHR_PREPAGA_SW" bx-checkTrue="Y" bx-checkFalse="N"/></td>
+				<td>A Cargo:</td><td><input type ="checkbox" name="A_CARGO" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="A_CARGO" bx-checkTrue="1" bx-checkFalse="0"/></td>
+				<td>Actúa Obra Social:</td><td><input type ="checkbox" name="ACTUA_OSOC" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="ACTUA_OSOC" bx-checkTrue="1" bx-checkFalse="0"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>Discapacidad:</td><td><input type ="checkbox" name="DISCAP" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="DISCAP" bx-checkTrue="Y" bx-checkFalse="N" bx-onChange="CalculaFechasGanancias();"/></td>
+				<td>Seguro:</td><td><select input type="text" style="width:200px;" class="bxCtrl ui-widget ui-widget-content" name="SEGURO" bx-ctrlField="SEGURO" bx-srvCombo="CITI.SEGURO.CMB"/></select><span class="bxCtrl" name="SEGURO" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.SEGURO.DESC"></span></td>
+			</tr>
+
+			<tr style="margin:500px;">
+				<td>Sistema Salud:</td><td><select type="text" style="width:200px;" class="bxCtrl ui-widget ui-widget-content" name="CBHR_SISSAL" bx-ctrlField="CBHR_SISSAL" bx-srvCombo="CITI.SISSAL.CMB"/></select><span class="bxCtrl" name="CBHR_SISSAL" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.SISSAL.DESC"></span></td>
+				<td>% Atribución IRPF:</td><td><input type="Text" style="width:75px;text-align:center" name="CBHR_ATRIB_IRPF" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_ATRIB_IRPF"/></td>
+			</tr>
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/familiares.js"></script>

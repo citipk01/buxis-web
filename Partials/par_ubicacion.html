@@ -1,0 +1,48 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Ubicaciones</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_UBICACION" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivCencos" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Fecha Efectiva:</div><input id="FECHA_EFECTIVA" type="text" style="width:100px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="FECHA_EFECTIVA" bx-ctrlField="FECHA_EFECTIVA" bx-ctrlKey="2"/>	
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" id="bxBtnSubKeyRewind" onclick="SubKeyRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" id="bxBtnSubKeyForward" onclick="SubKeyForward();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-plus" id="bxBtnAddSubKye" onclick="Agregar();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Baja Efectiva:</td><td><input type ="checkbox" name="BAJA_EFECTIVA" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="BAJA_EFECTIVA" bx-checkTrue="1" bx-checkFalse=""/></td>				
+			</tr>
+			<tr style="margin:500px;">
+				<td>Ubicación:</td><td><input type="Text" style="width:200px" name="ubicacion" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="UBICACION" bx-ctrlKey="1"/></td>
+				<td>Descripción:</td><td><input type="Text" style="width:300px;" name="descrip" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>País:</td><td><select type="text" style="width:135px;" class="bxCtrl ui-widget ui-widget-content" name="PAIS" bx-ctrlField="PAIS" bx-srvCombo="CITI.PAIS.CMB"/></select><span class="bxCtrl" name="PAIS" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.PAIS.DESC"></span></td>
+				<td>Provincia:</td><td><input type="Text" style="width:200px;" name="provincia" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="PROVINCIA"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>Ciudad:</td><td><input type="Text" style="width:200px;" name="ciudad" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CIUDAD"/></td>
+				<td>Cod.Pos.:</td><td><input type="Text" style="width:200px;" name="codpos" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CODPOS"/></td>
+			</tr>				
+			<tr style="margin:500px;">
+				<td>Domicilio:</td><td><input type="Text" style="width:200px;" name="domic" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DOMIC"/></td>
+			</tr>				
+		</table>
+	</div>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/par_ubicacion.js"></script>

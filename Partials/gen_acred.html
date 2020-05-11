@@ -1,0 +1,40 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Genera Acreditación</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="GEN_ACRED" bx-btnAgregar="0" bx-procForm="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>Fecha Valor:</td><td colspan=3><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="FEC_VAL" bx-ctrlField="FEC_VAL"/></td><td><button type="button" onclick="buscar()">Buscar</button></td><td><input type ="checkbox" id = "anx" name="ANEXAR" style="text-align:center" bx-checkTrue="1" bx-checkFalse="0" class="bxCtrl ui-widget ui-widget-content" type="text" /></td><td>Anexar resultados</td>
+			</tr>
+		</table>
+		<p>
+			<div class="bxGrid ui-widget-content ui-corner-all" name="grillaEmp" bx-servName="GEN_ACRED" bx-gridOnAdd="addingRow(curRow);" bx-gridOnDel="">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Cod. Liq.</td>
+						<td style="width:350px;">Descripción</td>
+						<td>Cod. Proc.</td>
+						<td>Cía.</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="COD_LQ" style="width:50px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_LQ" bx-ctrlKey="1" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><input type ="text" name="DESC_LQ" style="width:330px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="DESC_LQ" bx-ctrlKey="1" disabled/></td>
+							<td><input type ="text" name="COD_PR" style="width:70px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_PR" bx-ctrlKey="1" disabled/></td>
+							<td><input type ="text" name="COD_EMP" style="width:50px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_EMP" bx-ctrlKey="1" disabled/></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</p>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/gen_acred.js"></script>

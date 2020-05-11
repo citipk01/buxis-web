@@ -1,0 +1,44 @@
+<!--div id="bxErrorMsg" class="ui-widget">
+	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+		<p>
+			<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong>Mensaje de Error
+		</p>
+	</div>
+</div-->
+<ul id="ulBotonera" class="ui-widget ui-helper-clearfix">
+
+	<!--li class="ui-state-default ui-corner-all" title="Agregar" onclick="Agregar();" id="bxBtnAgregar"><span class="ui-icon ui-icon-circle-plus"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Buscar" onclick="Buscar();" id="bxBtnBuscar"><span class="ui-icon ui-icon-search"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Operar" onclick="Operar();" id="bxBtnOperar"><span class="ui-icon ui-icon-gear"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Eliminar" onclick="Eliminar()" id="bxBtnEliminar"><span class="ui-icon ui-icon-trash"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Modificar" onclick="Modificar()"  id="bxBtnModificar"><span class="ui-icon ui-icon-note"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Ir al Principio" onclick="FormBegin();"  id="bxBtnBegin"><span class="ui-icon ui-icon-arrowthickstop-1-w"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Retroceder" onclick="FormRewind();"  id="bxBtnRewind"><span class="ui-icon ui-icon-arrowthick-1-w"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Retroceder" onclick="FormSearch();"  id="bxBtnSearch"><span class="ui-icon ui-icon-search"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Avanzar" onclick="FormForward();"  id="bxBtnForward"><span class="ui-icon ui-icon-arrowthick-1-e"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Ir al Final" onclick="FormEnd();"  id="bxBtnEnd"><span class="ui-icon ui-icon-arrowthickstop-1-e"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Aceptar" onclick="Aceptar();"  id="bxBtnAceptar" value=0><span class="ui-icon ui-icon-check"></span></li-->
+	<!--li class="ui-state-default ui-corner-all" title="Cancelar" onclick="Cancelar();"  id="bxBtnCancelar" value=0><span class="ui-icon ui-icon-closethick"></span></li-->
+</ul>
+<p>
+	<div id="idDivFecEfec" class="ui-widget">
+			<div class="bxLabel">Fecha Efectiva:</div><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="fecha_efectiva" bx-ctrlField="fecha_efectiva" bx-ctrlKey="2"/>
+			<div class="ui-widget" style="display:inline-block;">
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" onclick="EffdtRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" onclick="EffdtForward();"></span>
+			</div>
+	</div>
+</p>
+<!--script type="text/javascript" src="/buxis/Partials/js/bxCitiServices.js"></script-->
+<!--script type="text/javascript" src="/buxis/Partials/js/bxforms.js"></script-->
+<!--script type="text/javascript" src="/buxis/Partials/js/bxbtns.js"></script-->
+<script>
+$(document).ready(function(){
+
+	BxBtnInit();
+
+});
+
+
+</script>

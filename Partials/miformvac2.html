@@ -1,0 +1,399 @@
+<head>
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<!--
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+-->
+	<title>Buxis-Solicitud de Vacaciones</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<meta name="keywords" 		content="Vacaciones">
+	<meta name="description" 	content="Solicitud de Vacaciones">
+	<meta name="viewport" 		content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=5,chrome=1" />
+	<meta http-equiv="Cache-control" content="no-cache">
+
+	<base href="/">
+	<script src="/buxis/Partials/web-design/utlitario.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+    $( function() {
+    $( "#datepicker2" ).datepicker();
+  } );
+  </script>
+
+
+	<link rel="stylesheet" href="/buxis/Partials/web-design/bootstrap3/css/bootstrap.min.css" />
+	<style type="text/css">
+		[style~=hVacaciones] {
+			text-align: center;
+			margin: auto;
+			padding: 2.5px;
+			padding-right:5px;
+			padding-left:5px;
+			font-weight: bold;
+			background-color: #C0C0A0;
+			font-family:Verdana; 
+			font-size:10pt;
+		}
+		[style~=bVacaciones] {
+			text-align: center;
+			margin: auto;
+			background-color: #E0E0D0;
+			font-family:Tahoma; 
+			font-size:10pt;
+		}
+
+		[style~=bxGridComboHeader] {
+			color:#ffffff;
+			background: #0078ae url("/buxis/Partials/img/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<p class="bxFormTitle">Mi Formulario de Vacaciones</p>
+
+	<form class="bxForm">
+		<div class="bxBtns" bx-effdt="0" bx-servBtn="MIFORMVAC2" bx-btnAgregar="0" bx-saveBtn="0" bx-onSelect="selectMiFormVac_LOAD();" bx-cancelBtn="0" bx-btnPrint="0" bx-btnBuscar="0" 
+			bx-searchCols="PERIODO:Período,COD_EMP:Empresa,EMPRESA:Nombre Empresa,CALCULADOS:Días Calculados,TOMADOS:Días Tomados,TRAMITE:Días en Trámite,MAX_FRAG:Máx Frag,PENDIENTES:Días Pendientes">
+		</div>
+
+		<div id="bxPrintArea" name="divAImprimir">
+				<CENTER>
+					<br>
+					<FONT STYLE="font-family:Verdana; color:Navy; font-size:13pt; ">Licencia Anual - Recursos Humanos Argentina.</FONT>
+					<br>
+				</CENTER>
+
+				<div class="container">
+						<div class="row"> 
+							<div class="row col-md-12"> 
+								<div class="col-md-6 form-group"></div> 
+								<div class="col-md-6 form-group" align="right"> 
+								</div> 
+							</div> 
+						</div> 
+				</div>
+
+				<div class="">
+					<input type="hidden" class="bxCtrl" name="periodo" bx-ctrlField="PERIODO" bx-ctrlKey="1" />
+					<input type="hidden" class="bxCtrl" name="cod_emp" bx-ctrlField="COD_EMP" bx-ctrlKey="1" />
+					<div class="row"> 
+						<div class="row col-md-12"> 
+							<div class="col-md-4 form-group">
+									<TABLE>
+										<TR style="hVacaciones"><TH>&nbsp;Licencia Anual</TH></TR>
+										<TR style="bVacaciones"><TD><span name="licenciaAnual" class="bxCtrl"></span></TD></TR>
+									</TABLE>	
+							</div> 
+							<div class="col-md-4 form-group">
+									<TABLE>
+										<TR style="hVacaciones"><TH>&nbsp;Compañía</TH></TR>
+										<TR style="bVacaciones"><TD><span name="nom_emp" class="bxCtrl" bx-ctrlField="NOM_EMP"></span></TD></TR>
+									</TABLE>	
+							</div> 
+							<div class="col-md-4 form-group"></div> 
+						</div> 
+					</div> 
+
+					<div class="row"> 
+						<div class="row col-md-12"> 
+							<div class="col-md-4 form-group">
+									<TABLE>
+										<TR style="hVacaciones"><TH>&nbsp;Legajo</TH></TR>
+										<TR style="bVacaciones"><TD><span name="cod_mf" class="bxCtrl" bx-ctrlField="COD_MF"></span></TD></TR>
+									</TABLE>
+							</div> 
+							<div class="col-md-4 form-group">
+									<TABLE>
+										<TR style="hVacaciones"><TH>&nbsp;Nombre y Apellido</TH></TR>
+										<TR style="bVacaciones"><TD><span name="nom_mf" class="bxCtrl" bx-ctrlField="NOM_MF"></span></TD></TR>
+									</TABLE>
+							</div> 
+							<div class="col-md-4 form-group"></div> 
+
+						</div> 
+					</div> 
+				</div>
+
+				<div class="row" >
+					<div class="row col-md-12"> 
+						<div class="col-md-4 form-group">
+							<TABLE>
+								<TR style="hVacaciones"><TH>&nbsp;Días por política</TH></TR>
+								<TR style="bVacaciones" ><TD align="left">&nbsp;<span name="dias_calculados" class="bxCtrl" bx-ctrlField="DIAS_CALCULADOS"></span></TD></TR>
+							</TABLE>
+						</div>
+						<div class="col-md-4 form-group">
+							<TABLE>
+								<TR style="hVacaciones"><TH>&nbsp;Cant. de Salidas (Máx Frag)</TH></TR>
+								<TR style="bVacaciones" ><TD align="left">&nbsp;<span name="maxFragmentacion" class="bxCtrl" bx-ctrlField="MAX_FRAG"></span></TD></TR>
+							</TABLE>
+						</div>
+						<div class="col-md-4 form-group"></div> 
+					</div>
+				</div>
+				<div class="">
+					<div class="row col-md-12 form-group"> 
+						<TABLE>
+							<TR style="hVacaciones"><TH>&nbsp;Días tomados a cuenta</TH></TR>
+							<TR style="bVacaciones" ><TD align="left">&nbsp;<span name="dias_tomados" class="bxCtrl" bx-ctrlField="DIAS_TOMADOS"></span></TD></TR>
+						</TABLE>
+					</div> 
+					<div class="row"> 
+						<div class="col-md-4 form-group"> 
+							<TABLE>
+								<TR style="hVacaciones"><TH>&nbsp;Días disponibles</TH></TR>
+								<TR style="bVacaciones" ><TD align="left">&nbsp;<span name="dias_pendientes" class="bxCtrl" bx-ctrlField="DIAS_PENDIENTES"></span></TD></TR>
+							</TABLE>
+						</div>   
+					</div>
+				</div>   
+
+				<div class="" name="formCargaSolicitud">
+						<div class="row col-md-10">
+							<div class="">
+								<div class="row col-md-2 form-group">
+									<h4>
+										<span style="color: RED">(*) </span>
+										Desde: 
+									</h4>  
+
+									<!-- pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"  -->
+									<!-- onKeyPress="return isValidDateKeypress(event);" -->
+									<!--<input type="date" class="form-control" name="solFechaInicio2" tabindex="1" 
+										placeholder="dd-mm-aaaa" min="2020-01-01" data-mask="09-09-0000" data-toggle="tooltip"
+										maxlength="10" onchange="calcularRespuestaJS();" style="font-size:15px"
+										title="Ingrese la fecha en la que comenzarán sus vacaciones"
+										required/> -->
+									<input type="text" id="datepicker" class="form-control" name="solFechaInicio" tabindex="1" 
+										placeholder="dd/mm/aaaa" min="2020-01-01" data-mask="09-09-0000" data-toggle="tooltip"
+										maxlength="10" onchange="calcularRespuestaJS();" style="font-size:15px;text-align:center;height:32px"
+										title="Ingrese la fecha en la que comenzarán sus vacaciones"
+										required/>
+
+
+								</div> 
+								<div align="left" name="frmChkAdelantoSolicitado">
+									<div class="row col-md-4 form-group" align="center"> 
+										<label class="checkbox control-label" for="chkAdelantoSolicitado">
+												<h4 class="control-label">
+													¿Solicita adelanto de vacaciones?
+												</h4>
+										</label>
+											<input type="checkbox" name="chkAdelantoSolicitado" id="chkAdelantoSolicitado" 
+												value="0" unchecked="unchecked" >
+									</div> 
+								</div>
+							</div> 							
+						</div> 					
+						
+						<div class="row col-md-10">
+							<div>
+								<h4>
+									<span style="color: RED">(*) </span>
+									Hasta: 
+								</h4>  
+								
+							</div>
+							<!-- placeholder="dd-mm-aaaa" min="2020-01-01" max="2030-01-01" data-mask="09-09-0000" data-toggle="tooltip" -->
+							<div class="row col-md-2 form-group"> 
+								<!--<input type="date" class="form-control" name="solFechaFin2" tabindex="2"
+									placeholder="dd-mm-aaaa" min="2020-01-01" data-mask="09-09-0000" data-toggle="tooltip"
+									maxlength="10" onchange="calcularRespuestaJS();" style="font-size:15px"
+									title="Ingrese la fecha en la que desea finalizar sus vacaciones" 
+									required/>  -->
+								<input type="text" id="datepicker2" class="form-control" name="solFechaFin" tabindex="2"
+									placeholder="dd/mm/aaaa" min="2020-01-01" data-mask="09-09-0000" data-toggle="tooltip"
+									maxlength="10" onchange="calcularRespuestaJS();" style="font-size:15px;text-align:center;height:32px"
+									title="Ingrese la fecha en la que desea finalizar sus vacaciones" 
+									required/> 
+								&nbsp;
+							</div>
+							<div>
+								<div class="row col-md-10 form-group">
+									<h4 class="control-label">
+										<span name="msgFechaFin"></span>
+									</h4>
+								</div> 
+							</div> 
+						</div> 
+						
+						<div class="row col-md-12"> 
+								<h4>
+									Cant. de días
+								</h4>  
+						</div> 
+						<div class="row col-md-2 form-group">
+							<div class="row col-md-12 form-group"> 
+								<input type="number" class="form-control" name="solCantDias" 
+									title="Se visualizará la cantidad de días computados según las fechas seleccionadas" 
+									style="text-align:center;font-weight:bold"
+									value=""
+									readonly/> 
+							</div> 
+							
+						</div> 
+						<div class="row col-md-10 form-group">
+							<div> 
+								<h4 class="control-label">
+									<span name="msgError" style="color: RED"></span>
+								</h4>
+							</div> 
+						</div> 
+						<!-- 
+							<div class="row col-md-12 form-group" data-toggle="tooltip"  title=""> 
+								<label>¿Solicita adelanto de pago vacacional?</label> 
+								<div class="col-md-6"> 
+									<label class="radio-inline"><input type="radio" 
+										name="rdbAdelantoSolicitado" value="true">Si</label> 
+								</div> 
+								<div class="col-md-6"> 
+									<label class="radio-inline"><input type="radio" 
+										name="rdbAdelantoSolicitado" value="false">No</label> 
+								</div> 
+							</div> 
+						-->
+				</div> 
+
+			<div> 
+				<div class="row col-md-12">  
+					<TABLE>
+						<TR style="hVacaciones"><TH>&nbsp;Fecha de Hoy</TH></TR>
+						<TR style="bVacaciones"><TD><span name="fecha_hoy" class="bxCtrl"></span></TD></TR>
+					</TABLE>	
+				</div> 
+				<div class="row col-md-12"> 
+					<table>
+						<tr>
+							<td>
+								<font size="2" face="Tahoma">
+									<br>
+									Le recordamos que por política <b>es responsabilidad de cada empleado:</b>
+									<br>
+									<ul>
+									   <li>Informar sus vacaciones 10 días antes de tomarlas.</li>
+									   <li>Cumplir con la Política de Ausentismo Mandatorio (14 días consecutivos).</li>
+									   <li>En caso de ser sensitivo, cumplir con la obligación de no acceder a los sistemas del banco durante el periodo vacacional.</li>
+									</ul>
+								</font>
+							</td>
+						</tr>
+					</table>
+				</div> 
+				<div class="row col-md-12"> 
+				</div> 
+			</div> 
+				
+		<!-- bxPrintArea -->
+		</div>
+	</form>
+
+	<script type="text/javascript" src="/buxis/Partials/js/miformvac2.js"></script>
+	<!-- <div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div> -->
+	<div class="row col-md-12">
+		<div id="searchFormX">
+			<div id="searchForm" class="ui-widget-content ui-corner-all"></div>
+		</div>
+	</div>
+		
+
+	<div class="container">
+		<br><br>
+		<div class="row col-md-12 form-group" name="frmEnviarSolicitud"  style="display:none" align="left">
+			<span class="bxBtn" name="btnCancelarVolver" 	onclick="volverAlListado();">Cancelar</span> 
+			<span class="bxBtn" name="btnImprimirSolicitud" onclick="confirmarEnvioDeSolicitud();" role="button" tabindex="3" >Imprimir</span> 
+			<br>
+		</div>
+	</div><hr /> 
+	
+	<div class="">
+		<div class="row">
+			<!-- <div  class="col-md-12"> -->
+				<div class="col-md-5">
+					<h2 class="bxFormTitle" name="frmTituloGrillaSolicitudes" >
+						<strong>Historial de Solicitudes</strong> 
+						<!-- Historial de solicitudes de este Periodo -->
+					</h2>
+					<h6 class="bxFormTitle">
+						<small name="frmSubTituloGrillaSolicitudes"></small>
+					</h6>
+				</div>			
+
+				<div class="col-md-6" align="left">
+					<div name="frmVerIntructivoPoliticas">
+						<span class="bxBtn" onclick="verIntructivoPoliticas();">Instructivo y Políticas</span> 
+						<br>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+
+		<div name="frmHistorialSolicitudes" class="">
+			<h2 class="bxFormTitle"></h2>
+			<div bx-servName="MIFORMVAC2" >
+				<!-- <table name="grdHistorialSolicitudes" > -->
+				<table name="grdHistorialSolicitudes" class="bxGridCombo">
+					<tr class="ui-widget-header bxGridComboHeader" align="center">
+						<td width="100">Nro. Sol.</td>
+						<td>Fecha Sol.</td>
+						<td width="100">Periodo</td>					
+						<td>Fecha de Inicio</td>
+						<td width="100">Cant. Días</td>
+						<td>Fecha de Fin</td>
+						<td>Estado</td>
+						<td width="150">Acción</td>
+					</tr>
+					<!-- <tr class="ui-widget-body"> -->
+					<tr style="display:none" >
+						<td>
+							<input type="text" name="idSolicitud" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="ID" />
+						</td>
+						<td>
+							<input type="text" name="anioPeriodo" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="PERIODO" />
+						</td>
+						<td>
+							<input type="text" name="fechaSolicitud" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="FEC_PEDIDO" />
+						</td>
+						<td>
+							<input type="text" name="fechaInicio" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="FEC_INI" />
+						</td>
+						<td>
+							<input type="text" name="cantDias" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="DIAS" />
+						</td>
+						<td>
+							<input type="text" name="fechaFin" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="FEC_FIN" />
+						</td>
+						<td>
+							<input type="text" name="estado" class="bxCtrl ui-widget ui-widget-content" readonly bx-ctrlField="ESTADO" />
+						</td>
+					<!-- 	<td>
+							<input type="submit" name="accion" class="bxCtrl ui-widget ui-widget-content ui-button" readonly bx-ctrlField="ACCION" class="bxGridDelLnk" style="display:inline-block;" />
+						</td> onclick="cancelarSolicitud();"-->
+						
+						<td align="center">
+							<a onclick="cancelarSolicitud();" type="button" class="btn btn-danger" 
+								data-toggle="tooltip" title="Cancelar Solicitud">
+								<span class="glyphicon glyphicon-remove"></span>&nbsp;Cancelar
+							</a> 
+						</td>
+						<!-- <td align="center">
+							<a onclick="cancelarSolicitud();" type="button" class="btn btn-primary" 
+								data-toggle="tooltip" title="Re-Imprimir Solicitud">
+								<span class="glyphicon glyphicon-print"></span>
+							</a> 
+						</td> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+

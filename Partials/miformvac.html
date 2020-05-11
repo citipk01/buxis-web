@@ -1,0 +1,264 @@
+﻿<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Mi Formulario de Vacaciones</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="MIFORMVAC" bx-btnAgregar="0" bx-saveBtn="0" bx-onSelect="SelecMiFormVac();" bx-btnPrint="1" bx-btnBuscar="0" bx-searchCols="PERIODO:Período,COD_EMP:Empresa,EMPRESA:Nombre Empresa,CALCULADOS:Días Calculados,TOMADOS:Días Tomados,MAX_FRAG:Máx Frag,PENDIENTES:Días Pendientes">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+<div id="bxPrintArea">
+	<CENTER><br><FONT  STYLE="font-family:Verdana; color:Navy; font-size:13pt; " >Licencia Anual - Recursos Humanos Argentina.</FONT></CENTER>
+	<table border="0" width="807">
+	  <tr>
+		<td width="5">&nbsp;</td>
+		<td width="288">&nbsp;</td>
+		<td width="492">&nbsp;</td>
+	  </tr>
+
+	  <tr>
+		<td width="5"><input type="hidden" class="bxCtrl" name="periodo" bx-ctrlField="PERIODO" bx-ctrlKey="1"></span><input type="hidden" class="bxCtrl" name="cod_emp" bx-ctrlField="COD_EMP" bx-ctrlKey="1"/></td>
+		<td width="288"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Compañía</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="nom_emp" class="bxCtrl" bx-ctrlField="NOM_EMP"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492"></td>
+	  </tr>
+
+		<tr>
+		<td width="5"></td>
+		<td width="288"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Licencia Anual</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="licencia_anual" class="bxCtrl"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492">
+		</td>
+	  </tr>
+	  <tr>
+		<td width="5"><font face="Tahoma" size="5">&nbsp;</font></td>
+		<td width="288"><font face="Tahoma" size="5">&nbsp;</font></td>
+		<td width="492"><font face="Tahoma" size="5">&nbsp;</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Legajo</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="cod_mf" class="bxCtrl" bx-ctrlField="COD_MF"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Nombre y Apellido</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="nom_mf" class="bxCtrl" bx-ctrlField="NOM_MF"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"><font size="5">&nbsp;</font></td>
+		<td width="288"><font size="5">&nbsp;</font></td>
+		<td width="492"><font size="5">&nbsp;</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Días por política</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="dias_calculados" class="bxCtrl" bx-ctrlField="DIAS_CALCULADOS"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492"></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Días tomados a cuenta</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="dias_tomados" class="bxCtrl" bx-ctrlField="DIAS_TOMADOS"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492"></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><font size="2" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Días disponibles</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="dias_pendientes" class="bxCtrl" bx-ctrlField="DIAS_PENDIENTES"></span></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492"></td>
+	  </tr>
+	  <tr>
+		<td width="5">&nbsp;</td>
+		<td width="288">&nbsp;</td>
+		<td width="492">&nbsp;</td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><b><font size="3" face="Tahoma">&nbsp; Días a tomar</font></b></td>
+		<td width="492"><font size="3" face="Tahoma">__________</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"><b><font face="Tahoma" size="3">&nbsp;</font></b></td>
+		<td width="288"><font face="Tahoma" size="3">&nbsp;</font></td>
+		<td width="492"><font face="Tahoma" size="3">&nbsp;</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><b><font size="3" face="Tahoma">&nbsp; Desde</font></b></td>
+		<td width="492"><font size="3" face="Tahoma">___/___/___</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"><b><font face="Tahoma" size="3">&nbsp;</font></b></td>
+		<td width="288"><font face="Tahoma" size="3">&nbsp;</font></td>
+		<td width="492"><font face="Tahoma" size="3">&nbsp;</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><b><font size="3" face="Tahoma">&nbsp; Hasta</font></b></td>
+		<td width="492"><font size="3" face="Tahoma">___/___/___</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"><font size="3">&nbsp;</font></td>
+		<td width="288"><font size="3">&nbsp;</font></td>
+		<td width="492"><font size="3">&nbsp;</font></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"></td>
+		<td width="492"></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288">&nbsp;<p align="center"><font face="Tahoma" size="7">_________</font></p>
+		</td>
+		<td width="492">&nbsp;
+		  <p align="center"><font face="Tahoma" size="7">_________</font>
+		</td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288">
+		  <p align="center"><font size="2" face="Tahoma">&nbsp; Supervisor Inmediato</font></p>
+		</td>
+		<td width="492">
+		  <p align="center"><font size="2" face="Tahoma">Payroll</font></p>
+		</td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"></td>
+		<td width="492"></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"></td>
+		<td width="492"></td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288">&nbsp;
+		  <p align="center"><font face="Tahoma" size="7">_________</font>
+		</td>
+		<td width="492">&nbsp;
+		  <p>&nbsp;</p>
+		  <p align="center"><font size="2" face="Tahoma"><b>___</b>/<b>___</b>/<b>___</b></font></p>
+		</td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288">
+		  <p align="center"><font size="2" face="Tahoma">&nbsp; Firma Empleado</font></p>
+		</td>
+		<td width="492">
+		  <p align="center"><font size="2" face="Tahoma">Fecha</font></p>
+		</td>
+	  </tr>
+	  <tr>
+		<td width="5"></td>
+		<td width="288"><font size="1" face="Tahoma">
+	<TABLE  border="0" cellspacing=0 cellpadding=2 SUMMARY ="Printing Table Headers">
+	<TR>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">&nbsp;</TH>
+	<TH ALIGN="LEFT" SCOPE="col" STYLE="background-color:#C0C0A0">Fecha</TH>
+	</TR>
+	<TR style="background-color: #E0E0D0">
+	<TD>&nbsp;</TD>
+	<TD ALIGN="LEFT" valign="TOP"  WIDTH="0"><span name="fecha_hoy" class="bxCtrl"></TD>
+	</TR>
+
+	</TABLE>
+	</font></td>
+		<td width="492"></td>
+	  </tr>
+	</table>
+	<table>
+	<tr><td>
+	<font size="2" face="Tahoma"><br>
+	Le recordamos que por política <b>es responsabilidad de cada empleado:</b><br>
+	<ul>
+	<li>Informar sus vacaciones 10 días antes de tomarlas.</li>
+	<li>Cumplir con la Política de Ausentismo Mandatorio (14 días consecutivos).</li>
+	<li>En caso de ser sensitivo, cumplir con la obligación de no acceder a los sistemas del banco durante el período vacacional.</li>
+	</ul>
+	</font>
+	</tr></td>
+	</table>
+</div>
+
+
+
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/miformvac.js"></script>

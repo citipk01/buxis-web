@@ -1,0 +1,57 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Cheques</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_CHEQUES" bx-onSave="Validacion();" bx-btnEliminar="1" bx-onSelect="CargarControles();" bx-btnAgregar="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Empresa:</div><td><select type="text" style="width:180px;" class="bxCtrl ui-widget ui-widget-content" name="COD_EMP" bx-ctrlField="COD_EMP" bx-srvCombo="CITI.COD_EMP.CMB" bx-ctrlKey="1" disabled/></select><span class="bxCtrl" name="COD_EMP" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.COD_EMP.DESC"></span></td>
+			<div class="bxLabel">Banking:</div><td><select type="text" style="width:180px;" class="bxCtrl ui-widget ui-widget-content" name="banking" bx-ctrlField="BANKING" bx-srvCombo="CITI.BANKING.CMB" bx-ctrlKey="1" disabled/></select><span class="bxCtrl" name="BANKING" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.BANKING.DESC"></span></td>
+			<div class="bxLabel">Descripción:</div><input id="DESCR50" type="text" style="width:220px" class="bxCtrl ui-widget ui-widget-content" name="DESCR50" bx-ctrlField="DESCR50" bx-ctrlKey="1" disabled/>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</div>
+		</div>
+		<div class="ui-widget ui-widget-content ui-corner-all">
+			<table class="bxControls">
+				<tr style="margin:500px;">
+					<td>Banco:</td><td><select type="text" style="width:200px;" class="bxCtrl ui-widget ui-widget-content" name="cod_banco" bx-ctrlField="COD_BANCO" bx-srvCombo="CITI.BANCO.CMB"/></select><span class="bxCtrl" name="COD_BANCO" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.BANCO.DESC"></span></td>
+					
+				</tr>
+				<tr style="margin:500px;">
+					<td>Descripción (20):</td><td><input type="Text" style="width:200px" name="descr20" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCR20"/></td>
+					<td>Descripción (254):</td><td><input type="Text" style="width:500px" name="descr254" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCR254"/></td>
+				</tr>				
+			</table>
+		</div>
+		<div class="bxGrid ui-widget-content ui-corner-all" name="grillaEmp" bx-servName="PAR_CHEQUES" bx-gridOnAdd="addingRow(curRow);">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Cuenta</td>
+						<td style="width:200px;">Nombre</td>
+						<td>Concepto</td>
+						<td style="width:200px;">Nombre</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="CUENTA" style="width:235px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CUENTA" bx-srvCombo="CITI.CUENTA.CMB" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><span class="bxCtrl" name="NOMBRE_CUENTA" style="width:400px" bx-brwCodeDsc="CUENTA" bx-dscSrv="CITI.CUENTA.DESC"></span></td>														
+							<td><input type ="text" name="COD_MV" style="width:70px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_MV" bx-srvCombo="CITI.COD_MV.CMB" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><span class="bxCtrl" name="NOMBRE_CONCEPTO" style="width:400px" bx-brwCodeDsc="COD_MV" bx-dscSrv="CITI.COD_MV.DESC"></span></td>														
+						</tr>
+					</table>
+				</div>
+			</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">			
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+
+<script type="text/javascript" src="/buxis/Partials/js/par_cheques.js"> </script>

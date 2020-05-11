@@ -1,0 +1,52 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Imputación Contable</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_IMPUTACION_CONTABLE" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();" bx-btnAgregar="0">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Concepto:</div><input id="COD_MV" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="COD_MV" bx-ctrlField="COD_MV" bx-ctrlKey="1" disabled/> <span class="bxCtrl" id="COD_MV_NOM" name="DESC_MV" bx-brwCodeDsc="COD_MV" bx-dscSrv="CITI.DESC_MV.DESC"></span>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</div>
+		</div>
+		<div class="bxGrid ui-widget-content ui-corner-all" name="grillaEmp" bx-servName="PAR_IMPUTACION_CONTABLE" bx-gridOnAdd="addingRow(curRow);">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td align="center">Cía.</td>
+						<td align="center">Banca</td>
+						<td align="center">Cat.Cont.</td>
+						<td align="center">Acr/Deb</td>
+						<td align="center">Sucursal</td>
+						<td align="center">Cuenta</td>
+						<td align="center" style="width:200px;">Nombre</td>
+						<td align="center">Ctro. de Costos</td>
+						<td align="center">Signo</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><select type="text" style="width:65px;" class="bxCtrl ui-widget ui-widget-content" name="COD_EMP" bx-ctrlField="COD_EMP" bx-srvCombo="CITI.COMPANY.CMB"/></select><span class="bxCtrl" name="COD_EMP" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.COMPANY.DESC"></span></td>
+							<td><select type="text" style="width:70px;" class="bxCtrl ui-widget ui-widget-content" name="banking" bx-ctrlField="BANKING" bx-srvCombo="CITI.BANKING_COD.CMB"/></select><span class="bxCtrl" name="BANKING" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.BANKING_COD.DESC"></span></td>
+							<td><select type="text" style="width:55px;" class="bxCtrl ui-widget ui-widget-content" name="cat_cont" bx-ctrlField="CAT_CONT" bx-srvCombo="CITI.CAT_CONT.CMB"/></select><span class="bxCtrl" name="CAT_CONT" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.CAT_CONT.DESC"></span></td>
+							<td><select type="text" style="width:45px;" class="bxCtrl ui-widget ui-widget-content" name="debt_cred" bx-ctrlField="DEBT_CRED" bx-srvCombo="CITI.ACRED_DEB.CMB"/></select><span class="bxCtrl" name="DEBT_CRED" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.ACRED_DEB.DESC"></span></td>
+							<td><input type ="text" name="COD_SUC" style="width:60px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_SUC" bx-srvCombo="CITI.SUCURSAL.CMB" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><input type ="text" name="CUENTA" style="width:235px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CUENTA" bx-srvCombo="CITI.CUENTA.CMB" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><span class="bxCtrl" name="NOMBRE_CUENTA" style="width:400px" bx-brwCodeDsc="CUENTA" bx-dscSrv="CITI.CUENTA.DESC"></span></td>														
+							<td><input type ="text" name="CENCOS_MF" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CENCOS_MF" bx-srvCombo="CITI.CENCOS.CMB" bx-onChange="CambioCampo(curCtrl);"//></td>
+							<td><select type="text" style="width:45px;" class="bxCtrl ui-widget ui-widget-content" name="SIGNO" bx-ctrlField="SIGNO" bx-srvCombo="CITI.SIGNO.CMB"/></select><span class="bxCtrl" name="SIGNO" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.SIGNO.DESC"></span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">			
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+
+<script type="text/javascript" src="/buxis/Partials/js/par_imp_cont.js"> </script>

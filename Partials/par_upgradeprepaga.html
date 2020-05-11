@@ -1,0 +1,32 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Upgrade Prepaga</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_PREPAGA_UPG" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivCencos" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">CB_PREPAGA:</div><input id="CB_PREPAGA" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="CB_PREPAGA" bx-ctrlField="CB_PREPAGA" bx-ctrlKey="1" disabled/>
+			<div class="bxLabel">CBHR_PLAN_DESDE:</div><input id="CBHR_PLAN_DESDE" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="CBHR_PLAN_DESDE" bx-ctrlField="CBHR_PLAN_DESDE" bx-ctrlKey="1" />
+			<div class="bxLabel">CBHR_PLAN_HASTA:</div><input id="CBHR_PLAN_HASTA" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="CBHR_PLAN_HASTA" bx-ctrlField="CBHR_PLAN_HASTA" bx-ctrlKey="1" />
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>CBHR_DIF_UPGRPLAN:</td><td><input type="Text" style="width:200px;" name="CBHR_DIF_UPGRPLAN" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_DIF_UPGRPLAN"/></td>
+			</tr>					
+		</table>
+	</div>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/par_obrasocial.js"></script>

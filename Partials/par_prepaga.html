@@ -1,0 +1,49 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Prepaga</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_PREPAGA" bx-onSave="Validacion();" bx-btnEliminar="1" bx-onSelect="CargarControles();" bx-btnAgregar="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Prepaga:</div><input id="CB_PREPAGA" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="CB_PREPAGA" bx-ctrlField="CB_PREPAGA" bx-ctrlKey="1" disabled/>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</div>
+		</div>
+		<div class="ui-widget ui-widget-content ui-corner-all">
+			<table class="bxControls">
+				<tr style="margin:500px;">
+					<td>Descripción:</td><td><input type="Text" style="width:200px" name="descrip" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DESCRIP"/></td>
+					<td>Monto:</td><td><input type="Text" style="width:200px" name="monto" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_MONTO_MODPYO"/></td>
+				</tr>
+			</table>
+		</div>
+		<div class="bxGrid ui-widget-content ui-corner-all" name="grillaEmp" bx-servName="PAR_PREPAGA" bx-gridOnAdd="addingRow(curRow);">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Plan</td>
+						<td>Cat. Cont</td>
+						<td>Monto</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="CBHR_PLANPRPAGA" style="width:60px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CBHR_PLANPRPAGA" bx-ctrlKey="1" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><select type="text" style="width:70px;" class="bxCtrl ui-widget ui-widget-content" name="cat_cont" bx-ctrlField="CAT_CONT" bx-srvCombo="CITI.CAT_CONT.CMB"/></select><span class="bxCtrl" name="CAT_CONT" bx-brwCodeDsc="codigo" bx-dscSrv="CITI.CAT_CONT.DESC"></span></td>
+							<td><input type ="text" name="CBHR_MONTOPRPG" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="CBHR_MONTOPRPG" bx-onChange="CambioCampo(curCtrl);"//></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+
+<script type="text/javascript" src="/buxis/Partials/js/par_prepaga.js"> </script>

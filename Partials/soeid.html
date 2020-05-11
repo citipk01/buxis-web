@@ -1,0 +1,51 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">SOEID</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="SOEID" bx-btnAgregar="0" >
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Legajo:</div><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="cod_mf" bx-ctrlField="COD_MF" bx-ctrlKey="1"/><span class="bxCtrl" name="nom_mf" bx-brwCodeDsc="cod_mf" bx-dscSrv="CITI.NOM_MF.DESC"></span>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeleteSubKey" onclick="Eliminar();"></span>
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>SOEID:</td><td colspan=3><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="soeid" bx-ctrlField="SOEID"/></td>
+			</tr>
+		</table>
+		<div class="fila">
+			<div class="columna mod6">
+				<div class="fila">
+					<div class="columna mod4">
+						<span>Etiqueta1</span>
+					</div>
+					<div class="columna mod6">
+						<input type="text"/>
+					</div>
+				</div>
+				<div class="fila">
+					<div class="columna mod4">
+						<span>Etiqueta2</span>
+					</div>
+					<div class="columna mod8">
+						<input type="text"/>
+					</div>
+				</div>
+			</div>
+			<div class="columna mod6">
+				<div class="fila">
+					<div class="columna mod3"><span>Etiqueta 3</span></div>
+					<div class="columna mod9"><input type="text"/></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/soeid.js"></script>

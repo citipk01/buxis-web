@@ -1,0 +1,23 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="GEN_VACACION" bx-btnAgregar="0" bx-procForm="1">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<td>Empresa: </td><td><select style="width:250px;" name="COD_EMP" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="COD_EMP" bx-srvCombo="CITI.COD_EMP.CMB"></select></td>
+			</tr>
+			<tr>
+				<td>Año: </td><td colspan=3><select style="width:120px;" name="ANIO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ANIO" bx-srvCombo="CITI.ANIO.CMB">   </select></td>
+			</tr>
+			<tr>
+				<td>Tipo Proceso:</td><td><select style="width:150px;" name="tipo_proceso" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TIPO_PROCESO" bx-srvCombo="CITI.GEN_VACACION.TIPO.CMB"></select></td>
+			</tr>
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/gen_vacaciones.js"></script>

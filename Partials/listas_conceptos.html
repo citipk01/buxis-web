@@ -1,0 +1,40 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Listas de Conceptos</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="LISTAS_CONCEPTOS" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();" bx-btnAgregar="0">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Concepto:</div><input id="COD_MV" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="COD_MV" bx-ctrlField="COD_MV" bx-ctrlKey="1" disabled/> <span class="bxCtrl" name="DESC_MV" bx-brwCodeDsc="COD_MV" bx-dscSrv="CITI.DESC_MV.DESC"></span>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-minus" onclick="EliminarLista();"></span>
+			</div>
+		</div>
+		<div class="bxGrid ui-widget-content ui-corner-all" name="grillaEmp" bx-servName="LISTAS_CONCEPTOS" bx-gridOnAdd="addingRow(curRow);">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>ID Empl</td>
+						<td>Nombre</td>
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="COD_MF" style="width:90px;text-align:center" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="COD_MF" bx-ctrlKey="1" bx-onChange="CambioCampo(curCtrl);"/></td>
+							<td><input type ="text" name="NOMBRE" style="width:375px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="NOMBRE"  disabled/></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+
+<script type="text/javascript" src="/buxis/Partials/js/listas_conceptos.js"> </script>

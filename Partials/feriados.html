@@ -1,0 +1,50 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Carga de feriados</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="DIAS_FEST"  bx-onSave="OnSaveFer();" bx-btnAgregar="0" >
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivPeriodo" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Año:</div><input id="Feriados" type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="Anio" bx-ctrlField="Anio" bx-ctrlKey="1"/>
+			<!--div class="bxLabel" style="margin-left:1em;">Empresa:</div><select type="text" style="width:250px;" class="bxCtrl ui-widget ui-widget-content" name="cod_emp" bx-ctrlField="COD_EMP" bx-ctrlKey="2" bx-srvCombo="CITI.COD_EMP.CMB"--></select>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<!--span class="pkFlechasEfec ui-icon ui-icon-carat-1-w" id="bxBtnSubKeyRewind" onclick="SubKeyRewind();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-search" id="bxBtnSubKeySearch" onclick="SubKeySearch();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-carat-1-e" id="bxBtnSubKeyForward" onclick="SubKeyForward();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<span class="pkFlechasEfec ui-icon ui-icon-circle-plus" id="bxBtnAddSubKey" onclick="Agregar();"></span>
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeleteSubKey" onclick="Eliminar();"></span-->
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all" style="padding:10px;">
+		<table class="bxControls">
+			<tr>
+				<!--td>Año:</td><td colspan=3><input type="text" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" name="year" bx-ctrlField="" /><!--span class="bxCtrl" name="nom_mf" bx-brwCodeDsc="cod_mf" bx-dscSrv="CITI.NOM_MF.DESC"></span--></td>
+				<td style="width:100px;"></td>
+			</tr>
+		</table>
+
+		<p>
+			<div class="bxGrid" name="grillaFer" bx-servName="DIAS_FEST">
+				<table>
+					<tr class="bxGridHeader ui-widget-header">
+						<td>Feriado</td>
+
+					</tr>
+				</table>
+				<div class="bxGrid2" style="max-height:300px;">
+					<table>
+						<tr class="bxGridLine">
+							<td><input type ="text" name="feriado" style="width:100px;" class="bxCtrl ui-widget ui-widget-content" type="text" bx-ctrlField="FECHA" bx-ctrlKey="1" bx-onChange="onAddNewDate(curCtrl);" /></td>
+
+						</tr>
+					</table>
+				</div>
+			</div>
+		</p>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/feriados.js"></script>

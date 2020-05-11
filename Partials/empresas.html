@@ -1,0 +1,86 @@
+<link href="/buxis/Partials/css/pkStyle.css" rel="stylesheet">
+<p class="bxFormTitle">Empresa</p>
+<form class="bxForm">
+	<div class="bxBtns" bx-effdt="0" bx-servBtn="PAR_EMPRESA" bx-onSave="Validacion();" bx-btnEliminar="0" bx-onSelect="CargarControles();">
+	<!--  acá va a ir la botonera y se va a hacer un load al archivo que contiene la botonera -->
+	</div>
+	<p>
+		<div id="idDivCencos" class="ui-widget ui-widget-content ui-corner-all bxSubKey">
+			<div class="bxLabel">Empresa:</div><input id="COD_EMP" type="text" style="width:75px;text-align:center" class="bxCtrl ui-widget ui-widget-content" name="COD_EMP" bx-ctrlField="COD_EMP" bx-ctrlKey="1" disabled/>
+			<div class="ui-widget" style="display:inline-block;float:right;">
+				<span class="pkFlechasEfec ui-icon ui-icon-trash" id="bxBtnDeletesubKey" onclick="Eliminar();"></span>
+				&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</div>
+		</div>
+	</p>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+			<tr style="margin:500px;">
+				<td>Descripción:</td><td><input type="Text" style="width:250px;" name="nom_emp" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NOM_EMP"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>Descripción (L):</td><td><input type="Text" style="width:250px;" name="nom_emp_l" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NOM_EMP_L"/></td>
+			</tr>				
+			<tr style="margin:500px;">
+				<td>INICIO_ACT:</td><td><input type="Text" style="width:200px;" name="INICIO_ACT" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="INICIO_ACT"/></td>
+				<td>ZONAGEO:</td><td><input type="Text" style="width:200px;" name="ZONAGEO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ZONAGEO"/></td>
+				<td>ZONAGEO2000:</td><td><input type="Text" style="width:200px;" name="ZONAGEO2000" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ZONAGEO2000"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>PORADIC:</td><td><input type="Text" style="width:200px;" name="PORADIC" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="PORADIC"/></td>
+				<td>PORADIC2000:</td><td><input type="Text" style="width:200px;" name="PORADIC2000" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="PORADIC2000"/></td>
+				<td>CATEGOR_ALIQ:</td><td><input type="Text" style="width:200px;" name="CATEGOR_ALIQ" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CATEGOR_ALIQ"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>ACTIVIDAD2000:</td><td><input type="Text" style="width:200px;" name="ACTIVIDAD2000" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="ACTIVIDAD2000"/></td>
+				<td>COD_COR:</td><td><input type="Text" style="width:200px;" name="COD_COR" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="COD_COR"/></td>
+				<td>COMPANY:</td><td><input type="Text" style="width:200px;" name="COMPANY" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="COMPANY"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>CUIT:</td><td><input type="Text" style="width:200px;" name="CUIT" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CUIT"/></td>
+				<td>DIRECCION:</td><td><input type="Text" style="width:200px;" name="DIRECCION" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DIRECCION"/></td>
+				<td>TIPO_EMP:</td><td><input type="Text" style="width:200px;" name="TIPO_EMP" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TIPO_EMP"/></td>
+			</tr>		
+			<tr style="margin:500px;">
+				<td>CODBCO_CB:</td><td><input type="Text" style="width:200px;" name="CODBCO_CB" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CODBCO_CB"/></td>
+				<td>NUM_EMP:</td><td><input type="Text" style="width:200px;" name="NUM_EMP" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NUM_EMP"/></td>
+				<td>NUM_CONTRIB:</td><td><input type="Text" style="width:200px;" name="NUM_CONTRIB" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NUM_CONTRIB"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>TIP_CONTRIB:</td><td><input type="Text" style="width:200px;" name="TIP_CONTRIB" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TIP_CONTRIB"/></td>
+				<td>TIP_APORTE:</td><td><input type="Text" style="width:200px;" name="TIP_APORTE" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TIP_APORTE"/></td>
+				<td>CONVENIO:</td><td><input type="Text" style="width:200px;" name="CONVENIO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CONVENIO"/></td>
+			</tr>		
+			<tr style="margin:500px;">
+				<td>CONTACTO:</td><td><input type="Text" style="width:200px;" name="CONTACTO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CONTACTO"/></td>
+				<td>TITULAR:</td><td><input type="Text" style="width:200px;" name="TITULAR" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TITULAR"/></td>
+				<td>TELEFONO:</td><td><input type="Text" style="width:200px;" name="TELEFONO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="TELEFONO"/></td>
+			</tr>		
+			<tr style="margin:500px;">
+				<td>FAX:</td><td><input type="Text" style="width:200px;" name="FAX" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="FAX"/></td>
+				<td>DOMICILIO:</td><td><input type="Text" style="width:200px;" name="DOMICILIO" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DOMICILIO"/></td>
+				<td>REGION:</td><td><input type="Text" style="width:200px;" name="REGION" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="REGION"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>PRIMA_ART:</td><td><input type="Text" style="width:200px;" name="PRIMA_ART" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="PRIMA_ART"/></td>
+				<td>CAPITA_ART:</td><td><input type="Text" style="width:200px;" name="CAPITA_ART" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CAPITA_ART"/></td>
+				<td>NRO_ANSES:</td><td><input type="Text" style="width:200px;" name="NRO_ANSES" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="NRO_ANSES"/></td>
+			</tr>	
+			<tr style="margin:500px;">
+				<td>DEPEN_DGI:</td><td><input type="Text" style="width:200px;" name="DEPEN_DGI" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="DEPEN_DGI"/></td>
+				<td>CBHR_ACCT_CRED:</td><td><input type="Text" style="width:200px;" name="CBHR_ACCT_CRED" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_ACCT_CRED"/></td>
+				<td>CBHR_ACCT_DEB:</td><td><input type="Text" style="width:200px;" name="CBHR_ACCT_DEB" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_ACCT_DEB"/></td>
+			</tr>
+			<tr style="margin:500px;">
+				<td>CBHR_CENCOS_CRED:</td><td><input type="Text" style="width:200px;" name="CBHR_CENCOS_CRED" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_CENCOS_CRED"/></td>
+				<td>CBHR_CENCOS_DEB:</td><td><input type="Text" style="width:200px;" name="CBHR_CENCOS_DEB" class="bxCtrl ui-widget ui-widget-content" bx-ctrlField="CBHR_CENCOS_DEB"/></td>
+			</tr>			
+		</table>
+	</div>
+	<div class="ui-widget ui-widget-content ui-corner-all">
+		<table class="bxControls">
+		</table>
+	</div>
+</form>
+<div id="searchForm" class="ui-widget-content ui-corner-all searchForm"></div>
+<script type="text/javascript" src="/buxis/Partials/js/empresas.js"></script>
