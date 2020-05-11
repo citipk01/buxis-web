@@ -1,0 +1,66 @@
+@model Buxis.Services.ViewModel.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Login</h3>
+
+@if (ViewData != null && ViewData.ContainsKey("error") && ViewData["error"] != null)
+{
+    <div class="fila">
+        <div class="columna mod12">
+            <div class="ui-state-error ui-corner-all">
+                <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span></p>
+                <div class="validation-summary-errors">
+                    <ul>
+                        <li>@ViewData["error"].ToString()</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("CheckLogin", "Login"))
+{
+  <div class="fila">
+    <!-- EGV -->
+    <!--div class="columna mod8"-->
+    <div class="columna mod4">
+    <!-- EGV Fin -->
+	    <div class="fila">
+		<!-- EGV -->
+		<!--div class="columna mod6"-->
+		<div class="columna mod12">
+		<!-- EGV Fin -->
+		    @Html.LabelFor(model => model.Username)
+		    @Html.EditorFor(model => model.Username)
+		    @Html.ValidationMessageFor(model => model.Username, "")
+		</div>
+	    </div>
+	    <div class="fila">
+	    	<!-- EGV -->
+		<!--div class="columna mod6"-->
+		<div class="columna mod12">
+		<!-- EGV Fin -->
+		     @Html.LabelFor(model => model.Password)
+		     @Html.EditorFor(model => model.Password)
+		     @Html.ValidationMessageFor(model => model.Password)
+		 </div>
+	    </div>
+	    <div class="fila">
+		<div class="columna">
+		    <button type="submit" value="Log in" class="button">Log in</button>
+		</div>
+	    </div>
+    </div>
+    <!-- EGV -->
+    <div class="columna mod2" style="font-family: Verdana,serif;font-size: 10px;font-weight: bold;color: #666666;">
+        <b>SSO Authentication</b><br>
+        <a href="http://www.citigroup.net/singlesignon/sso_help.htm" target="_blank" class="login"><img id="Image2" src="~/Content/Images/icon_sso_fts.gif" alt="Single Sign On" style="border:0;"></a>
+    </div>    
+    <!-- EGV Fin -->
+  </div>
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=EDGE" /> 
+    
+    <title>@ViewBag.Title</title>    
+    @Styles.Render("~/Content/jquery-ui.min.css")
+    @Styles.Render("~/Content/select2.css")
+    @Styles.Render("~/Content/styles.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/jquery-ui.min.js")
+    @Scripts.Render("~/Scripts/select2.min.js")
+    @Scripts.Render("~/Scripts/select2_locale_es.js")
+    @Scripts.Render("~/Scripts/datepicker-es.js")
+    @Scripts.Render("~/Scripts/messages_es.js")            
+    @Scripts.Render("~/Scripts/jquery.jqprint-0.3.js")
+    @Scripts.Render("~/Scripts/jquery.tablesorter.js")
+    @Scripts.Render("~/Scripts/jspdf.js")
+    @Scripts.Render("~/Scripts/globalize.js")
+	
+	@* EGV Inicio *@
+    @Scripts.Render("~/Partials/js/bxCitiServices.js")
+    @Scripts.Render("~/Partials/js/bxforms.js")
+    @Scripts.Render("~/Partials/js/bxbtns.js")   
+    @* EGV Fin *@
+
+</head>
+<body>        
+    <div class="header">
+        <div class="logo">
+            <img src="~/Content/Images/logo_citi.png">
+        </div>
+        @if (Buxis.Web.Seguridad.UserContext.LoggedIn)
+        {
+            <div class="usuario">
+                <p>Bienvenido, @Buxis.Web.Seguridad.UserContext.Current.Nombre | </p>
+                @using (Html.BeginForm("Logout", "Logout"))
+                {
+                    <input type="submit" value="Log out"/>
+                }
+            </div>
+        }
+    </div>  
+    <div class="menu">
+        @if (Buxis.Web.Seguridad.UserContext.LoggedIn)
+        {
+            
+        <ul id="menuUl">
+            <!-- EGV Cambio de etiquetas -->
+            <!--li class="checkSecured" data-credential="CONSULTA_LISTADO_LIQUIDACIONES"><a href="@Url.Action("List", "Liquidacion")">Buscador de Liquidaciones</a></li-->
+            <!--li class="checkSecured" data-credential="LISTAR_EMPLEADOS"><a href="@Url.Action("List", "MaestroEmpleados")">Maestro de Empleados</a></li-->
+            <!--li class="checkSecured" data-credential="CONSULTA_LISTADO_LIQUIDACIONES"><a href="@Url.Action("List", "Liquidacion")">Liquidaciones</a></li-->
+            <!--li class="checkSecured" data-credential="LISTAR_EMPLEADOS"><a href="@Url.Action("List", "MaestroEmpleados")">Empleados</a></li-->
+            @foreach (Buxis.Services.ViewModel.MenuGroup grupo in Buxis.Web.Seguridad.UserContext.Current.MenuGroups)
+            {
+                <li>@grupo.Name
+                    <ul>
+                        @foreach (Buxis.Services.ViewModel.MenuItem item in grupo.Items)
+                        {
+                            <li class="checkSecured" data-credential="@item.Action"><a href="@Url.Action("RenderPartial", "Integracion", new { actionCode = item.Action })">@item.DisplayName</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+            
+        }
+    </div>
+    <div id="bodyContentContainer" class="contenido">
+        @RenderBody()
+    </div>
+    <footer>
+        
+    </footer>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+    @*$(document).ready(function () {
+            $("#empleados").click(function(){
+                $('#bodyContentContainer').load("@Url.Content("/Partials/empleados.html")");
+            });
+        });*@
+    </script>
+    @Scripts.Render("~/Content/Security.js")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // EGV 23Mar2016 Inicio Se agregan los ítems principales. En IE8 no se eliminaban según el perfil del usuario. Por lo que se agregan según el perfil del usuario.
+            BXData('CITI.GET_MAIN_MENU_ITEMS', [], function(){
+            	var imenu = 0;
+            	for(imenu=0;imenu<this.Results.length;imenu++){
+            		/*
+            		if (this.Results[imenu].PRF == 'LISTAR_EMPLEADOS'){
+            			$('#menuUl').prepend( '<li class="checkSecured" data-credential="LISTAR_EMPLEADOS"><a href="@Url.Action("List", "MaestroEmpleados")">Empleados</a></li>' );
+            		}
+            		if (this.Results[imenu].PRF == 'CONSULTA_LISTADO_LIQUIDACIONES'){
+			        $('#menuUl').prepend( '<li class="checkSecured" data-credential="CONSULTA_LISTADO_LIQUIDACIONES"><a href="@Url.Action("List", "Liquidacion")">Liquidaciones</a></li>' );
+            		}
+            		*/
+            		$('#menuUl').prepend( '<li class="checkSecured" data-credential="' + this.Results[imenu].PRF + '"><a href="' + this.Results[imenu].URL + '">' + this.Results[imenu].TITULO + '</a></li>' );
+            	}
+            });
+            // EGV 23Mar2016 Fin
+            security_init("@Url.Action("validateCredential", "Security")");
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+﻿@model Buxis.Services.ViewModel.DatosPersonalesLGViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if($("#idAnchorSaltarCabecera").attr('id') !== undefined){
+            $(document).scrollTop( $("#idAnchorSaltarCabecera").offset().top );  
+        }
+
+        $("#divLoading").hide();
+
+        var columna = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Enum.GetName(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Model.ColumnaOrdenamiento)));
+        var sentido = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Enum.GetName(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Model.SentidoOrdenamiento)));
+
+        $("#resultados").tablesorter({
+            headers: { 3: { sorter: false } },
+            sortList: [[columna, sentido]]
+        });
+
+        $("#resultados").bind("sortStart", function (event) {            
+            $("#divLoading").show();
+        });
+
+        $("#resultados").bind("sortEnd", function (event) {
+
+            var columnaElegida = event.target.config.sortList.toString().substring(0, 1);
+            var sentidoElegido = event.target.config.sortList.toString().substring(2);
+
+            var columnaActual = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Enum.GetName(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Model.ColumnaOrdenamiento)));
+            var sentidoActual = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Enum.GetName(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Model.SentidoOrdenamiento)));
+
+            if(columnaElegida != columnaActual ||  (columnaElegida == columnaActual && sentidoElegido != sentidoActual)){
+                var inputColumnaOrdenamiento = $("<input>").attr("type", "hidden").attr("name", "ColumnaOrdenamiento").val(columnaElegida);
+                var inputSentidoOrdenamiento = $("<input>").attr("type", "hidden").attr("name", "SentidoOrdenamiento").val(sentidoElegido);
+
+                $('form').append($(inputColumnaOrdenamiento));
+                $('form').append($(inputSentidoOrdenamiento));
+
+                $("form").submit();
+            }
+        });
+
+        PruebaServicioGET();
+        //PruebaServicioPOST();
+    });
+
+        @* 05-02-2016 - Prueba Buxis factibilidad llamar servicios rest del nuevo Portal de Buxis desde Portal Citi.
+        La prueba resultó exitosa, es necesario agregarle el token de seguridad pero el servicio devolvió los datos requeridos.
+        Es necesario tener levantado el y estar logueado en el nuevo Portal de Buxis para que funcione.
+          *@
+ 
+    //funciona OK
+    function PruebaServicioGET() {
+        //$.ajax({
+        //    url: 'http://localhost:8081/rest/services/persona/MisDatosPrincipales',
+        //    type: "GET",            
+        //    dataType: 'jsonp',
+        //    xhrFields: {
+        //        withCredentials: true
+        //    },
+        //    success: function (data) {
+        //        // we make a successful JSONP call!
+        //        console.log('funcionó el GET!!');
+        //        //console.log(data.DatosPrincipales.NombreCompleto);
+        //        console.log(data);
+        //    },
+        //    error: function (error) {
+        //        console.log('Uh Oh! Hubo un error!');
+        //        console.log(error);
+        //    }
+        //});
+
+        //servicio dentro del mismo portal del citi - funciona ok
+        //$.ajax({
+        //    url: 'http://localhost:57964/MaestroEmpleados/List',
+        //    type: "GET",            
+        //    dataType: 'json',
+        //    xhrFields: {
+        //        withCredentials: true
+        //    },
+        //    success: function (data) {
+        //        // we make a successful JSONP call!
+        //        console.log('funcionó el GET!!');
+        //        //console.log(data.DatosPrincipales.NombreCompleto);
+        //        console.log(data);
+        //    },
+        //    error: function (error) {
+        //        console.log('Error maestro empleados!');
+        //        console.log(error);
+        //    }
+        //});
+
+        //Prueba que funciona bien pero es necesario configurar un método callBack en el back-end
+        //$.ajax({
+        //    url: 'http://localhost:8081/rest/services/persona/MisDatosPrincipales',
+        //    type: "GET",            
+        //    dataType: 'jsonp',
+        //    jsonpCallback: "myJsonMethod",
+        //    success: function (data) {
+        //        // we make a successful JSONP call!
+        //        console.log('funcionó el GET!!');
+        //        console.log(data.DatosPrincipales.NombreCompleto);
+        //        //console.log(data);
+        //    },
+        //    error: function (data) {
+        //        console.log('Uh Oh! Hubo un error!');
+        //    }
+        //});
+
+        ////método callback que debería configurarse en el back-end
+        //myJsonMethod (
+        //    {"Id":10016,"DatosPrincipales":{"Id":10016,"NombreCompleto":"Karina Elena Guzzo Gotti","PrimerNombre":"Karina","SegundoNombre":"Elena","PrimerApellido":"Guzzo","SegundoApellido":"Gotti","Genero":"Femenino","TipoDocumento":"CEDULA DE IDENTIDAD","DocIdentidad":11111126,"VtoDoc":"\/Date(1270954800000-0000)\/","VtoCarnetSalud":"\/Date(1272769200000-0000)\/","Pasaporte":"11111126","VtoPasaporte":"\/Date(1435114800000-0000)\/","PaisEmision":"Uruguay","FechaNac":"\/Date(338871600000-0000)\/","PaisNac":"Uruguay","CiudadNac":"CHUY - ROCHA -","Nacionalidad":"Afgana","EstadoCivil":"SOLTERO/A","FechaEnlace":"\/Date(1309834800000-0000)\/","MatriculaVeh":"SBA3478","VtoLibreta":"\/Date(1179370800000-0000)\/","Foto":"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"}}
+        //);
+
+
+        //prueba
+        $.ajax({
+            url: 'http://localhost:8081/rest/services/persona/MisDatosPrincipales',
+            type: "GET",            
+            dataType: 'jsonp',
+            jsonpCallback: "MisDatosPrincipales",
+            success: function (data) {
+                // we make a successful JSONP call!
+                console.log('funcionó el GET!!');
+                console.log(data.DatosPrincipales.NombreCompleto);
+                //console.log(data);
+            },
+            error: function (data) {
+                console.log('Uh Oh! Hubo un error!');
+                console.log(data);
+            }
+        });
+
+        //método callback que debería configurarse en el back-end
+        myJsonMethod (
+            {"Id":10016,"DatosPrincipales":{"Id":10016,"NombreCompleto":"Karina Elena Guzzo Gotti","PrimerNombre":"Karina","SegundoNombre":"Elena","PrimerApellido":"Guzzo","SegundoApellido":"Gotti","Genero":"Femenino","TipoDocumento":"CEDULA DE IDENTIDAD","DocIdentidad":11111126,"VtoDoc":"\/Date(1270954800000-0000)\/","VtoCarnetSalud":"\/Date(1272769200000-0000)\/","Pasaporte":"11111126","VtoPasaporte":"\/Date(1435114800000-0000)\/","PaisEmision":"Uruguay","FechaNac":"\/Date(338871600000-0000)\/","PaisNac":"Uruguay","CiudadNac":"CHUY - ROCHA -","Nacionalidad":"Afgana","EstadoCivil":"SOLTERO/A","FechaEnlace":"\/Date(1309834800000-0000)\/","MatriculaVeh":"SBA3478","VtoLibreta":"\/Date(1179370800000-0000)\/","Foto":"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"}}
+        );
+    };
+
+    //funciona aunque con errores de CORS realiza el insert
+    function PruebaServicioPOST() {        
+        $.ajax(
+        {
+            type: "POST",
+            url: "http://localhost:8081/rest/services/nomina/InsertarNovedad",
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+            data: '{ "HorasHd": 9, "JornalesHd": null, "UnidadesHd": null, "CentroCostosEmpleado": "207", "FechaGeneracion": "2016-02-15", "CodigoEmpleado": "10020", "IdConcepto": 12, "HaberDescuento": "h" }',
+            success: function () {
+                console.log('success');
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+            }
+        }
+        );
+    }; 
+</script>
+
+@{
+    ViewBag.Title = "Buscador de Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("List", "MaestroEmpleados", FormMethod.Get))
+{
+    <div id="divLoading" class="loading">
+        <img style="width:50px; height:50px;" src="~/Content/Images/ajax_loader_blue_512.gif">
+    </div>
+    
+    <h3>Buscador de Empleados</h3>
+        
+    <div class="fila">
+        <div class="columna mod5 panel">
+            <h5>
+                Datos del Empleado
+            </h5>
+            <div class="fila">
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.LegajoDesde)
+                    @Html.EditorFor(model => model.LegajoDesde)
+                    @Html.ValidationMessageFor(model => model.LegajoDesde)
+            </div>
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.LegajoHasta)
+                    @Html.EditorFor(model => model.LegajoHasta)
+                    @Html.ValidationMessageFor(model => model.LegajoHasta)
+                </div>
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.NumeroDocumento)
+                    @Html.EditorFor(model => model.NumeroDocumento)
+                    @Html.ValidationMessageFor(model => model.NumeroDocumento, "")
+                </div>
+            </div>            
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.PrimerNombre)
+                    @Html.EditorFor(model => model.PrimerNombre)
+                    @Html.ValidationMessageFor(model => model.PrimerNombre, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.SegundoNombre)
+                    @Html.EditorFor(model => model.SegundoNombre)
+                    @Html.ValidationMessageFor(model => model.SegundoNombre, "")
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.PrimerApellido)
+                    @Html.EditorFor(model => model.PrimerApellido)
+                    @Html.ValidationMessageFor(model => model.PrimerApellido, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.SegundoApellido)
+                    @Html.EditorFor(model => model.SegundoApellido)
+                    @Html.ValidationMessageFor(model => model.SegundoApellido, "")
+                </div>
+            </div>
+        </div>       
+    </div>
+            <div class="fila">
+                <div class="columna mod4">
+                    <input type="hidden" name="search" value="1" />
+                    <button type="submit" id="btnBuscar" value="Buscar" class="button">Buscar</button>
+                    <a class="button checkSecured" data-credential="CREAR_EMPLEADO" href="@Url.Action("Nuevo", "MaestroEmpleados")">Nuevo</a>
+                </div>
+            </div>
+}
+    @if (Model.Empleados != null && Model.Empleados.Count > 0)
+    {
+        <a id="idAnchorSaltarCabecera" />
+        
+        <table id="resultados" class="tabla tabla tabla-cebra">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empleados[0].IdEmpleado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empleados[0].NombreApellido)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empleados[0].NumeroDocumento)
+                    </th>
+                    <th style="width: 16px; height: 16px;">
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Empleados)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.IdEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.NombreApellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.NumeroDocumento)
+                        </td>
+                        <td>
+                            <ul id="icons" class="ui-widget ui-helper-clearfix">
+                                <li class="ui-state-default ui-corner-all checkSecured" data-credential="EDITAR_EMPLEADO" title="Editar Empleado">
+                                    <a class="ui-icon ui-icon-pencil" href="@Url.Action("Editar",
+                                                                                        "MaestroEmpleados",
+                                                                                        new {
+                                                                                            idEmpleado = item.IdEmpleado,
+                                                                                            LegajoDesde = Model.LegajoDesde,
+                                                                                            LegajoHasta = Model.LegajoHasta,
+                                                                                            PrimerNombre = Model.PrimerNombre,
+                                                                                            SegundoNombre = Model.SegundoNombre,
+                                                                                            PrimerApellido = Model.PrimerApellido,
+                                                                                            SegundoApellido = Model.SegundoApellido,
+                                                                                            NumeroDocumento = Model.NumeroDocumento,
+                                                                                            ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                                                                                            SentidoOrdenamiento = Model.SentidoOrdenamiento                                                                                            
+                                                                                        })"></a>
+                                </li>
+                                <li class="ui-state-default ui-corner-all checkSecured" data-credential="VER_EMPLEADO" title="Ver Empleado">
+                                    <a class="ui-icon ui-icon-search" href="@Url.Action("Ver",
+                                                                                        "MaestroEmpleados",
+                                                                                        new {
+                                                                                            idEmpleado = item.IdEmpleado,
+                                                                                            LegajoDesde = Model.LegajoDesde,
+                                                                                            LegajoHasta = Model.LegajoHasta,
+                                                                                            PrimerNombre = Model.PrimerNombre,
+                                                                                            SegundoNombre = Model.SegundoNombre,
+                                                                                            PrimerApellido = Model.PrimerApellido,
+                                                                                            SegundoApellido = Model.SegundoApellido,
+                                                                                            NumeroDocumento = Model.NumeroDocumento,
+                                                                                            ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                                                                                            SentidoOrdenamiento = Model.SentidoOrdenamiento
+                                                                                        })"></a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        if (Model.Empleados != null && Model.Empleados.Count > 0)
+        {
+        @Html.PagedListPager(
+                (PagedList.IPagedList)Model.Empleados,
+                page => Url.Action("List",
+                    new {
+                        page,
+                        pageSize = ViewData["pageSize"] != null ? ViewData["pageSize"] : 50 ,
+                        search = 1,
+                        PrimerNombre = Model.PrimerNombre,
+                        SegundoNombre = Model.SegundoNombre,
+                        PrimerApellido = Model.PrimerApellido,
+                        SegundoApellido = Model.SegundoApellido,
+                        LegajoDesde = Model.LegajoDesde,
+                        LegajoHasta = Model.LegajoHasta,
+                        NumeroDocumento = Model.NumeroDocumento,
+                        ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                        SentidoOrdenamiento = Model.SentidoOrdenamiento
+                    }),
+                PagedListRenderOptions.ClassicPlusFirstAndLast);
+        }
+}
+
+    else if (Model.search != null && ViewData.ModelState.IsValid)
+    {
+            <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                <p>
+                    <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                    La búsqueda no arrojó resultados.
+                </p>
+            </div>
+    }

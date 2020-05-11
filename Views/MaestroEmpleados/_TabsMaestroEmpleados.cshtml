@@ -1,0 +1,98 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs();
+
+        if ($("#ErrorTab1").val() == "True")
+            $("#ui-id-1").css("color", "red");
+
+        if ($("#ErrorTab2").val() == "True")
+            $("#ui-id-2").css("color", "red");
+
+        if ($("#ErrorTab3").val() == "True")
+            $("#ui-id-3").css("color", "red");
+
+        if ($("#ErrorTab4").val() == "True")
+            $("#ui-id-4").css("color", "red");
+
+        if ($("#ErrorTab5").val() == "True")
+            $("#ui-id-5").css("color", "red");
+
+        if ($("#ErrorTab6").val() == "True")
+            $("#ui-id-6").css("color", "red");
+    });
+</script>
+
+<div class="fila">
+    <div id="tabs" class="columna mod12">
+        <ul>
+            <li><a href="#tabs-1">Datos Personales</a></li>
+            <li><a href="#tabs-2">Corporativo 1</a></li>
+            <li><a href="#tabs-3">Corporativo 2</a></li>
+            <li><a href="#tabs-4">Payroll 1</a></li>
+            <li><a href="#tabs-5">Payroll 2</a></li>
+            <li><a href="#tabs-6">Uruguay</a></li>
+        </ul>        
+        <div id="tabs-1">
+            @if(Model.EsEdicion)
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_DatosPersonales_edit.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_DatosPersonales_new.cshtml", Model)
+            }
+        </div>
+        <div id="tabs-2">
+            @if(Model.EsEdicion)
+            { 
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Corporativo1_edit.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Corporativo1_new.cshtml", Model)
+            }
+        </div>
+        <div id="tabs-3">
+            @if(Model.EsEdicion)
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Corporativo2_edit.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Corporativo2_new.cshtml", Model)
+            }
+        </div>
+        <div id="tabs-4">
+            @if(Model.EsEdicion)
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Payroll1_edit.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Payroll1_new.cshtml", Model)
+            }
+        </div>
+        <div id="tabs-5">
+            @if(Model.EsEdicion)
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Payroll2_edit.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Payroll2_new.cshtml", Model)
+            }
+        </div>
+        <div id="tabs-6">
+            @if(Model.EsEdicion)
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Uruguay_edit.cshtml", Model)
+            }
+            else
+            {
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Uruguay_new.cshtml", Model)
+            }
+        </div>
+    </div>
+</div>

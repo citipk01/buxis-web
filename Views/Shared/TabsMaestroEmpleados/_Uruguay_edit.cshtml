@@ -1,0 +1,140 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<div class="fila">
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.CompensacionST4Hs_tab6)
+
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.CompensacionST4Hs_tab6)
+            @Html.CheckBoxFor(model => model.CompensacionST4Hs_tab6, new { disabled = "disabled" })
+        }
+        else
+        { @Html.CheckBoxFor(model => model.CompensacionST4Hs_tab6)}
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.CompensacionST5Hs_tab6)
+
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.CompensacionST5Hs_tab6)
+            @Html.CheckBoxFor(model => model.CompensacionST5Hs_tab6, new { disabled = "disabled" })
+        }
+        else
+        { @Html.CheckBoxFor(model => model.CompensacionST5Hs_tab6)}
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.CompensacionST6Hs_tab6)
+
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.CompensacionST6Hs_tab6)
+            @Html.CheckBoxFor(model => model.CompensacionST6Hs_tab6, new { disabled = "disabled" })
+        }
+        else
+        { @Html.CheckBoxFor(model => model.CompensacionST6Hs_tab6)}
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.OperadorComputadora_tab6)
+
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.OperadorComputadora_tab6)
+            @Html.CheckBoxFor(model => model.OperadorComputadora_tab6, new { disabled = "disabled" })
+        }
+        else
+        { @Html.CheckBoxFor(model => model.OperadorComputadora_tab6)}
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.Portavalores_tab6)
+
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.Portavalores_tab6)
+            @Html.CheckBoxFor(model => model.Portavalores_tab6, new { disabled = "disabled" })
+        }
+        else
+        { @Html.CheckBoxFor(model => model.Portavalores_tab6)}
+
+    </div>
+    <div class="columna mod4">
+        @if (Model.EsEmpresaUruguay)
+        {
+            <label class="textoRojo">(*)</label>
+        }
+        @Html.LabelFor(model => model.FechaIngresoVehiculoLegal_tab6)
+        @JqueryUIHelper.DatePicker("FechaIngresoVehiculoLegal_tab6",
+                                           "FechaIngresoVehiculoLegal_tab6",
+                                           Model.FechaIngresoVehiculoLegal_tab6,
+                                           format: "dd/mm/yy",
+                                           readonlly: Model.EsEmpresaArgentina)
+        @if (Model.EsEmpresaUruguay)
+        {
+            @Html.ValidationMessageFor(model => model.FechaIngresoVehiculoLegal_tab6, "")
+        }
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.DiasVacacionesAcordados_tab6)
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.DiasVacacionesAcordados_tab6)
+            @Html.TextBoxFor(model => model.DiasVacacionesAcordados_tab6, new { @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.EditorFor(model => model.DiasVacacionesAcordados_tab6)
+        }
+        @Html.ValidationMessageFor(model => model.DiasVacacionesAcordados_tab6, "")
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.NroCJPB_tab6)
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.NroCJPB_tab6)
+            @Html.TextBoxFor(model => model.NroCJPB_tab6, new { @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.EditorFor(model => model.NroCJPB_tab6)
+        }
+        @Html.ValidationMessageFor(model => model.NroCJPB_tab6, "")
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.CategoriaAprotesJubil_tab6)
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.CategoriaAprotesJubil_tab6)
+            @Html.TextBoxFor(model => model.CategoriaAprotesJubil_tab6, new { @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.EditorFor(model => model.CategoriaAprotesJubil_tab6)
+        }
+        @Html.ValidationMessageFor(model => model.CategoriaAprotesJubil_tab6, "")
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.Alicuota_tab6)
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.HiddenFor(model => model.Alicuota_tab6)
+            @Html.TextBoxFor(model => model.Alicuota_tab6, new { @disabled = "disabled" })
+        }
+        else
+        {
+            @Html.EditorFor(model => model.Alicuota_tab6)
+        }
+        @Html.ValidationMessageFor(model => model.Alicuota_tab6, "")
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.TituloNegocio_tab6)
+        @Html.HiddenFor(model => model.TituloNegocio_tab6)
+        @Html.TextBoxFor(model => model.TituloNegocio_tab6, new { @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.TituloNegocio_tab6, "")
+    </div>
+</div>

@@ -1,0 +1,495 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+body {
+  margin: auto;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+.header {
+  width: 80%;
+  margin: auto;
+  background: url('Images/bg_banner.jpg') repeat-x;
+  height: 85px;
+  padding: 0px;
+}
+.header .logo {
+  float: left;
+}
+.header .logo img {
+  margin: 20px;
+}
+.usuario {
+    float:right;
+    display:table;
+    margin:10px;
+}
+.usuario p, .usuario form {
+    padding:0;
+    float:left;
+    color:#FFF;
+    font-size:12px;
+}
+.usuario input {
+    background:none;
+    border:none;
+    color:#FFF;
+    font-size:12px;
+    padding-top:12px;
+}
+.usuario input:hover {
+    text-decoration:underline;
+}
+.contenido {
+  width: 80%;
+  margin: auto;
+  padding: 20px 0px;
+  /*background-color: yellow;*/
+  box-sizing: border-box;
+}
+.floatLeft {
+  float: left!important;
+}
+.floatRight {
+  float: right!important;
+}
+/********************MENU******************/
+.menu {
+  width: 80%;
+  margin: auto;
+  background: #333;
+  height: 40px;
+  padding: 0px;
+  color:#FFF!important;
+}
+.menu a {
+  text-decoration: none;
+  color: #fff;
+}
+.menu > ul {
+  text-align: left;
+  display: list-item;
+  position:relative;
+  margin: 0;
+  padding:0;
+  list-style: none;
+}
+.menu > ul > li {
+  font: 12px/20px sans-serif;
+  display: list-item;
+  padding: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  z-index:1;
+  float:left;
+}
+.menu ul li:hover {
+  background: #555;
+  color: #fff;
+}
+.menu > ul > li > ul {
+  padding: 0;
+  position: absolute;
+  top: 39px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+  margin-left:-10px;
+  z-index: 10;      // EGV Integracion
+}
+.menu ul li ul li { 
+  background: #555; 
+  color: #fff;
+  padding:10px;
+}
+.menu ul li ul li:hover { 
+    background: #666; 
+}
+ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
+/**************FIN MENU*****************/
+/****************TITULOS*******************/
+h1, h2, h3, h4, h5, h6 {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+h5 {
+    margin:10px 0px;
+    text-transform:uppercase;
+}
+/**************FIN TITULOS*****************/
+/****************FORMULARIOS*******************/
+.textoNegro{
+    color: black;
+}
+.textoRosa{
+    color: magenta;
+}
+.textoAzul{
+    color: blue;
+}
+.textoCyan{
+    color: cyan;
+}
+.textoRojo{
+    color: red;
+}
+.textoBordo{
+    color: purple;
+}
+.filaReporteGanancias {  
+  display: flex;  
+}
+.fila {
+  overflow: hidden;
+  margin-right: -15px;
+  margin-left: -15px;
+  clear: both;
+  padding-bottom: 20px;
+  display: flex;
+  /*width: 100%;*/
+  /*background-color: red;*/
+}
+.columna {
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+.columna.mod1 {
+  width: 8.33333333%;
+}
+.columna.mod2 {
+  width: 16.66666666%;
+}
+.columna.mod3 {
+  width: 25%;
+}
+.columna.mod4 {
+  width: 33.33333333%;
+}
+.columna.mod5 {
+  width: 41.66666667%;
+}
+.columna.mod6 {
+  width: 50%;
+}
+.columna.mod7 {
+  width: 58.33333333%;
+}
+.columna.mod8 {
+  width: 66.66666667%;
+}
+.columna.mod9 {
+  width: 75%;
+}
+.columna.mod10 {
+  width: 83.33333333%;
+}
+.columna.mod11 {
+  width: 91.66666667%;
+}
+.columna.mod12 {
+  width: 100%;
+}
+label {
+  font-size: 13px;
+  margin-bottom: 10px;
+  display: inline-table;
+}
+input, select {
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 5px;
+  width: 100%;  
+}
+input {
+    overflow:hidden;
+}
+input[type=checkbox] {
+    width:26px;
+    height:26px;
+    display:block;
+    border:none;
+}
+input[type=text] {
+    font-size:13px;  
+}
+button, .button {
+  background-color: #235698;
+  color: #ffffff;
+  height: 40px;
+  border: 0;
+  padding: 10px 15px;
+  font-size:13px;
+  text-decoration:none;
+  margin-right:10px;
+  float:left;
+}
+button.floatRight, .button.floatRight {
+    margin-right:0px;
+    margin-left:10px;
+}
+button:hover, .button:hover, .button-nav:hover {
+  background-color: #4578ba;
+}
+.button-nav {
+    width: 100%;
+    background: #235698;
+    padding: 5px;
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+}
+.button-dis, .button-dis:hover {
+    background:#EEE;
+    color:#CCC;
+}
+.field-validation-error {
+    font-size:11px;
+    color:red;
+}
+.panel {
+    border:1px solid #DDD;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 5px;
+    padding: 10px 15px 0px 15px;
+}
+.vista {
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding:5px;
+  width: 100%;
+  font-size:13px;
+  background:#f6f6f6;
+}
+.ui-icon-alert {
+    float: left;
+    margin: 8px 10px;
+}
+.validation-summary-errors ul {
+    padding-left:20px;
+}
+/****************FIN FORMULARIOS*******************/
+/*******************TABLAS*************************/
+.tabla {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+.tabla thead {
+  background-color: #89bcfe;
+  border-bottom: 2px solid #235698;
+  margin: 10px;
+  font-size: 12px;
+  color: #ffffff;
+}
+.tabla td,
+.tabla th {
+  padding: 5px;
+}
+.tabla td {
+  font-size: 12px;
+}
+.tabla-cebra > tbody > tr:nth-child(odd) {
+  background-color: rgba(238, 245, 255, 0.8);
+}
+.tabla > tbody > tr:hover,
+.tabla-cebra > tbody > tr:hover {
+  background-color: #235698 !important;
+  color: #ffffff;
+}
+.tabla > tbody > tr {
+  cursor: pointer;
+}
+.totales {
+    background:#F2F2F2;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 15px 0px 5px;
+}
+ul#icons li {
+    margin-left: 1px;
+    position: relative;
+    padding: 4px;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+ul#icons {
+    display:inline-table;
+    margin:0;
+}
+th.header { 
+    width: 16px; 
+    height: 16px; 
+    background-image: url('Images/bg.gif');
+    cursor: pointer; 
+    font-weight: bold; 
+    background-repeat: no-repeat; 
+    background-position: center left; 
+    padding-left: 20px; 
+    border-right: 1px solid #dad9c7; 
+    margin-left: -1px; 
+} 
+
+th.headerSortDown { 
+    background-image: url('Images/desc.gif');
+    background-color: #3399FF; 
+} 
+
+th.headerSortUp { 
+    background-image: url('Images/asc.gif');
+    background-color: #3399FF; 
+} 
+/****************FIN TABLAS***********************/
+
+/******************DATEPICKER*********************/
+.ui-datepicker .ui-datepicker-header {
+    font-size:12px;
+}
+.ui-datepicker th , .ui-datepicker td {
+    font-size:12px;
+}
+.ui-dialog-titlebar {
+    font-size:14px;
+}
+
+.ui-widget INPUT {    
+    font-family:Arial, sans-serif;
+}
+/****************FIN DATEPICKER*******************/
+
+/***********-*******SELECT2***********************/
+.select2-result-label, .select2-chosen, .select2-container, .select2-drop, .select2-search, .select2-search input {
+    font-size:12px;
+}
+/******************FIN SELECT2*******************/
+
+/*******************PAGINADO*********************/
+ul.pagination > li, ul.pagination > li:focus {
+    float: left;
+    margin: 10px 5px;
+    border: 1px solid #f2f2f2;
+    padding: 8px;
+    color: #666;
+    text-decoration: none;
+    min-width: 35px;
+    min-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+}
+ul.pagination > li > a , ul.pagination > li > a:visited {
+    text-decoration:none;
+}
+ul.pagination > li.disabled {
+    background:#f9f9f9;
+    color:#DDD;
+}
+ul.pagination > li.active {
+    background:#235698;
+    color:#FFF;
+}
+ul.pagination > li:hover {
+    background:#f2f2f2;
+    color:#FFF;
+}
+.pagination-container {
+	margin-left:-45px;
+}
+/****************FIN PAGINADO********************/
+/****************INICIO TABS*********************/
+.ui-tabs {
+	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+	/*padding: 2em;*/
+}
+.ui-tabs .ui-tabs-nav {
+	margin: 0;
+	padding: .2em .2em 0;
+}
+.ui-tabs .ui-tabs-nav li {
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 0;
+	margin: 1px .2em 0 0;
+	border-bottom-width: 0;
+	padding: 0;
+	white-space: nowrap;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+	float: left;    
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;    
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	margin-bottom: -1px;
+	padding-bottom: 1px;    
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
+.ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
+	cursor: text;
+    background:#235698;
+    color:#FFF;
+}
+.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-panel {
+	display: block;
+	border-width: 2px;
+	padding: 1em 1.4em;
+	background: none;
+}
+/****************FIN TABS********************/
+/****************PESTAÑAS********************/
+.ui-tabs.ui-widget-content, .ui-tabs-nav {
+    border:1px;
+    background:none;
+}
+.ui-tabs .ui-tabs-panel {
+    padding:10px 10px;
+}
+
+/****************FIN PESTAÑAS********************/
+/****************INICIO LOADING********************/
+.loading{
+    margin: 0px; 
+    padding: 0px; 
+    position: fixed; 
+    right: 0px;
+    top: 0px; 
+    width: 100%; 
+    height: 100%;     
+    z-index: 30001;
+    opacity: .8; 
+    filter: alpha(opacity=70);
+    top: 30%; 
+    left: 45%; 
+}
+/****************FIN LOADING********************/

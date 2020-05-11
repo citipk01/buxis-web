@@ -1,0 +1,353 @@
+﻿@model Buxis.Services.ViewModel.LiquidacionesPorEmpleadoViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if($("#idAnchorSaltarCabecera").attr('id') !== undefined){
+            $(document).scrollTop( $("#idAnchorSaltarCabecera").offset().top );  
+        }
+        
+        $("#divLoading").hide();
+
+        var columna = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorLiquidaciones), Enum.GetName(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorLiquidaciones), Model.ColumnaOrdenamiento)));
+        var sentido = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Enum.GetName(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Model.SentidoOrdenamiento)));
+
+        var ordenColumnas = [[columna, sentido]];
+
+        if(columna == -1)
+            ordenColumnas = [[5, 0], [3,1], [0,1]];
+
+        $("#resultados").tablesorter({
+            headers: { 8: { sorter: false } },
+            sortList: ordenColumnas
+        });
+
+        $("#resultados").bind("sortStart", function (event) {
+            $("#divLoading").show();
+            columna = 0;            
+        });
+
+        $("#resultados").bind("sortEnd", function (event) {            
+            if(columna != -1){
+                var columnaElegida = event.target.config.sortList.toString().substring(0, 1);
+                var sentidoElegido = event.target.config.sortList.toString().substring(2,3);
+            
+                var columnaActual = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorLiquidaciones), Enum.GetName(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorLiquidaciones), Model.ColumnaOrdenamiento)));
+                var sentidoActual = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Enum.GetName(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Model.SentidoOrdenamiento)));
+
+                if(columnaElegida != columnaActual ||  (columnaElegida == columnaActual && sentidoElegido != sentidoActual)){
+                    var inputColumnaOrdenamiento = $("<input>").attr("type", "hidden").attr("name", "ColumnaOrdenamiento").val(columnaElegida);
+                    var inputSentidoOrdenamiento = $("<input>").attr("type", "hidden").attr("name", "SentidoOrdenamiento").val(sentidoElegido);
+
+                    $('form').append($(inputColumnaOrdenamiento));
+                    $('form').append($(inputSentidoOrdenamiento));
+
+                    $("form").submit();
+                }
+            }
+        });
+    });
+</script>
+
+@{
+    ViewBag.Title = "Buscador de Liquidaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("List", "Liquidacion", FormMethod.Get))
+{       
+    <div id="divLoading" class="loading">        
+        <img style="width:50px; height:50px;" src="~/Content/Images/ajax_loader_blue_512.gif">        
+    </div>
+
+    <h3>Buscador de Liquidaciones</h3>
+    if (!ViewData.ModelState.IsValid)
+    { 
+        <div class="fila">
+            <div class="columna mod12">
+                <div class="ui-state-error ui-corner-all">
+                    <div class="fila">
+                        <div class="columna mod12">
+                            <p><span class="ui-icon ui-icon-alert"></span></p>
+                            @Html.ValidationSummary(false)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="fila">
+        <div class="columna mod5 panel">
+            <h5>
+                Datos del Empleado
+            </h5>
+            <div class="fila">
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.LegajoEmpleadoDesde)
+                    @Html.EditorFor(model => model.LegajoEmpleadoDesde)
+                    @Html.ValidationMessageFor(model => model.LegajoEmpleadoDesde, "")                    
+                </div>
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.LegajoEmpleadoHasta)
+                    @Html.EditorFor(model => model.LegajoEmpleadoHasta)
+                    @Html.ValidationMessageFor(model => model.LegajoEmpleadoHasta, "")
+                </div>
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.NumeroDocumento)
+                    @Html.EditorFor(model => model.NumeroDocumento)
+                    @Html.ValidationMessageFor(model => model.NumeroDocumento, "")
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.PrimerNombre)
+                    @Html.EditorFor(model => model.PrimerNombre)
+                    @Html.ValidationMessageFor(model => model.PrimerNombre, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.SegundoNombre)
+                    @Html.EditorFor(model => model.SegundoNombre)
+                    @Html.ValidationMessageFor(model => model.SegundoNombre, "")
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.PrimerApellido)
+                    @Html.EditorFor(model => model.PrimerApellido)
+                    @Html.ValidationMessageFor(model => model.PrimerApellido, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.SegundoApellido)
+                    @Html.EditorFor(model => model.SegundoApellido)
+                    @Html.ValidationMessageFor(model => model.SegundoApellido, "")
+                </div>
+            </div>
+        </div>
+        <div class="columna mod6 panel">
+            <h5>
+                Datos de la Liquidacion
+            </h5>
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.IdLiquidacionSegunDescripcion)
+                    @JqueryUIHelper.Select2("IdLiquidacionSegunDescripcion",
+                        "IdLiquidacionSegunDescripcion",
+                        Url.Action("Descripciones"),
+                        Url.Action("ById"),
+                        "descripcion",
+                        Model.IdLiquidacionSegunDescripcion.HasValue ? Model.IdLiquidacionSegunDescripcion.Value.ToString() : "",
+                        minLetters: 1)
+                    @Html.ValidationMessageFor(model => model.IdLiquidacionSegunDescripcion, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.CodigoLiquidacion)
+                    @Html.EditorFor(model => model.CodigoLiquidacion)
+                    @Html.ValidationMessageFor(model => model.CodigoLiquidacion, "")
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.IdProcesoLiquidacion)
+                    @JqueryUIHelper.Select2("IdProcesoLiquidacion",
+                    "IdProcesoLiquidacion",
+                    Url.Action("Descripciones", "Proceso"),
+                    Url.Action("ById", "Proceso"),
+                    "descripcion",
+                    !string.IsNullOrWhiteSpace(Model.IdProcesoLiquidacion) ?   Model.IdProcesoConComillas : "",
+                    minLetters: 1)
+                    @Html.ValidationMessageFor(model => model.IdProcesoLiquidacion, "")
+                </div>
+                <div class="columna mod3">
+                    @Html.LabelFor(model => model.FechaLiquidacionDesde)
+                    @JqueryUIHelper.DatePicker("FechaLiquidacionDesde", "FechaLiquidacionDesde", Model.FechaLiquidacionDesde, format: "dd/mm/yy")
+                    @Html.ValidationMessageFor(model => model.FechaLiquidacionDesde, "")
+                </div>
+                <div class="columna mod3">
+                    @Html.LabelFor(model => model.FechaLiquidacionHasta)
+                    @JqueryUIHelper.DatePicker("FechaLiquidacionHasta", "FechaLiquidacionHasta", Model.FechaLiquidacionHasta, format: "dd/mm/yy")
+                    @Html.ValidationMessageFor(model => model.FechaLiquidacionHasta, "")
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="fila">
+                <div class="columna">
+                    <input type="hidden" name="search" value="1" />                    
+                    <button type="submit" value="Buscar" class="button">Buscar</button> 
+                </div>
+            </div>
+            }
+            @if (Model.Liquidaciones != null && Model.Liquidaciones.Count > 0)
+            {
+                <a id="idAnchorSaltarCabecera" />
+
+                <table id="resultados" class="tabla tabla tabla-cebra">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Liquidacion.IdLiquidacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Liquidacion.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Liquidacion.Proceso.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Liquidacion.FechaDesde)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Liquidacion.FechaHasta)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Empleado.IdEmpleado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Empleado.NombreApellido)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Liquidaciones[0].Empleado.NumeroDocumento)
+                            </th>
+                            <th style="width: 16px; height: 16px;">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Liquidaciones)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.Liquidacion.IdLiquidacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Liquidacion.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Liquidacion.Proceso.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Liquidacion.FechaDesde)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Liquidacion.FechaHasta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Empleado.IdEmpleado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Empleado.NombreApellido)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Empleado.NumeroDocumento)
+                                </td>
+                                <td>
+                                    <ul id="icons" class="ui-widget ui-helper-clearfix">
+                                        <li class="ui-state-default ui-corner-all checkSecured" data-credential="CONSULTA_LIQUIDACION_DETALLE" title="Zoom in">
+                                            <a class="ui-icon ui-icon-zoomin" href='@Url.Action("VisualizarDetalle", "Liquidacion", new {
+                                                           idLiquidacion = item.Liquidacion.IdLiquidacion,
+                                                           idEmpleado = item.Empleado.IdEmpleado,
+                                                           IdLiquidacionSegunDescripcion = Model.IdLiquidacionSegunDescripcion,
+                                                           LegajoEmpleadoDesde = Model.LegajoEmpleadoDesde,
+                                                           LegajoEmpleadoHasta = Model.LegajoEmpleadoHasta,
+                                                           PrimerNombre = Model.PrimerNombre,
+                                                           SegundoNombre = Model.SegundoNombre,
+                                                           PrimerApellido = Model.PrimerApellido,
+                                                           SegundoApellido = Model.SegundoApellido,
+                                                           CodigoLiquidacion = Model.CodigoLiquidacion,
+                                                           IdProcesoLiquidacion = Model.IdProcesoLiquidacion,
+                                                           FechaLiquidacionDesde = (Model.FechaLiquidacionDesde.HasValue ? Model.FechaLiquidacionDesde.Value.ToString("dd/MM/yyyy"): ""),
+                                                           FechaLiquidacionHasta = (Model.FechaLiquidacionHasta.HasValue ? Model.FechaLiquidacionHasta.Value.ToString("dd/MM/yyyy") : ""),
+                                                           NumeroDocumento = Model.NumeroDocumento,
+                                                           NumeroPagina = Model.NumeroPagina,
+                                                           ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                                                           SentidoOrdenamiento = Model.SentidoOrdenamiento
+                                                        })#saltarCabecera'>
+                                            </a>
+                                        </li>
+                                        <li class="ui-state-default ui-corner-all checkSecured" data-credential="CONSULTA_LIQUIDACION_DETALLE" title="Exportar a Excel">
+                                            <a class="ui-icon ui-icon-calculator" href='@Url.Action("ExportarExcel", "Liquidacion", new
+                                            {
+                                                IdLiquidacion = item.Liquidacion.IdLiquidacion,
+                                                IdEmpleado = item.Empleado.IdEmpleado,
+                                                VerConceptosInformativos = false
+                                            })'>
+                                            </a>
+
+                                        </li>
+                                        @if (item.PoseeGanancias)
+                                        {
+                                            <li class="ui-state-default ui-corner-all checkSecured" data-credential="CONSULTA_GANANCIAS_CUARTA" title="Visor de ganancias">
+                                                                                                                            <a class="ui-icon ui-icon-folder-open" href='@Url.Action("VisualizarDetalle", "Ganancias", new {
+                                                idLiquidacion = item.Liquidacion.IdLiquidacion,
+                                                idEmpleado = item.Empleado.IdEmpleado,
+                                                IdLiquidacionSegunDescripcion = Model.IdLiquidacionSegunDescripcion,
+                                                LegajoEmpleadoDesde = Model.LegajoEmpleadoDesde,
+                                                LegajoEmpleadoHasta = Model.LegajoEmpleadoHasta,
+                                                PrimerNombre = Model.PrimerNombre,
+                                                SegundoNombre = Model.SegundoNombre,
+                                                PrimerApellido = Model.PrimerApellido,
+                                                SegundoApellido = Model.SegundoApellido,
+                                                CodigoLiquidacion = Model.CodigoLiquidacion,
+                                                IdProcesoLiquidacion = Model.IdProcesoLiquidacion,
+                                                FechaLiquidacionDesde = (Model.FechaLiquidacionDesde.HasValue ? Model.FechaLiquidacionDesde.Value.ToString("dd/MM/yyyy") : ""),
+                                                FechaLiquidacionHasta = (Model.FechaLiquidacionHasta.HasValue ? Model.FechaLiquidacionHasta.Value.ToString("dd/MM/yyyy") : ""),
+                                                NumeroDocumento = Model.NumeroDocumento,
+                                                NumeroPagina = Model.NumeroPagina,
+                                                ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                                                SentidoOrdenamiento = Model.SentidoOrdenamiento
+                                                })#saltarCabecera'>
+                                                    </a>
+                                            </li>
+                                        }
+
+                                    </ul>
+
+
+
+
+
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                if (Model.Liquidaciones != null && Model.Liquidaciones.Count > 0)
+                {
+        @Html.PagedListPager(
+            (PagedList.IPagedList)Model.Liquidaciones,
+            page => Url.Action("List",
+                new {
+                    page,
+                    pageSize = ViewData["pageSize"] != null ? ViewData["pageSize"] : 50 ,
+                    search = 1,
+                    IdLiquidacionSegunDescripcion = Model.IdLiquidacionSegunDescripcion,
+                    LegajoEmpleadoDesde = Model.LegajoEmpleadoDesde,
+                    LegajoEmpleadoHasta = Model.LegajoEmpleadoHasta,
+                    PrimerNombre = Model.PrimerNombre,
+                    SegundoNombre = Model.SegundoNombre,
+                    PrimerApellido = Model.PrimerApellido,
+                    SegundoApellido = Model.SegundoApellido,
+                    CodigoLiquidacion = Model.CodigoLiquidacion,
+                    FechaLiquidacionDesde = (Model.FechaLiquidacionDesde.HasValue ? Model.FechaLiquidacionDesde.Value.ToString("dd/MM/yyyy") : ""),
+                    FechaLiquidacionHasta = (Model.FechaLiquidacionHasta.HasValue ? Model.FechaLiquidacionHasta.Value.ToString("dd/MM/yyyy") : ""),
+                    IdProcesoLiquidacion = Model.IdProcesoLiquidacion,
+                    NumeroDocumento = Model.NumeroDocumento,
+                    ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                    SentidoOrdenamiento = Model.SentidoOrdenamiento
+                }),
+            PagedListRenderOptions.ClassicPlusFirstAndLast);
+    }
+}
+            else if (Model.search != null && ViewData.ModelState.IsValid)
+            {
+                    <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                        <p>
+                            <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                            La búsqueda no arrojó resultados.
+                        </p>
+                    </div>
+            }

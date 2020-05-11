@@ -1,0 +1,94 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<div class="fila">
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.FOA_tab5)
+        @Html.CheckBoxFor(model => model.FOA_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.FallaConvenio_tab5)
+        @Html.CheckBoxFor(model => model.FallaConvenio_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.HorasExtras_tab5)
+        @Html.CheckBoxFor(model => model.HorasExtras_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.SueldoCerrado_tab5)
+        @Html.CheckBoxFor(model => model.SueldoCerrado_tab5)
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.SueldoAbierto_tab5)
+        @Html.CheckBoxFor(model => model.SueldoAbierto_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.AsNocturnoPH_tab5)
+        @Html.CheckBoxFor(model => model.AsNocturnoPH_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.AsNocturnoPM_tab5)
+        @Html.CheckBoxFor(model => model.AsNocturnoPM_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.TurnoRotativo_tab5)
+        @Html.CheckBoxFor(model => model.TurnoRotativo_tab5)
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.Presentismo_tab5)
+        @Html.CheckBoxFor(model => model.Presentismo_tab5)
+    </div>
+    <div class="columna mod3">                
+        @Html.LabelFor(model => model.SocialSecurity_tab5)
+        @Html.CheckBoxFor(model => model.SocialSecurity_tab5)
+    </div>
+    <div class="columna mod3">                
+        @Html.LabelFor(model => model.TaquigrafaBilingue_tab5)
+        @Html.CheckBoxFor(model => model.TaquigrafaBilingue_tab5)
+    </div>
+    <div class="columna mod3">                
+        @Html.LabelFor(model => model.TituloSecundario_tab5)
+        @Html.CheckBoxFor(model => model.TituloSecundario_tab5)
+    </div>
+</div>      
+<div class="fila">
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.TituloTercuario_tab5)
+        @Html.CheckBoxFor(model => model.TituloTercuario_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.TituloUniversitario_tab5)
+        @Html.CheckBoxFor(model => model.TituloUniversitario_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.TRNoCorresponde_tab5)
+        @Html.CheckBoxFor(model => model.TRNoCorresponde_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.Reactivacion_tab5)
+        @Html.CheckBoxFor(model => model.Reactivacion_tab5)
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.TopeDeduccionGciaDiciembre_tab5)
+        @Html.CheckBoxFor(model => model.TopeDeduccionGciaDiciembre_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.CallCenter_tab5)
+        @Html.CheckBoxFor(model => model.CallCenter_tab5)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.CuentaFaltantes_tab5)
+        @Html.EditorFor(model => model.CuentaFaltantes_tab5)
+        @Html.ValidationMessageFor(model => model.CuentaFaltantes_tab5, "")
+    </div>
+    <div class="columna mod3">                
+        @Html.LabelFor(model => model.CuentaReserva_tab5)
+        @Html.EditorFor(model => model.CuentaReserva_tab5)
+        @Html.ValidationMessageFor(model => model.CuentaReserva_tab5, "")
+    </div>
+</div>

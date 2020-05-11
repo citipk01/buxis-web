@@ -1,0 +1,163 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<script>   
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+
+    function fechaEfectivaChanged(e) {
+        $("#FechaEfectivaSeleccionada").val(e.val);
+        $("#SecuenciaEfectivaSeleccionada").val(null);
+        $("#formVer").attr('action', 'Ver');
+        $("#formVer").submit();
+    }
+
+    function secuenciaEfectivaChanged(e) {                
+        $("#SecuenciaEfectivaSeleccionada").val(e.val);
+        $("#formVer").attr('action', 'Ver');
+        $("#formVer").submit();
+    }
+</script>
+
+@{
+    ViewBag.Title = "Maestro de Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Ver", "MaestroEmpleados", FormMethod.Post , new { id = "formVer" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ErrorTab1)
+    @Html.HiddenFor(model => model.ErrorTab2)
+    @Html.HiddenFor(model => model.ErrorTab3)
+    @Html.HiddenFor(model => model.ErrorTab4)
+    @Html.HiddenFor(model => model.ErrorTab5)
+    @Html.HiddenFor(model => model.ErrorTab6)
+
+    @Html.HiddenFor(model => model.IdEmpleado)
+
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.PrimerNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.SegundoNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.PrimerApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.SegundoApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.LegajoDesde)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.LegajoHasta)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.NumeroDocumento)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.ColumnaOrdenamiento)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.SentidoOrdenamiento)
+    
+    @Html.HiddenFor(model => model.EsEmpresaUruguay)
+    @Html.HiddenFor(model => model.EsEmpresaArgentina)
+    
+    @Html.Partial("~/Views/Shared/_Navegacion.cshtml", Model.Navegacion)
+    
+    <div class="fila">
+        <div class="columna mod12">
+            <h3 class="floatLeft">Maestro de Empleados</h3>
+        </div>
+    </div>
+
+    <div class="fila">
+        <div class="columna mod2">
+            @Html.LabelFor(model => model.FechaEfectivaSeleccionada)
+        </div>
+        <div class="columna mod2">
+            @JqueryUIHelper.Select2("FechaEfectivaSeleccionada",
+                                        "FechaEfectivaSeleccionada",
+                                        Url.Action("FechasEfectivas", "Combos", new { idEmpleado = Model.IdEmpleado }),
+                                        Url.Action("ByFechaEfectiva", "Combos", new { idEmpleado = Model.IdEmpleado }),
+                                        "fechaEfectiva",
+                                        !string.IsNullOrWhiteSpace(Model.FechaEfectivaSeleccionada) ? Model.FechaEfectivaSeleccionadaConComillas : "",
+                                        minLetters: 0,
+                                        functionNameAfterSelect: "fechaEfectivaChanged")
+        </div>
+        <div class="columna mod2">
+            @Html.LabelFor(model => model.SecuenciaEfectivaSeleccionada)
+        </div>
+        <div class="columna mod2">
+            @JqueryUIHelper.Select2("SecuenciaEfectivaSeleccionada",
+                                    "SecuenciaEfectivaSeleccionada",
+                                    Url.Action("SecuenciasEfectivas", "Combos", new { idEmpleado = Model.IdEmpleado, fechaEfectiva = Model.FechaEfectivaSeleccionada }),
+                                    Url.Action("BySecuenciaEfectiva", "Combos"),
+                                    "secuenciaEfectiva",
+                                    !string.IsNullOrWhiteSpace(Model.SecuenciaEfectivaSeleccionada) ? Model.SecuenciaEfectivaSeleccionadaConComillas : "",
+                                    minLetters: 0,                                    
+                                    functionNameAfterSelect: "secuenciaEfectivaChanged")
+        </div>
+
+    </div>
+
+    <div class="fila">
+        <div class="columna mod12">
+            <div class="fila">
+                <div class="columna mod3">                    
+                    @Html.LabelFor(model => model.CodigoEmpleado)
+                    @Html.HiddenFor(model => model.CodigoEmpleado)
+                    @Html.TextBoxFor(model => model.CodigoEmpleado, new { @disabled = "disabled" })                                        
+                </div>
+                <div class="columna mod2">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.IdNivel)
+                    @JqueryUIHelper.Select2("IdNivel",
+                                        "IdNivel",
+                                        Url.Action("DescripcionesNivel", "Combos"),
+                                        Url.Action("ByIdNivel", "Combos"),
+                                        "descripcion",
+                                        Model.IdNivel.HasValue ? Model.IdNivel.Value.ToString() : "",
+                                        readonlly: true)                    
+                </div>
+                <div class="columna mod2">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.FechaEfectiva)
+                    @JqueryUIHelper.DatePicker("FechaEfectiva", "FechaEfectiva", Model.FechaEfectiva, format: "dd/mm/yy", readonlly: true)                    
+
+                </div>
+                <div class="columna mod3">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.SecuenciaEfectiva)                    
+                    @Html.HiddenFor(model => model.SecuenciaEfectiva)
+                    @Html.TextBoxFor(model => model.SecuenciaEfectiva, new { @disabled = "disabled" })
+                                     
+                </div>
+                <div class="columna mod2">
+                    @Html.LabelFor(model => model.BajaEfectiva)                         
+                    @Html.HiddenFor(model => model.BajaEfectiva)
+                    @Html.CheckBoxFor(model => model.BajaEfectiva, new { disabled = "disabled" })                               
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fila">
+        <div id="tabs" class="columna mod12">
+            <ul>
+                <li><a href="#tabs-1">Datos Personales</a></li>
+                <li><a href="#tabs-2">Corporativo 1</a></li>
+                <li><a href="#tabs-3">Corporativo 2</a></li>
+                <li><a href="#tabs-4">Payroll 1</a></li>
+                <li><a href="#tabs-5">Payroll 2</a></li>
+                <li><a href="#tabs-6">Uruguay</a></li>
+            </ul>
+            <div id="tabs-1">
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_DatosPersonales_view.cshtml", Model)
+            </div>
+            <div id="tabs-2">
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Corporativo1_view.cshtml", Model)
+            </div>
+            <div id="tabs-3">
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Corporativo2_view.cshtml", Model)
+            </div>
+            <div id="tabs-4">
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Payroll1_view.cshtml", Model)
+            </div>
+            <div id="tabs-5">
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Payroll2_view.cshtml", Model)
+            </div>
+            <div id="tabs-6">
+                @Html.Partial("~/Views/Shared/TabsMaestroEmpleados/_Uruguay_view.cshtml", Model)
+            </div>
+        </div>
+    </div>
+}
+

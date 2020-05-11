@@ -1,0 +1,198 @@
+﻿@model Buxis.Services.ViewModel.ReporteImpuestoGananciaViewModel
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#divExportarPDF").hide();
+
+        if (ieVersion() === undefined)
+            $("#divExportarPDF").show();
+    });
+
+    function imprimir() {
+        var o = $("#Reporte");
+        o.jqprint();
+    }
+
+    function exportarPDF() {       
+        var doc = new jsPDF();
+        doc.setFontSize(10);
+
+        var lineas = $("#ReportePDF").val().split("<br/>");
+
+        var altura = 5;
+        
+        for (i = 0; i < lineas.length; i++) {
+
+            var resto = lineas[i];
+            var enNegrita = "";
+
+            var index = resto.indexOf("<b>");
+
+            if (index >= 0) {
+                var primero = resto.substring(index + 3, resto.length);
+                index = primero.indexOf("</b>");
+
+                enNegrita = primero.substring(0, index);
+                resto = primero.substring(index + 4, primero.length);
+            }
+
+            doc.setFontType("bold");
+            doc.text(10, altura, enNegrita);
+
+            doc.setFontType("normal");
+            doc.text(10 + (enNegrita.length * 1.5), altura, resto);
+
+            altura += 5;
+
+            if(altura > 280){
+                doc.addPage();
+                altura = 5;                
+            }            
+        }
+
+        doc.save('Reporte Ganancias.pdf');        
+    }
+
+    function ieVersion() {
+        var undef,
+        v = 3,
+        div = document.createElement('div'),
+        all = div.getElementsByTagName('i');
+
+        while (
+            div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+            all[0]
+        );
+
+        return v > 4 ? v : undef;
+    }
+
+</script>
+
+@{
+    ViewBag.Title = "Listado Detallado Ganancias";
+}
+
+@using (Html.BeginForm("VisualizarDetalle", "Ganancias"))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.IdLiquidacion)
+    @Html.HiddenFor(model => model.IdEmpleado)
+
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.FechaLiquidacionDesde)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.FechaLiquidacionHasta)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.IdLiquidacionSegunDescripcion)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.CodigoLiquidacion)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.IdProcesoLiquidacion)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.PrimerNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.SegundoNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.PrimerApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.SegundoApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.LegajoEmpleadoDesde)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.LegajoEmpleadoHasta)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.NumeroPagina)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.NumeroDocumento)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.ColumnaOrdenamiento)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.SentidoOrdenamiento)
+    
+    @Html.Partial("~/Views/Shared/_Navegacion.cshtml", Model.Navegacion)
+
+    <a name="saltarCabecera" />
+    <div id="Reporte">
+        <div class="fila">
+            <div class="columna mod12">
+                <h3 class="floatLeft">
+                    Listado Detallado Ganancias
+                </h3>
+                <h5 class="floatRight">
+                    Generado : @DateTime.Now.ToShortDateString()
+                </h5>
+            </div>
+        </div>
+
+        @if (Model.Lineas != null)
+        {
+        Model.ReportePDF += "<br /><b>Listado Detallado Ganancias                             Generado : " + DateTime.Now.ToShortDateString() + "</b><br/><br/>";
+        foreach (var item in Model.Lineas)
+        {        
+            <pre class="filaReporteGanancias">
+            
+                @if (item.Detalle != null)
+                {
+                    string[] reemplazos = new string[12];
+                    reemplazos[0] = "Empleado :";
+                    reemplazos[1] = "Liquidación :";
+                    reemplazos[2] = "Mes/Año      Haberes Descuentos  Haberes.Pr    Desc.Pr    Neto.Pr   Reg.Prom    Ret.4ta";
+                    reemplazos[3] = "Cobrado ((Haberes + Neto Pr) - Descuentos) :";
+                    reemplazos[4] = "Monto Deducción Familiar :";
+                    reemplazos[5] = "Deducciones fijas :";
+                    reemplazos[6] = "Deducciones fijas (incluye decreto):";
+                    reemplazos[7] = "Total deducciones especiales :";
+                    reemplazos[8] = "Ganancia Neta :";
+                    reemplazos[9] = "Escala a Aplicar :";
+                    reemplazos[10] = "Importe :";
+                    reemplazos[11] = "Importe Ganancias :";
+                                                            
+                    string enNegrita = "";
+                    string resto = "";
+                    
+                    foreach(string reemplazo in reemplazos)
+                    {
+                        int indice = item.Detalle.IndexOf(reemplazo);
+                            
+                        if (indice >= 0)
+                        {
+                            enNegrita = item.Detalle.Substring(indice, reemplazo.Length);
+                            resto = item.Detalle.Replace(enNegrita, "");
+                            break;
+                        }
+                        else
+                        {
+                            resto = item.Detalle;
+                        }
+                    }
+                    Model.ReportePDF += "<b>" + enNegrita + "</b>" + resto + "<br/>";
+                    <b>@enNegrita</b>@resto
+                }
+            </pre>        
+        }
+        }
+    </div>
+    @Html.HiddenFor(model => Model.ReportePDF)
+    <br/>
+    <div class="fila">
+        <div class="columna mod12">
+            <a class="button" href="javascript:imprimir()">
+                Imprimir
+            </a>
+            <div id="divExportarPDF">
+                <a class="button" href="javascript:exportarPDF()">
+                    Exportar a PDF
+                </a>
+            </div>
+            <a class="button" href='@Url.Action("List", "Liquidacion", new
+                    {
+                        IdLiquidacionSegunDescripcion = Model.FiltroBuscadorLiquidaciones.IdLiquidacionSegunDescripcion,
+                        LegajoEmpleadoDesde = Model.FiltroBuscadorLiquidaciones.LegajoEmpleadoDesde,
+                        LegajoEmpleadoHasta = Model.FiltroBuscadorLiquidaciones.LegajoEmpleadoHasta,
+                        PrimerNombre = Model.FiltroBuscadorLiquidaciones.PrimerNombre,
+                        SegundoNombre = Model.FiltroBuscadorLiquidaciones.SegundoNombre,
+                        PrimerApellido = Model.FiltroBuscadorLiquidaciones.PrimerApellido,
+                        SegundoApellido = Model.FiltroBuscadorLiquidaciones.SegundoApellido,
+                        CodigoLiquidacion = Model.FiltroBuscadorLiquidaciones.CodigoLiquidacion,
+                        IdProcesoLiquidacion = Model.FiltroBuscadorLiquidaciones.IdProcesoLiquidacion,
+                        FechaLiquidacionDesde = (Model.FiltroBuscadorLiquidaciones.FechaLiquidacionDesde.HasValue ? Model.FiltroBuscadorLiquidaciones.FechaLiquidacionDesde.Value.ToString("dd/MM/yyyy"): ""),
+                        FechaLiquidacionHasta = (Model.FiltroBuscadorLiquidaciones.FechaLiquidacionHasta.HasValue ? Model.FiltroBuscadorLiquidaciones.FechaLiquidacionHasta.Value.ToString("dd/MM/yyyy") : ""),
+                        NumeroDocumento = Model.FiltroBuscadorLiquidaciones.NumeroDocumento,
+                        ColumnaOrdenamiento = Model.FiltroBuscadorLiquidaciones.ColumnaOrdenamiento,
+                        SentidoOrdenamiento = Model.FiltroBuscadorLiquidaciones.SentidoOrdenamiento,
+                        search = "1",
+                        page = Model.FiltroBuscadorLiquidaciones.NumeroPagina
+                    })'>
+                Volver
+            </a>
+        </div>
+    </div>
+}

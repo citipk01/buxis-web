@@ -1,0 +1,407 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<script>
+    $(document).ready(function () {
+
+        $("#PlanUpgrade_tab4").keyup(function () {
+            var codigoEmpleado = $('#IdEmpleado').val();
+            var prepaga = $('#IdPrepaga_tab4').val();
+            var planDesde = $('#IdPlanPrepaga_tab4').val();
+            var planHasta = $('#PlanUpgrade_tab4').val();
+
+            $.ajax({
+                url: "@Url.Action("GetDiferenciaUpgradePrepaga", "Combos")",
+                data: { codigoEmpleado: codigoEmpleado, prepaga: prepaga, planDesde: planDesde, planHasta: planHasta },
+                dataType: "json",
+                success: function (datos) {
+                    $("input[type='text']#DiferenciaUpgradePrepaga_tab4").val(datos.text);
+                    $("input[type='hidden']#DiferenciaUpgradePrepaga_tab4").val(datos.text);
+                },
+                error: function (xhr, status, err) { }
+            })
+        });
+
+        if (!$('#UpgradePrePaga_tab4').is(':checked')) {
+            $('#PlanUpgrade_tab4').prop('disabled', 'disabled');
+        }
+        else {
+            $('#PlanUpgrade_tab4').removeAttr('disabled');
+        }
+
+        $('#UpgradePrePaga_tab4').click(function () {
+            if (!$(this).is(':checked')) {
+                $('#PlanUpgrade_tab4').val('');
+                $('#PlanUpgrade_tab4').prop('disabled', 'disabled');
+                $("#FechaInicioUpgradePrepaga_tab4").datepicker('setDate', null);
+                $("#FechaInicioUpgradePrepaga_tab4").datepicker("option", "minDate", '-1');
+                $("#FechaInicioUpgradePrepaga_tab4").datepicker("option", "maxDate", '-2');
+                $('#FechaInicioUpgradePrepaga_tab4').prop('readonly', 'readonly');
+                $("input[type='text']#DiferenciaUpgradePrepaga_tab4").val('');
+                $("input[type='hidden']#DiferenciaUpgradePrepaga_tab4").val('');
+            }
+            else {
+                $('#PlanUpgrade_tab4').removeAttr('disabled');
+                $("#FechaInicioUpgradePrepaga_tab4").datepicker("option", "minDate", null);
+                $("#FechaInicioUpgradePrepaga_tab4").datepicker("option", "maxDate", null);
+                $('#FechaInicioUpgradePrepaga_tab4').prop('readonly', false);
+            }
+        });
+
+        $('#ModuloPyO_tab4').click(function () {
+            if (!$(this).is(':checked')) {
+                $("#FechaInicioModuloPyO_tab4").datepicker('setDate', null);
+                $("#FechaInicioModuloPyO_tab4").datepicker("option", "minDate", '-1');
+                $("#FechaInicioModuloPyO_tab4").datepicker("option", "maxDate", '-2');
+                $('#FechaInicioModuloPyO_tab4').prop('readonly', 'readonly');
+                $("input[type='text']#Monto_tab4").val('');
+                $("input[type='hidden']#Monto_tab4").val('');
+            }
+            else {
+                $("#FechaInicioModuloPyO_tab4").datepicker("option", "minDate", null);
+                $("#FechaInicioModuloPyO_tab4").datepicker("option", "maxDate", null);
+                $('#FechaInicioModuloPyO_tab4').prop('readonly', false);
+
+                var codigoEmpleado = $('#IdEmpleado').val();
+                var prepaga = $('#IdPrepaga_tab4').val();
+
+                $.ajax({
+                    url: "@Url.Action("GetMontoModuloPyO", "Combos")",
+                    data: { codigoEmpleado: codigoEmpleado, prepaga: prepaga },
+                    dataType: "json",
+                    success: function (datos) {
+                        $("input[type='text']#Monto_tab4").val(datos.text);
+                        $("input[type='hidden']#Monto_tab4").val(datos.text);
+                    },
+                    error: function (xhr, status, err) { }
+                })
+            }
+        });
+
+        $('#SocioCiticlub_tab4').click(function () {
+            if (!$(this).is(':checked')) {
+                $("#IdCuotaCiticlub_tab4").select2("readonly", true);
+                $("#IdCuotaCiticlub_tab4").select2("val", "");
+            }
+            else {
+                $("#IdCuotaCiticlub_tab4").select2("readonly", false);
+
+                var gradoSalarial = $('#IdGradoSalarial_tab2').val();
+
+                $.ajax({
+                    url: "@Url.Action("GetCuotaCiticlubPorGradoSalarial", "Combos")",
+                    data: { gradoSalarial: gradoSalarial },
+                    dataType: "json",
+                    success: function (datos) {
+                        $("#IdCuotaCiticlub_tab4").select2("data", { id: datos.id, text: datos.text });
+                    },
+                    error: function (xhr, status, err) { }
+                })
+            }
+        });
+
+        $.ajax({
+            url: "@Url.Action("PlanesByPrepaga", "Combos")",
+            data: { prepaga: $("#IdPrepaga_tab4").val().replace(/'/g, "") },
+            dataType: "json",
+            success: function (datos) {
+                
+                $("#IdPlanPrepaga_tab4").select2({
+                    data: datos,
+                    allowClear: true,
+                    width: '100%',
+                    placeholder: ' ',
+                    initSelection: function (element, callback) {                        
+                        callback({ "text": $("#IdPlanPrepaga_tab4").val().replace(/'/g, ""), "id": $("#IdPlanPrepaga_tab4").val() });
+                    }
+                })
+            },
+            error: function (xhr, status, err) { }
+        });
+
+    });
+
+    function prepagaChanged(e) {
+        $.ajax({
+            url: "@Url.Action("PlanesByPrepaga", "Combos")",
+            data: { prepaga: e.val },
+            dataType: "json",
+            success: function (datos) {
+                $('#IdPlanPrepaga_tab4').val('');
+                $("input[type='text']#DiferenciaUpgradePrepaga_tab4").val('');
+                $("input[type='hidden']#DiferenciaUpgradePrepaga_tab4").val('');
+
+                $("#IdPlanPrepaga_tab4").select2({
+                    data: datos,
+                    allowClear: true,
+                    width: '100%',
+                    placeholder: ' '
+                })
+            },
+            error: function (xhr, status, err) { }
+        });
+
+        if ($('#ModuloPyO_tab4').is(':checked')) {
+            var codigoEmpleado = $('#IdEmpleado').val();
+
+            $.ajax({
+                url: "@Url.Action("GetMontoModuloPyO", "Combos")",
+                data: { codigoEmpleado: codigoEmpleado, prepaga: e.val },
+                dataType: "json",
+                success: function (datos) {
+                    $("input[type='text']#Monto_tab4").val(datos.text);
+                    $("input[type='hidden']#Monto_tab4").val(datos.text);
+                },
+                error: function (xhr, status, err) { }
+            });
+        }
+    }
+
+    function planPrepagaChanged(e) {
+        var codigoEmpleado = $('#IdEmpleado').val();
+        var prepaga = $('#IdPrepaga_tab4').val();
+        var planDesde = e.val;
+        var planHasta = $('#PlanUpgrade_tab4').val();
+
+        $.ajax({
+            url: "@Url.Action("GetDiferenciaUpgradePrepaga", "Combos")",
+            data: { codigoEmpleado: codigoEmpleado, prepaga: prepaga, planDesde: planDesde, planHasta: planHasta },
+            dataType: "json",
+            success: function (datos) {
+                $("input[type='text']#DiferenciaUpgradePrepaga_tab4").val(datos.text);
+                $("input[type='hidden']#DiferenciaUpgradePrepaga_tab4").val(datos.text);
+            },
+            error: function (xhr, status, err) { }
+        });
+    }
+</script>
+
+<div class="fila">
+    <div class="columna mod4">
+        @if (Model.EsEmpresaArgentina)
+        {
+            <label class="textoRojo">(*)</label>
+        }
+        @Html.LabelFor(model => model.IdFormaPago_tab4)
+        @JqueryUIHelper.Select2("IdFormaPago_tab4",
+                                        "IdFormaPago_tab4",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.FormaPago,
+                                        !string.IsNullOrWhiteSpace(Model.IdFormaPago_tab4) ? Model.IdFormaPagoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+        @if (Model.EsEmpresaArgentina)
+        {
+            @Html.ValidationMessageFor(model => model.IdFormaPago_tab4, "")
+        }
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.NumeroCuentaBancaria_tab4)
+        @Html.EditorFor(model => model.NumeroCuentaBancaria_tab4)
+        @Html.ValidationMessageFor(model => model.NumeroCuentaBancaria_tab4, "")
+    </div>
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.IdModalidadContrato_tab4)
+        @JqueryUIHelper.Select2("IdModalidadContrato_tab4",
+                                        "IdModalidadContrato_tab4",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.ModalidadContrato,
+                                        !string.IsNullOrWhiteSpace(Model.IdModalidadContrato_tab4) ? Model.IdModalidadContratoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+    </div>
+</div>
+<div class="fila">
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.FechaVencimientoContrato_tab4)
+        @JqueryUIHelper.DatePicker("FechaVencimientoContrato_tab4",
+                                           "FechaVencimientoContrato_tab4",
+                                           Model.FechaVencimientoContrato_tab4,
+                                           format: "dd/mm/yy")
+    </div>
+    <div class="columna mod4">
+        <label class="textoRojo">(*)</label>
+        @Html.LabelFor(model => model.IdObraSocial_tab4)
+        @JqueryUIHelper.Select2("IdObraSocial_tab4",
+                                "IdObraSocial_tab4",
+                                Url.Action("DescripcionesObraSocial", "Combos"),
+                                Url.Action("ByIdObraSocial", "Combos"),
+                                "descripcion",
+                                !string.IsNullOrWhiteSpace(Model.IdObraSocial_tab4) ? Model.IdObraSocialConComillas : "",
+                                minLetters: 0,
+                                readonlly: false)
+        @Html.ValidationMessageFor(model => model.IdObraSocial_tab4, "")
+    </div> 
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.IdCompaniaSeguro_tab4)
+        @JqueryUIHelper.Select2("IdCompaniaSeguro_tab4",
+                                        "IdCompaniaSeguro_tab4",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.CompaniaSeguro,
+                                        !string.IsNullOrWhiteSpace(Model.IdCompaniaSeguro_tab4) ? Model.IdCompaniaSeguroConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+    </div>   
+</div>
+<div class="fila">
+    <div class="columna mod4">
+        @Html.LabelFor(model => model.IdPrepaga_tab4)
+        @JqueryUIHelper.Select2("IdPrepaga_tab4",
+                                         "IdPrepaga_tab4",
+                                         Url.Action("DescripcionesPrepaga", "Combos"),
+                                         Url.Action("ByIdPrepaga", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdPrepaga_tab4) ? Model.IdPrepagaConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false,
+                                        functionNameAfterSelect: "prepagaChanged")
+    </div>
+        <div class="columna mod4">
+            @Html.LabelFor(model => model.IdPlanPrepaga_tab4)
+            @JqueryUIHelper.Select2("IdPlanPrepaga_tab4",
+                                        "IdPlanPrepaga_tab4",
+                                         Url.Action("DescripcionesPlanPrepaga", "Combos"),
+                                         Url.Action("ByIdPlanPrepaga", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdPlanPrepaga_tab4) ? Model.IdPlanPrepagaConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false,
+                                        functionNameAfterSelect: "planPrepagaChanged")
+        </div>
+    </div>
+
+
+<div class="fila">
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.UpgradePrePaga_tab4)
+        @Html.CheckBoxFor(model => model.UpgradePrePaga_tab4)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.PlanUpgrade_tab4)
+        @if (Model.UpgradePrePaga_tab4)
+        {
+            @Html.EditorFor(model => model.PlanUpgrade_tab4)
+        }
+        else
+        {
+            @Html.EditorFor(model => model.PlanUpgrade_tab4)
+        }
+
+        @Html.ValidationMessageFor(model => model.PlanUpgrade_tab4, "")
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.FechaInicioUpgradePrepaga_tab4)
+        @JqueryUIHelper.DatePicker("FechaInicioUpgradePrepaga_tab4",
+                                           "FechaInicioUpgradePrepaga_tab4",
+                                           Model.FechaInicioUpgradePrepaga_tab4,
+                                           format: "dd/mm/yy",
+                                           readonlly: !Model.UpgradePrePaga_tab4)
+    </div>
+    <div class="columna mod3">
+        @Html.LabelFor(model => model.DiferenciaUpgradePrepaga_tab4)
+        @Html.HiddenFor(model => model.DiferenciaUpgradePrepaga_tab4)
+        @Html.TextBoxFor(model => model.DiferenciaUpgradePrepaga_tab4, new { @disabled = "disabled" })
+    </div>
+    </div>
+
+    <div class="fila">
+        <div class="columna mod3">
+            @Html.LabelFor(model => model.ModuloPyO_tab4)
+            @Html.CheckBoxFor(model => model.ModuloPyO_tab4)
+        </div>
+        <div class="columna mod3">
+            @Html.LabelFor(model => model.FechaInicioModuloPyO_tab4)
+            @JqueryUIHelper.DatePicker("FechaInicioModuloPyO_tab4",
+                                           "FechaInicioModuloPyO_tab4",
+                                           Model.FechaInicioModuloPyO_tab4,
+                                           format: "dd/mm/yy",
+                                           readonlly: !Model.ModuloPyO_tab4)
+        </div>
+        <div class="columna mod3">
+            @Html.LabelFor(model => model.Monto_tab4)
+            @Html.HiddenFor(model => model.Monto_tab4)
+            @Html.TextBoxFor(model => model.Monto_tab4, new { @disabled = "disabled" })
+        </div>
+    </div>   
+    <div class="fila">
+        <div class="columna mod4">
+            @Html.LabelFor(model => model.Turno_tab4)
+            @Html.EditorFor(model => model.Turno_tab4)
+            @Html.ValidationMessageFor(model => model.Turno_tab4, "")
+        </div>
+        <div class="columna mod4">
+            @Html.LabelFor(model => model.SocioCiticlub_tab4)
+            @Html.CheckBoxFor(model => model.SocioCiticlub_tab4)
+        </div>
+        <div class="columna mod4">
+            @Html.LabelFor(model => model.IdCuotaCiticlub_tab4)
+            @JqueryUIHelper.Select2("IdCuotaCiticlub_tab4",
+                                        "IdCuotaCiticlub_tab4",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.CuotaCiticlub,
+                                        !string.IsNullOrWhiteSpace(Model.IdCuotaCiticlub_tab4) ? Model.IdCuotaCiticlubConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: !Model.SocioCiticlub_tab4)
+        </div>
+
+    </div>
+    <div class="fila">
+        <div class="columna mod4">
+            @Html.LabelFor(model => model.IdSindicato_tab4)
+            @JqueryUIHelper.Select2("IdSindicato_tab4",
+                                        "IdSindicato_tab4",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.Sindicato,
+                                        !string.IsNullOrWhiteSpace(Model.IdSindicato_tab4) ? Model.IdSindicatoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+        </div>
+        <div class="columna mod4">
+            @if (Model.EsEmpresaArgentina)
+            {
+                <label class="textoRojo">(*)</label>
+            }
+            @Html.LabelFor(model => model.IdCategoriaContable_tab4)
+            @JqueryUIHelper.Select2("IdCategoriaContable_tab4",
+                                        "IdCategoriaContable_tab4",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.CategoriaContable,
+                                        !string.IsNullOrWhiteSpace(Model.IdCategoriaContable_tab4) ? Model.IdCategoriaContableConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            @if (Model.EsEmpresaArgentina)
+            {
+                @Html.ValidationMessageFor(model => model.IdCategoriaContable_tab4, "")
+            }
+        </div>
+        <div class="columna mod4">
+            @if (Model.EsEmpresaArgentina)
+            {
+                <label class="textoRojo">(*)</label>
+            }
+            @Html.LabelFor(model => model.IdResponsableTickets_tab4)
+            @JqueryUIHelper.Select2("IdResponsableTickets_tab4",
+                                        "IdResponsableTickets_tab4",
+                                        Url.Action("DescripcionesResponsableTickets", "Combos"),
+                                        Url.Action("ByIdResponsableTickets", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdResponsableTickets_tab4) ? Model.IdResponsableTicketsConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            @if (Model.EsEmpresaArgentina)
+            {
+                @Html.ValidationMessageFor(model => model.IdResponsableTickets_tab4, "")
+            }
+        </div>
+    </div>

@@ -1,0 +1,46 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+        <div class="fila">                              
+            <div class="columna mod4">                
+                @Html.LabelFor(model => model.FechaContratacion_tab3)
+                @JqueryUIHelper.DatePicker("FechaContratacion_tab3", "FechaContratacion_tab3", Model.FechaContratacion_tab3, format: "dd/mm/yy", readonlly:true)
+            </div>
+            <div class="columna mod4">                
+                @Html.LabelFor(model => model.FechaIngreso_tab3)
+                @JqueryUIHelper.DatePicker("FechaIngreso_tab3", "FechaIngreso_tab3", Model.FechaIngreso_tab3, format: "dd/mm/yy", readonlly:true)                                
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.FechaEgreso_tab3)
+                @JqueryUIHelper.DatePicker("FechaEgreso_tab3", "FechaEgreso_tab3", Model.FechaEgreso_tab3, format: "dd/mm/yy", readonlly:true)
+            </div>
+        </div>
+        <div class="fila">
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.FechaDesvinculacion_tab3)
+                @JqueryUIHelper.DatePicker("FechaDesvinculacion_tab3", "FechaDesvinculacion_tab3", Model.FechaDesvinculacion_tab3, format: "dd/mm/yy", readonlly:true)
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.FechaRecontratacion_tab3)
+                @JqueryUIHelper.DatePicker("FechaRecontratacion_tab3", "FechaRecontratacion_tab3", Model.FechaRecontratacion_tab3, format: "dd/mm/yy", readonlly: true)
+            </div>
+            <div class="columna mod4">                
+                @Html.LabelFor(model => model.FechaAntiguedad_tab3)
+                @JqueryUIHelper.DatePicker("FechaAntiguedad_tab3", "FechaAntiguedad_tab3", Model.FechaAntiguedad_tab3, format: "dd/mm/yy", readonlly:true)
+            </div>
+        </div>
+        <div class="fila">
+            <div class="columna mod4">                
+                @Html.LabelFor(model => model.FechaAntiguedadIndemnizaciones_tab3)
+                @JqueryUIHelper.DatePicker("FechaAntiguedadIndemnizaciones_tab3", "FechaAntiguedadIndemnizaciones_tab3", Model.FechaAntiguedadIndemnizaciones_tab3, format: "dd/mm/yy", readonlly:true)
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.GEID_tab3)
+                @Html.HiddenFor(model => model.GEID_tab3)
+                @Html.TextBoxFor(model => model.GEID_tab3, new { @disabled = "disabled" })                
+            </div>    
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.EMPL_RCD_tab3)
+                @Html.HiddenFor(model => model.EMPL_RCD_tab3)
+                @Html.TextBoxFor(model => model.EMPL_RCD_tab3, new { @disabled = "disabled" })                
+            </div>    
+        </div>

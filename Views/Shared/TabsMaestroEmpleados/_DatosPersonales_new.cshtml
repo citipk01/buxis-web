@@ -1,0 +1,141 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+
+        <div class="fila">
+            <div class="columna mod3">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.PrimerNombre_tab1)
+                @Html.EditorFor(model => model.PrimerNombre_tab1)
+                @Html.ValidationMessageFor(model => model.PrimerNombre_tab1, "")
+            </div>
+            <div class="columna mod3">
+                @Html.LabelFor(model => model.SegundoNombre_tab1)
+                @Html.EditorFor(model => model.SegundoNombre_tab1)
+                @Html.ValidationMessageFor(model => model.SegundoNombre_tab1, "")
+            </div>
+            <div class="columna mod3">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.PrimerApellido_tab1)
+                @Html.EditorFor(model => model.PrimerApellido_tab1)
+                @Html.ValidationMessageFor(model => model.PrimerApellido_tab1, "")
+            </div>
+            <div class="columna mod3">                
+                @Html.LabelFor(model => model.SegundoApellido_tab1)
+                @Html.EditorFor(model => model.SegundoApellido_tab1)      
+                @Html.ValidationMessageFor(model => model.SegundoApellido_tab1, "")          
+            </div>        
+        </div>
+ 
+        <div class="fila">
+            <div class="columna mod2">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.IdTipoDocumento_tab1)
+                @JqueryUIHelper.Select2("IdTipoDocumento_tab1",
+                                "IdTipoDocumento_tab1",
+                                Url.Action("DescripcionesCodigos", "Combos"),
+                                Url.Action("ByIdCodigos", "Combos"),
+                                "descripcion",
+                                (int)Buxis.Domain.Enums.TipoCodigos.TipoDocumento,
+                                !string.IsNullOrWhiteSpace(Model.IdTipoDocumento_tab1) ? Model.IdTipoDocumentoConComillas : "",
+                                minLetters: 0)
+                @Html.ValidationMessageFor(model => model.IdTipoDocumento_tab1, "")
+            </div>
+            <div class="columna mod2">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.DocumentoIdentidad_tab1)
+                @Html.EditorFor(model => model.DocumentoIdentidad_tab1)
+                @Html.ValidationMessageFor(model => model.DocumentoIdentidad_tab1, "")
+            </div>            
+            <div class="columna mod2">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.FechaNacimiento_tab1)
+                @JqueryUIHelper.DatePicker("FechaNacimiento_tab1", "FechaNacimiento_tab1", Model.FechaNacimiento_tab1, format: "dd/mm/yy")
+                @Html.ValidationMessageFor(model => model.FechaNacimiento_tab1, "")
+            </div>
+            <div class="columna mod2">
+                @Html.LabelFor(model => model.CUIL_tab1)
+                @Html.EditorFor(model => model.CUIL_tab1)
+                @Html.ValidationMessageFor(model => model.CUIL_tab1, "")
+            </div>
+            <div class="columna mod4">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.IdNacionalidad_tab1)
+                @JqueryUIHelper.Select2("IdNacionalidad_tab1",
+                                "IdNacionalidad_tab1",
+                                Url.Action("DescripcionesCodigos", "Combos"),
+                                Url.Action("ByIdCodigos", "Combos"),
+                                "descripcion",
+                                (int)Buxis.Domain.Enums.TipoCodigos.Pais,
+                                !string.IsNullOrWhiteSpace(Model.IdNacionalidad_tab1) ? Model.IdNacionalidadConComillas : "",
+                                minLetters: 0)
+                @Html.ValidationMessageFor(model => model.IdNacionalidad_tab1, "")
+            </div>
+        </div>
+
+        <div class="fila">
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.Domicilio_tab1)
+                @Html.EditorFor(model => model.Domicilio_tab1)
+                @Html.ValidationMessageFor(model => model.Domicilio_tab1, "")
+            </div>
+            <div class="columna mod2">
+                @Html.LabelFor(model => model.CodigoPostal_tab1)
+                @Html.EditorFor(model => model.CodigoPostal_tab1)
+                @Html.ValidationMessageFor(model => model.CodigoPostal_tab1, "")
+            </div>
+            
+            <div class="columna mod2">
+                @Html.LabelFor(model => model.Localidad_tab1)
+                @Html.EditorFor(model => model.Localidad_tab1)
+                @Html.ValidationMessageFor(model => model.Localidad_tab1, "")
+            </div>
+            <div class="columna mod2">
+                @Html.LabelFor(model => model.IdProvincia_tab1)
+                @JqueryUIHelper.Select2("IdProvincia_tab1",
+                                "IdProvincia_tab1",
+                                Url.Action("DescripcionesCodigos", "Combos"),
+                                Url.Action("ByIdCodigos", "Combos"),
+                                "descripcion",
+                                (int)Buxis.Domain.Enums.TipoCodigos.Provincia,
+                                !string.IsNullOrWhiteSpace(Model.IdProvincia_tab1) ? Model.IdProvinciaConComillas : "",
+                                minLetters: 0)
+            </div>
+            <div class="columna mod2">
+                @Html.LabelFor(model => model.IdPais_tab1)
+                @JqueryUIHelper.Select2("IdPais_tab1",
+                                "IdPais_tab1",
+                                Url.Action("DescripcionesCodigos", "Combos"),
+                                Url.Action("ByIdCodigos", "Combos"),
+                                "descripcion",
+                                (int)Buxis.Domain.Enums.TipoCodigos.Pais,
+                                !string.IsNullOrWhiteSpace(Model.IdPais_tab1) ? Model.IdPaisConComillas : "",
+                                minLetters: 0)
+            </div>
+        </div>
+        <div class="fila">
+            <div class="columna mod2">
+                @Html.LabelFor(model => model.IdEstadoCivil_tab1)
+                @JqueryUIHelper.Select2("IdEstadoCivil_tab1",
+                                "IdEstadoCivil_tab1",
+                                Url.Action("DescripcionesCodigos", "Combos"),
+                                Url.Action("ByIdCodigos", "Combos"),
+                                "descripcion",
+                                (int)Buxis.Domain.Enums.TipoCodigos.EstadoCivil,
+                                !string.IsNullOrWhiteSpace(Model.IdEstadoCivil_tab1) ? Model.IdEstadoCivilConComillas : "",
+                                minLetters: 0)
+            </div>
+            <div class="columna mod2">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.IdSexo_tab1)
+                @JqueryUIHelper.Select2("IdSexo_tab1",
+                                "IdSexo_tab1",
+                                Url.Action("DescripcionesCodigos", "Combos"),
+                                Url.Action("ByIdCodigos", "Combos"),
+                                "descripcion",
+                                (int)Buxis.Domain.Enums.TipoCodigos.Sexo,
+                                !string.IsNullOrWhiteSpace(Model.IdSexo_tab1) ? Model.IdSexoConComillas : "",
+                                minLetters: 0)
+                @Html.ValidationMessageFor(model => model.IdSexo_tab1, "")
+            </div>
+        </div>
+   

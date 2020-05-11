@@ -1,0 +1,82 @@
+﻿
+@model Buxis.Services.ViewModel.NavegacionViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.primeroLink').click(function () {
+            $("#SentidoNavegacion").val("Primero");
+            $(this).closest('form')[0].submit();
+        });
+        $('.anteriorLink').click(function () {
+            $("#SentidoNavegacion").val("Anterior");
+            $(this).closest('form')[0].submit();
+        });
+        $('.siguienteLink').click(function () {
+            $("#SentidoNavegacion").val("Siguiente");
+            $(this).closest('form')[0].submit();
+        });
+        $('.ultimoLink').click(function () {
+            $("#SentidoNavegacion").val("Ultimo");
+            $(this).closest('form')[0].submit();
+        });
+    });
+</script>
+
+@{
+    @Html.HiddenFor(model => model.SentidoNavegacion)
+}
+
+@{
+    string  accion = Model.Accion;
+    string controlador = Model.Controlador;
+    bool deshabilitarSiguiente = Model.DeshabilitarSiguiente;
+    bool deshabilitarAnterior = Model.DeshabilitarAnterior;
+}
+
+<div class="fila">
+    
+    <div class="columna mod3">   
+        @if (!deshabilitarAnterior)
+        {
+            @Ajax.ActionLink("<< Primero", @accion, @controlador, null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { @class = "primeroLink button-nav", onclick = "return false;" })
+        }
+        else
+        {
+            <a class="button-nav button-dis"><< Primero</a>
+        }
+    </div>
+    <div class="columna mod3">
+        @if (!deshabilitarAnterior)
+        {
+            
+                @Ajax.ActionLink("< Anterior", @accion, @controlador, null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { @class = "anteriorLink button-nav", onclick = "return false;" })
+
+        }
+        else
+        {
+            <a class="button-nav button-dis">< Anterior</a>
+        }
+    </div>
+    <div class="columna mod3">
+        @if (!deshabilitarSiguiente)
+        {
+           
+                @Ajax.ActionLink("Siguiente >", @accion, @controlador, null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { @class = "siguienteLink button-nav", onclick = "return false;" })
+            
+        }
+        else
+        {
+            <a class="button-nav button-dis">Siguiente ></a>
+        }
+    </div>
+    <div class="columna mod3">
+       @if (!deshabilitarSiguiente)
+        {
+            @Ajax.ActionLink("Último >>", @accion, @controlador, null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { @class = "ultimoLink button-nav", onclick = "return false;" })
+        }
+       else
+       {
+        <a class="button-nav button-dis">Último >></a>
+       }
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<script>
+    $(document).ready(function () {
+        $('.guardarlnk').click(function () {
+            $(this).closest('form')[0].submit();
+        });
+    });
+</script>
+
+@{
+    ViewBag.Title = "Maestro de Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Nuevo", "MaestroEmpleados"))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ErrorTab1)
+    @Html.HiddenFor(model => model.ErrorTab2)
+    @Html.HiddenFor(model => model.ErrorTab3)
+    @Html.HiddenFor(model => model.ErrorTab4)
+    @Html.HiddenFor(model => model.ErrorTab5)
+    @Html.HiddenFor(model => model.ErrorTab6)
+
+    @Html.HiddenFor(model => model.IdEmpleado)
+    
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.PrimerNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.SegundoNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.PrimerApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.SegundoApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.LegajoDesde)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.LegajoHasta)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.ColumnaOrdenamiento)
+    @Html.HiddenFor(model => model.FiltroBuscadorEmpleados.SentidoOrdenamiento)
+
+    <div class="fila">
+        <div class="columna mod12">
+            <h3 class="floatLeft">Maestro de Empleados</h3>
+        </div>
+    </div>
+
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="fila">
+            <div class="ui-state-error ui-corner-all" style="padding: 0 .7em; margin-left: 1em;">
+                <p>
+                    <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+                    Por favor verifique que todos los campos esten completos y sean correctos
+                </p>
+            </div>
+        </div>
+    }
+
+    if (ViewBag.MensajeExitoMaestroEmpleados != null)
+    {
+        <div class="fila">
+            <div class="ui-state-default ui-corner-all" style="padding: 0 .7em; margin-left: 1em;">
+                <p>
+                    <span class="ui-icon ui-icon-check" style="float: left; margin-right: .3em;"></span>
+                    @ViewBag.MensajeExitoMaestroEmpleados
+                </p>
+            </div>
+        </div>
+    }
+
+    <div class="fila">
+        <div class="columna mod12 ">
+            <div class="fila">
+                <div class="columna mod3">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.CodigoEmpleado)
+                    @Html.EditorFor(model => model.CodigoEmpleado)
+                    @Html.ValidationMessageFor(model => model.CodigoEmpleado, "")
+                </div>
+                <div class="columna mod2">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.IdNivel)
+                    @JqueryUIHelper.Select2("IdNivel",
+                                        "IdNivel",
+                                        Url.Action("DescripcionesNivel", "Combos"),
+                                        Url.Action("ByIdNivel", "Combos"),
+                                        "descripcion",
+                                        Model.IdNivel.HasValue ? Model.IdNivel.Value.ToString() : "",
+                                        minLetters: 0)
+                    @Html.ValidationMessageFor(model => model.IdNivel, "")
+                </div>
+                <div class="columna mod2">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.FechaEfectiva)
+                    @JqueryUIHelper.DatePicker("FechaEfectiva", "FechaEfectiva", Model.FechaEfectiva, format: "dd/mm/yy")
+                    @Html.ValidationMessageFor(model => model.FechaEfectiva, "")
+
+                </div>
+                <div class="columna mod3">
+                    <label class="textoRojo">(*)</label>
+                    @Html.LabelFor(model => model.SecuenciaEfectiva)
+                    @Html.EditorFor(model => model.SecuenciaEfectiva)
+                    @Html.ValidationMessageFor(model => model.SecuenciaEfectiva, "")
+                </div>
+                <div class="columna mod2">
+                    @Html.LabelFor(model => model.BajaEfectiva)
+                    @Html.CheckBoxFor(model => model.BajaEfectiva)
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @Html.Partial("~/Views/MaestroEmpleados/_TabsMaestroEmpleados.cshtml", Model)
+
+    <div class="fila">
+        <div class="columna">
+            @Ajax.ActionLink("Guardar", "Nuevo", "MaestroEmpleados", new { model = Model }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace }, new { @class = "guardarlnk button", onclick = "return false;" })            
+        </div>
+    </div>
+}
+

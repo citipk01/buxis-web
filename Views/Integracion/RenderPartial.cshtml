@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Buxis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewData["actionURL"] != null && File.Exists(Server.MapPath(ViewData["actionURL"].ToString())))
+{
+    @Html.Raw(File.ReadAllText(Server.MapPath(ViewData["actionURL"].ToString())));
+}

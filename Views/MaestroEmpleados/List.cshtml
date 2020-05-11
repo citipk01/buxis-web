@@ -1,0 +1,221 @@
+﻿@model Buxis.Services.ViewModel.MaestroEmpleadoViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        if($("#idAnchorSaltarCabecera").attr('id') !== undefined){
+            $(document).scrollTop( $("#idAnchorSaltarCabecera").offset().top );  
+        }
+
+        $("#divLoading").hide();
+
+        var columna = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Enum.GetName(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Model.ColumnaOrdenamiento)));
+        var sentido = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Enum.GetName(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Model.SentidoOrdenamiento)));
+
+        $("#resultados").tablesorter({
+            headers: { 3: { sorter: false } },
+            sortList: [[columna, sentido]]
+        });
+
+        $("#resultados").bind("sortStart", function (event) {            
+            $("#divLoading").show();
+        });
+
+        $("#resultados").bind("sortEnd", function (event) {
+
+            var columnaElegida = event.target.config.sortList.toString().substring(0, 1);
+            var sentidoElegido = event.target.config.sortList.toString().substring(2);
+
+            var columnaActual = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Enum.GetName(typeof(Buxis.Domain.Enums.OrdenamientoPorColumnaBuscadorEmpleados), Model.ColumnaOrdenamiento)));
+            var sentidoActual = @Convert.ToInt32(Enum.Parse(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Enum.GetName(typeof(Buxis.Domain.Enums.SentidoOrdenamiento), Model.SentidoOrdenamiento)));
+
+            if(columnaElegida != columnaActual ||  (columnaElegida == columnaActual && sentidoElegido != sentidoActual)){
+                var inputColumnaOrdenamiento = $("<input>").attr("type", "hidden").attr("name", "ColumnaOrdenamiento").val(columnaElegida);
+                var inputSentidoOrdenamiento = $("<input>").attr("type", "hidden").attr("name", "SentidoOrdenamiento").val(sentidoElegido);
+
+                $('form').append($(inputColumnaOrdenamiento));
+                $('form').append($(inputSentidoOrdenamiento));
+
+                $("form").submit();
+            }
+        });
+    });
+</script>
+
+@{
+    ViewBag.Title = "Buscador de Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("List", "MaestroEmpleados", FormMethod.Get))
+{
+    <div id="divLoading" class="loading">
+        <img style="width:50px; height:50px;" src="~/Content/Images/ajax_loader_blue_512.gif">
+    </div>
+    
+    <h3>Buscador de Empleados</h3>
+        
+    <div class="fila">
+        <div class="columna mod5 panel">
+            <h5>
+                Datos del Empleado
+            </h5>
+            <div class="fila">
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.LegajoDesde)
+                    @Html.EditorFor(model => model.LegajoDesde)
+                    @Html.ValidationMessageFor(model => model.LegajoDesde)
+            </div>
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.LegajoHasta)
+                    @Html.EditorFor(model => model.LegajoHasta)
+                    @Html.ValidationMessageFor(model => model.LegajoHasta)
+                </div>
+                <div class="columna mod4">
+                    @Html.LabelFor(model => model.NumeroDocumento)
+                    @Html.EditorFor(model => model.NumeroDocumento)
+                    @Html.ValidationMessageFor(model => model.NumeroDocumento, "")
+                </div>
+            </div>            
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.PrimerNombre)
+                    @Html.EditorFor(model => model.PrimerNombre)
+                    @Html.ValidationMessageFor(model => model.PrimerNombre, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.SegundoNombre)
+                    @Html.EditorFor(model => model.SegundoNombre)
+                    @Html.ValidationMessageFor(model => model.SegundoNombre, "")
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.PrimerApellido)
+                    @Html.EditorFor(model => model.PrimerApellido)
+                    @Html.ValidationMessageFor(model => model.PrimerApellido, "")
+                </div>
+                <div class="columna mod6">
+                    @Html.LabelFor(model => model.SegundoApellido)
+                    @Html.EditorFor(model => model.SegundoApellido)
+                    @Html.ValidationMessageFor(model => model.SegundoApellido, "")
+                </div>
+            </div>
+        </div>       
+    </div>
+            <div class="fila">
+                <div class="columna mod4">
+                    <input type="hidden" name="search" value="1" />
+                    <input type="hidden" name="IsJson" value="0" />
+                    <button type="submit" id="btnBuscar" value="Buscar" class="button">Buscar</button>
+                    <a class="button checkSecured" data-credential="CREAR_EMPLEADO" href="@Url.Action("Nuevo", "MaestroEmpleados")">Nuevo</a>
+                </div>
+            </div>
+}
+    @if (Model.Empleados != null && Model.Empleados.Count > 0)
+    {
+        <a id="idAnchorSaltarCabecera" />
+        
+        <table id="resultados" class="tabla tabla tabla-cebra">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empleados[0].IdEmpleado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empleados[0].NombreApellido)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empleados[0].NumeroDocumento)
+                    </th>
+                    <th style="width: 16px; height: 16px;">
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Empleados)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.IdEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.NombreApellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.NumeroDocumento)
+                        </td>
+                        <td>
+                            <ul id="icons" class="ui-widget ui-helper-clearfix">
+                                <li class="ui-state-default ui-corner-all checkSecured" data-credential="EDITAR_EMPLEADO" title="Editar Empleado">
+                                    <a class="ui-icon ui-icon-pencil" href="@Url.Action("Editar",
+                                                                                        "MaestroEmpleados",
+                                                                                        new {
+                                                                                            idEmpleado = item.IdEmpleado,
+                                                                                            LegajoDesde = Model.LegajoDesde,
+                                                                                            LegajoHasta = Model.LegajoHasta,
+                                                                                            PrimerNombre = Model.PrimerNombre,
+                                                                                            SegundoNombre = Model.SegundoNombre,
+                                                                                            PrimerApellido = Model.PrimerApellido,
+                                                                                            SegundoApellido = Model.SegundoApellido,
+                                                                                            NumeroDocumento = Model.NumeroDocumento,
+                                                                                            ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                                                                                            SentidoOrdenamiento = Model.SentidoOrdenamiento                                                                                            
+                                                                                        })"></a>
+                                </li>
+                                <li class="ui-state-default ui-corner-all checkSecured" data-credential="VER_EMPLEADO" title="Ver Empleado">
+                                    <a class="ui-icon ui-icon-search" href="@Url.Action("Ver",
+                                                                                        "MaestroEmpleados",
+                                                                                        new {
+                                                                                            idEmpleado = item.IdEmpleado,
+                                                                                            LegajoDesde = Model.LegajoDesde,
+                                                                                            LegajoHasta = Model.LegajoHasta,
+                                                                                            PrimerNombre = Model.PrimerNombre,
+                                                                                            SegundoNombre = Model.SegundoNombre,
+                                                                                            PrimerApellido = Model.PrimerApellido,
+                                                                                            SegundoApellido = Model.SegundoApellido,
+                                                                                            NumeroDocumento = Model.NumeroDocumento,
+                                                                                            ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                                                                                            SentidoOrdenamiento = Model.SentidoOrdenamiento
+                                                                                        })"></a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        if (Model.Empleados != null && Model.Empleados.Count > 0)
+        {
+        @Html.PagedListPager(
+                (PagedList.IPagedList)Model.Empleados,
+                page => Url.Action("List",
+                    new {
+                        page,
+                        pageSize = ViewData["pageSize"] != null ? ViewData["pageSize"] : 50 ,
+                        search = 1,
+                        PrimerNombre = Model.PrimerNombre,
+                        SegundoNombre = Model.SegundoNombre,
+                        PrimerApellido = Model.PrimerApellido,
+                        SegundoApellido = Model.SegundoApellido,
+                        LegajoDesde = Model.LegajoDesde,
+                        LegajoHasta = Model.LegajoHasta,
+                        NumeroDocumento = Model.NumeroDocumento,
+                        ColumnaOrdenamiento = Model.ColumnaOrdenamiento,
+                        SentidoOrdenamiento = Model.SentidoOrdenamiento
+                    }),
+                PagedListRenderOptions.ClassicPlusFirstAndLast);
+        }
+}
+
+    else if (Model.search != null && ViewData.ModelState.IsValid)
+    {
+            <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+                <p>
+                    <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                    La búsqueda no arrojó resultados.
+                </p>
+            </div>
+    }
+

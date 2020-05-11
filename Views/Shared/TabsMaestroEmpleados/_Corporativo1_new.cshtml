@@ -1,0 +1,225 @@
+﻿@model Buxis.Services.ViewModel.EmpleadoViewModel
+
+<script>
+    function accionChanged(e) {
+        $.ajax({
+            url: "@Url.Action("MotivosByAccion", "Combos")",            
+            data: { accion: e.val },
+            dataType: "json",
+            success: function (datos) {                
+                $("#IdMotivo_tab2").select2({
+                    data: datos,
+                    allowClear: true,
+                    width: '100%',
+                    placeholder: ' '
+                })
+            },
+            error: function (xhr, status, err) {}
+        });
+    }
+</script>
+
+        <div class="fila">
+            <div class="columna mod4">               
+                <label class="textoRojo">(*)</label>                
+                @Html.LabelFor(model => model.IdEmpresa_tab2)
+                @JqueryUIHelper.Select2("IdEmpresa_tab2",
+                            "IdEmpresa_tab2",
+                            Url.Action("DescripcionesEmpresa", "Combos"),
+                            Url.Action("ByIdEmpresa", "Combos"),
+                            "descripcion",
+                            Model.IdEmpresa_tab2.HasValue ? Model.IdEmpresa_tab2.Value.ToString() : "",
+                            minLetters: 0,                                                     
+                            readonlly: false)
+                @Html.ValidationMessageFor(model => model.IdEmpresa_tab2, "")                
+            </div>     
+            <div class="columna mod4">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.IdTipoAccion_tab2)
+                @JqueryUIHelper.Select2("IdTipoAccion_tab2",
+                                        "IdTipoAccion_tab2",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.Accion,
+                                        !string.IsNullOrWhiteSpace(Model.IdTipoAccion_tab2) ? Model.IdTipoAccionConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false,
+                                        functionNameAfterSelect: "accionChanged")
+                @Html.ValidationMessageFor(model => model.IdTipoAccion_tab2, "")
+            </div>
+            <div class="columna mod4">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.IdMotivo_tab2)
+                @JqueryUIHelper.Select2("IdMotivo_tab2",
+                                        "IdMotivo_tab2",
+                                        Url.Action("DescripcionesAccion", "Combos"),
+                                        Url.Action("ByIdAccion", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdMotivo_tab2) ? Model.IdMotivoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+                @Html.ValidationMessageFor(model => model.IdMotivo_tab2, "")
+            </div>
+        </div>
+        <div class="fila">
+            <div class="columna mod4">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.FechaAccion_tab2)
+                @JqueryUIHelper.DatePicker("FechaAccion_tab2", "FechaAccion_tab2", Model.FechaAccion_tab2, format: "dd/mm/yy", readonlly: false)
+                @Html.ValidationMessageFor(model => model.FechaAccion_tab2, "")
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdLugarTrabajo_tab2)
+                @JqueryUIHelper.Select2("IdLugarTrabajo_tab2",
+                                        "IdLugarTrabajo_tab2",
+                                        Url.Action("DescripcionesLugarTrabajo", "Combos"),
+                                        Url.Action("ByIdLugarTrabajo", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdLugarTrabajo_tab2) ? Model.IdLugarTrabajoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdBanca_tab2)
+                @JqueryUIHelper.Select2("IdBanca_tab2",
+                                        "IdBanca_tab2",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.Banca,
+                                        !string.IsNullOrWhiteSpace(Model.IdBanca_tab2) ? Model.IdBancaConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+                
+            </div>                    
+        </div>
+        <div class="fila">
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.SueldoRecibo_tab2)
+                @Html.EditorFor(model => model.SueldoRecibo_tab2)
+                @Html.ValidationMessageFor(model => model.SueldoRecibo_tab2, "")
+            </div>    
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdFrecuenciaPago_tab2)
+                @JqueryUIHelper.Select2("IdFrecuenciaPago_tab2",
+                                        "IdFrecuenciaPago_tab2",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.FrecuenciaPago,
+                                        !string.IsNullOrWhiteSpace(Model.IdFrecuenciaPago_tab2) ? Model.IdFrecuenciaPagoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+                
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdCodigoPuesto_tab2)
+                @JqueryUIHelper.Select2("IdCodigoPuesto_tab2",
+                                        "IdCodigoPuesto_tab2",
+                                        Url.Action("DescripcionesCodigoPuesto", "Combos"),
+                                        Url.Action("ByIdCodigoPuesto", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdCodigoPuesto_tab2) ? Model.IdCodigoPuestoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>
+        </div>      
+        <div class="fila">
+            <div class="columna mod4">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.IdCentroCostos_tab2)
+                @JqueryUIHelper.Select2("IdCentroCostos_tab2",
+                                        "IdCentroCostos_tab2",
+                                        Url.Action("DescripcionesCentroCostos", "Combos"),
+                                        Url.Action("ByIdCentroCostos", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdCentroCostos_tab2) ? Model.IdCentroCostosConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+                @Html.ValidationMessageFor(model => model.IdCentroCostos_tab2, "")
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdUbicacion_tab2)
+                @JqueryUIHelper.Select2("IdUbicacion_tab2",
+                                        "IdUbicacion_tab2",
+                                        Url.Action("DescripcionesUbicacion", "Combos"),
+                                        Url.Action("ByIdUbicacion", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdUbicacion_tab2) ? Model.IdUbicacionConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdCategoriaConvenio_tab2)
+                @JqueryUIHelper.Select2("IdCategoriaConvenio_tab2",
+                                        "IdCategoriaConvenio_tab2",
+                                        Url.Action("DescripcionesCategoriaConvenio", "Combos"),
+                                        Url.Action("ByIdCategoriaConvenio", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdCategoriaConvenio_tab2) ? Model.IdCategoriaConvenioConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>
+        </div>
+        <div class="fila">
+            <div class="columna mod4">
+                <label class="textoRojo">(*)</label>
+                @Html.LabelFor(model => model.HorasMensualesStandard_tab2)
+                @Html.EditorFor(model => model.HorasMensualesStandard_tab2)
+                @Html.ValidationMessageFor(model => model.HorasMensualesStandard_tab2, "")
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdGradoSalarial_tab2)
+                @JqueryUIHelper.Select2("IdGradoSalarial_tab2",
+                                        "IdGradoSalarial_tab2",
+                                        Url.Action("DescripcionesGradoSalarial", "Combos"),
+                                        Url.Action("ByIdGradoSalarial", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdGradoSalarial_tab2) ? Model.IdGradoSalarialConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.ImporteTickets_tab2)
+                @Html.EditorFor(model => model.ImporteTickets_tab2)
+                @Html.ValidationMessageFor(model => model.ImporteTickets_tab2, "")         
+            </div>
+        </div>   
+        <div class="fila">
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdTipoContrato_tab2)
+                @JqueryUIHelper.Select2("IdTipoContrato_tab2",
+                                        "IdTipoContrato_tab2",
+                                        Url.Action("DescripcionesCodigos", "Combos"),
+                                        Url.Action("ByIdCodigos", "Combos"),
+                                        "descripcion",
+                                        (int)Buxis.Domain.Enums.TipoCodigos.Contrato,
+                                        !string.IsNullOrWhiteSpace(Model.IdTipoContrato_tab2) ? Model.IdTipoContratoConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdArea_tab2)
+                @JqueryUIHelper.Select2("IdArea_tab2",
+                                        "IdArea_tab2",
+                                        Url.Action("DescripcionesArea", "Combos"),
+                                        Url.Action("ByIdArea", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdArea_tab2) ? Model.IdAreaConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>
+            <div class="columna mod4">
+                @Html.LabelFor(model => model.IdManagmentCode_tab2)
+                @JqueryUIHelper.Select2("IdManagmentCode_tab2",
+                                        "IdManagmentCode_tab2",
+                                        Url.Action("DescripcionesManagmentCode", "Combos"),
+                                        Url.Action("ByIdManagmentCode", "Combos"),
+                                        "descripcion",
+                                        !string.IsNullOrWhiteSpace(Model.IdManagmentCode_tab2) ? Model.IdManagmentCodeConComillas : "",
+                                        minLetters: 0,
+                                        readonlly: false)
+            </div>            
+        </div>       

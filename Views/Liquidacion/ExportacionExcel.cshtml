@@ -1,0 +1,134 @@
+﻿@model Buxis.Services.ViewModel.DetalleLiquidacionViewModel
+
+<table border="1">
+    <tr>
+        <td>
+            <b>Empleado</b>
+        </td>
+        <td>
+            <b>Nombre</b>
+        </td>
+        <td>
+            <b>Liquidaci&oacute;n</b>
+        </td>
+        <td>
+            <b>Descripci&oacute;n</b>
+        </td>
+        <td>
+            <b>Desde</b>
+        </td>
+        <td>
+            <b>Hasta</b>
+        </td>
+        <td>
+            <b>Cerrada</b>
+        </td>
+        <td>
+            <b>Acumulada</b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(m => Model.Empleado.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Empleado.NombreApellido)  
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Liquidacion.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Liquidacion.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Liquidacion.FechaDesde)
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Liquidacion.FechaHasta)
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Liquidacion.FechaCierre)
+        </td>
+        <td>
+            @Html.DisplayFor(m => Model.Liquidacion.FechaAcumulado)
+        </td>
+    </tr>
+</table>     
+<br/>         
+<table border="1">
+    <thead>
+    <th>Concepto</th>
+    <th>Descripci&oacute;n</th>
+    <th>Jornales</th>
+    <th>Horas</th>
+    <th>Unidades</th>
+    <th>Unitario</th>
+    <th>Haberes</th>
+    <th>Descuentos</th>
+    </thead>
+    <tbody>
+        @foreach (var linea in Model.Lineas)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(l => linea.CodigoConcepto)
+                </td>
+                <td>
+                    @Html.DisplayFor(l => linea.DescripcionConcepto)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(l => linea.Jornales)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(l => linea.Horas)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(l => linea.Unidades)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(l => linea.Unitario)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(l => linea.Haberes)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(l => linea.Descuentos)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>    
+<br/>  
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td align="right" style="border-top:thin solid; border-bottom:thin solid; border-left:thin solid; border-right:thin solid;">
+            <b>Totales:</b>
+        </td>
+        <td align="right" style="border-top:thin solid; border-bottom:thin solid; border-left:thin solid; border-right:thin solid;">
+            @Html.DisplayFor(m => Model.TotalHaberes)
+        </td>
+        <td align="right" style="border-top:thin solid; border-bottom:thin solid; border-left:thin solid; border-right:thin solid;">
+            @Html.DisplayFor(m => Model.TotalDescuentos)
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="border-top:thin solid; border-bottom:thin solid; border-left:thin solid; border-right:thin solid;">
+            <b>L&iacute;quido:</b>
+        </td>
+        <td align="right" style="border-top:thin solid; border-bottom:thin solid; border-left:thin solid; border-right:thin solid;">
+            @Html.DisplayFor(m => Model.Liquido)
+        </td>
+    </tr>
+</table>
+

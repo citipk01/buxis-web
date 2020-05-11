@@ -1,0 +1,234 @@
+﻿@model Buxis.Services.ViewModel.DetalleLiquidacionViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#divLeyenda").dialog({
+            autoOpen: false,
+        });
+
+        $("#btnLeyenda").click(function (event) {
+            $("#divLeyenda").dialog("open");
+            event.preventDefault();
+        });
+    });
+</script>
+
+@{
+    ViewBag.Title = "Visualizar detalle de liquidación";
+}
+
+@using (Html.BeginForm("VisualizarDetalle", "Liquidacion"))
+{
+    @Html.AntiForgeryToken()
+        
+    @Html.HiddenFor(model => model.IdLiquidacion)
+    @Html.HiddenFor(model => model.IdEmpleado)
+
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.FechaLiquidacionDesde)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.FechaLiquidacionHasta)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.IdLiquidacionSegunDescripcion)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.CodigoLiquidacion)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.IdProcesoLiquidacion)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.PrimerNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.SegundoNombre)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.PrimerApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.SegundoApellido)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.LegajoEmpleadoDesde)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.LegajoEmpleadoHasta)    
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.NumeroPagina)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.NumeroDocumento)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.ColumnaOrdenamiento)
+    @Html.HiddenFor(model => model.FiltroBuscadorLiquidaciones.SentidoOrdenamiento)
+
+    @Html.Partial("~/Views/Shared/_Navegacion.cshtml", Model.Navegacion)
+    
+    <div class="fila">
+        <div class="columna mod12">
+        <h3 class="floatLeft">Visualización del detalle de la liquidación</h3>
+       
+        </div>
+    </div>
+
+    <div class="fila">
+        <div class="columna mod4 panel">
+            <h5>Datos del empleado</h5>
+            <div class="fila">
+                <div class="columna mod12">
+                    <label>Legajo:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Empleado.Numero)</div>
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod12">
+                    <label>Nombre y apellido:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Empleado.NombreApellido)</div>
+                </div>
+            </div>
+        </div>
+        <div class="columna mod7 panel">
+            <h5>Datos de la liquidación</h5>
+            <div class="fila">
+                <div class="columna mod3">
+                    <label>Código:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Liquidacion.Numero)</div>
+                </div>
+                <div class="columna mod9">
+                    <label>Descripción:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Liquidacion.Descripcion)</div>
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna mod3">
+                    <label>Desde:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Liquidacion.FechaDesde)</div>
+                </div>
+                <div class="columna mod3">
+                    <label>Hasta:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Liquidacion.FechaHasta)</div>
+                </div>
+                <div class="columna mod3">
+                    <label>Cerrada:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Liquidacion.FechaCierre)</div>
+                </div>
+                <div class="columna mod3">
+                    <label>Acumulada:</label>
+                    <div class="vista">@Html.DisplayFor(model => model.Liquidacion.FechaAcumulado)</div>
+                </div>
+            </div>
+         </div>
+ </div>
+    
+    <a name="saltarCabecera" />
+    <div class="fila">
+        <div class="columna mod12">
+            <h4 class="floatLeft">Detalle</h4>
+            <button class="floatRight" id="btnLeyenda">Leyenda</button>
+            <div id="divLeyenda" title="Movimientos">
+                <label class="textoNegro">Normal</label>
+                <br />
+                <label class="textoAzul">Ajuste</label>
+                <br />
+                <label class="textoCyan">Ajuste, no se calcula</label>
+                <br />
+                <label class="textoRojo">Informativo</label>
+                <br />
+                <label class="textoBordo">Informativo ajuste</label>
+                <br />
+                <label class="textoRosa">Informativo ajuste, no se calcula</label>
+            </div>
+        </div>
+    </div>
+
+
+            
+
+    if (Model.Lineas != null)
+        {
+        <table class="tabla tabla-cebra">
+            <thead>
+            <th>Concepto</th>
+            <th>Descripción</th>
+            <th>Jornales</th>
+            <th>Horas</th>
+            <th>Unidades</th>
+            <th>Unitario</th>
+            <th>Haberes</th>
+            <th>Descuentos</th>
+            </thead>
+            <tbody>
+                @foreach (var linea in Model.Lineas)
+            {
+                    <tr class="@if(@linea.TipoConcepto == Buxis.Domain.Enums.TipoConcepto.Normal){<text>textoNegro</text>}
+                            else{if(@linea.TipoConcepto == Buxis.Domain.Enums.TipoConcepto.Ajuste){<text>textoAzul</text>}
+                            else{if(@linea.TipoConcepto == Buxis.Domain.Enums.TipoConcepto.AjusteNoSeCalcula){<text>textoCyan</text>}
+                            else{if(@linea.TipoConcepto == Buxis.Domain.Enums.TipoConcepto.Informativo){<text>textoRojo</text>}
+                            else{if(@linea.TipoConcepto == Buxis.Domain.Enums.TipoConcepto.InformativoAjuste){<text>textoBordo</text>}
+                            else{if(@linea.TipoConcepto == Buxis.Domain.Enums.TipoConcepto.InformativoAjusteNoSeCalcula){<text>textoRosa</text>}}}}}}">
+                        <td>
+                            @Html.DisplayFor(l => linea.CodigoConcepto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.DescripcionConcepto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.Jornales)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.Horas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.Unidades)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.Unitario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.Haberes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(l => linea.Descuentos)
+                        </td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+        }
+
+       
+    <div class="fila totales">
+        <div class="columna mod6">
+            @Html.CheckBoxFor(model => model.VerConceptosInformativos, new { onClick = "this.form.submit();" })
+            <label>Ver conceptos informativos</label>
+        </div>
+        <div class="columna mod2">
+            <label>Haberes:</label>
+            <label class="vista">@Html.DisplayFor(model => model.TotalHaberes)</label>
+        </div>    
+        <div class="columna mod2">
+            <label>Descuentos:</label>
+            <label class="vista">@Html.DisplayFor(model => model.TotalDescuentos)</label>
+        </div>
+        <div class="columna mod2">
+            <label>Líquido:</label>
+            <label class="vista">@Html.DisplayFor(model => model.Liquido)</label>
+        </div>
+    </div>
+    
+    <br />
+
+    <div class="fila">
+        <div class="columna mod12">
+            <a class="button" href='@Url.Action("ExportarExcel", "Liquidacion", new
+                {
+                    IdLiquidacion = Model.IdLiquidacion,
+                    IdEmpleado = Model.IdEmpleado,
+                    VerConceptosInformativos  = Model.VerConceptosInformativos                    
+                })'>
+                Exportar a Excel
+            </a>
+            <a class="button" href='@Url.Action("List", "Liquidacion", new
+                    {                                                            
+                        IdLiquidacionSegunDescripcion = Model.FiltroBuscadorLiquidaciones.IdLiquidacionSegunDescripcion,
+                        LegajoEmpleadoDesde = Model.FiltroBuscadorLiquidaciones.LegajoEmpleadoDesde,
+                        LegajoEmpleadoHasta = Model.FiltroBuscadorLiquidaciones.LegajoEmpleadoHasta,
+                        PrimerNombre = Model.FiltroBuscadorLiquidaciones.PrimerNombre,
+                        SegundoNombre = Model.FiltroBuscadorLiquidaciones.SegundoNombre,
+                        PrimerApellido = Model.FiltroBuscadorLiquidaciones.PrimerApellido,
+                        SegundoApellido = Model.FiltroBuscadorLiquidaciones.SegundoApellido,
+                        CodigoLiquidacion = Model.FiltroBuscadorLiquidaciones.CodigoLiquidacion,
+                        IdProcesoLiquidacion = Model.FiltroBuscadorLiquidaciones.IdProcesoLiquidacion,                        
+                        FechaLiquidacionDesde = (Model.FiltroBuscadorLiquidaciones.FechaLiquidacionDesde.HasValue ? Model.FiltroBuscadorLiquidaciones.FechaLiquidacionDesde.Value.ToString("dd/MM/yyyy"): ""),
+                        FechaLiquidacionHasta = (Model.FiltroBuscadorLiquidaciones.FechaLiquidacionHasta.HasValue ? Model.FiltroBuscadorLiquidaciones.FechaLiquidacionHasta.Value.ToString("dd/MM/yyyy") : ""),
+                        NumeroDocumento = Model.FiltroBuscadorLiquidaciones.NumeroDocumento,
+                        ColumnaOrdenamiento = Model.FiltroBuscadorLiquidaciones.ColumnaOrdenamiento,
+                        SentidoOrdenamiento = Model.FiltroBuscadorLiquidaciones.SentidoOrdenamiento,
+                        search = "1",
+                        page = Model.FiltroBuscadorLiquidaciones.NumeroPagina
+                    })'>
+                Volver
+            </a>            
+        </div>
+    </div>
+}
+

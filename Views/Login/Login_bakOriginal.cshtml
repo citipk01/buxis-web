@@ -1,0 +1,47 @@
+﻿@model Buxis.Services.ViewModel.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Login</h3>
+
+@if (ViewData != null && ViewData.ContainsKey("error") && ViewData["error"] != null)
+{
+    <div class="fila">
+        <div class="columna mod12">
+            <div class="ui-state-error ui-corner-all">
+                <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span></p>
+                <div class="validation-summary-errors">
+                    <ul>
+                        <li>@ViewData["error"].ToString()</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("CheckLogin", "Login"))
+{
+    <div class="fila">
+        <div class="columna mod6">
+            @Html.LabelFor(model => model.Username)
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username, "")
+        </div>
+    </div>
+    <div class="fila">
+        <div class="columna mod6">
+             @Html.LabelFor(model => model.Password)
+             @Html.EditorFor(model => model.Password)
+             @Html.ValidationMessageFor(model => model.Password)
+         </div>
+    </div>
+    <div class="fila">
+        <div class="columna">
+            <button type="submit" value="Log in" class="button">Log in</button>
+        </div>
+    </div>
+}
