@@ -1,0 +1,155 @@
+div.bxLabel{
+    display:inline;
+}
+
+p{
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+div.bxCtrl{
+    display:inline;
+}
+
+
+
+div.divBotonera{
+    width:100%;
+    float:left;
+    border-style:ridge;
+    border-color:blue;
+}
+
+div.divFormFields{
+    padding:10px;
+}
+
+//div.botonesBotonera{padding-left:5px;padding-right:5px;border:1px solid;margin-left:5px;float:left;display:inline}
+
+//div.botonesBotonera:hover{cursor:pointer}
+
+
+#ulBotonera {
+	margin: 0;
+	padding: 0;
+}
+#ulBotonera li {
+	margin: 2px;
+	position: relative;
+	padding: 4px 0;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+}
+#ulBotonera span.ui-icon {
+	float: left;
+	margin: 0 4px;
+}
+
+.pkFlechasEfec{
+	float:left;
+}
+
+.pkFlechasEfec:hover{
+	cursor:pointer;
+}
+
+.PkFecha{
+	width:80px;
+}
+
+.ui-widget-overlay:hover{
+	cursor:wait;
+}
+
+table.bxGridCombo tr.bxGridComboHeader{
+	color:#ffffff;
+    background: #0078ae url("/buxis/Partials/img/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+	padding:0px;
+	margin:0px;
+}
+
+table.bxGridCombo{
+	padding:0px;
+	margin:0px;
+}
+
+table.bxGridCombo tr{
+	padding:0px;
+	margin:0px;
+}
+
+table.bxGridCombo tr.bxGridComboLine:hover{
+	background-color:#acdede;
+	cursor:pointer;
+}
+
+tr.bxGridLine td {
+    text-align:center;
+}
+
+tr.bxGridLine td input{
+	padding:0px;
+}
+
+div.bxGrid{
+	display:inline-block;
+	padding-right:22px;
+}
+
+div.bxGrid2{
+	display:inline-block;
+	overflow:scroll;
+}
+
+table.bxControls{
+    border-collapse: collapse;
+}
+
+table.bxControls tr td{
+    padding-bottom:0.5em;
+}
+
+div.bxBtnsEnd{
+    margin:1em;
+}
+
+div.bxBtnsEnd span.bxBtn{
+    margin-right:2em;
+}
+
+#bxErrorMsg{
+    position: fixed;
+    top:100px;
+    left:10px;
+    z-index:10;
+}
+
+div.searchForm{
+	margin-top:40px;
+	width:65%;
+	padding:15px;
+}	
+
+div.bxGridSearch{
+	max-height:300px;
+	overflow:scroll;
+}
+
+form.bxForm{
+	margin-top:30px;
+	display:none;
+}
+
+.bxGrey{
+    background: #aaaaaa url("/buxis/Partials/img/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
+	opacity: .3;
+	filter: Alpha(Opacity=30);
+}
+
+.bxSubKey{
+    background-image: url('/buxis/Partials/img/ui-bg_glass_75_d0e5f5_1x400.png');
+	padding: 10px;
+}

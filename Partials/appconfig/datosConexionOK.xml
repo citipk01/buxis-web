@@ -1,0 +1,16 @@
+<datosConexion>
+	<url crypt="true">52fbe506e8ae7e9b6d9ea469dc648b0bab3305eeca0ab35f8c971f1b9aa3ef67d3103538ef6c3d8d456148557fbe3a2ed7c981a603397af1556c52b8dac82ae4478788ccab3c70a9fd90f56ef276b32c</url>
+	<odbc-con crypt="true">38e3d38cf3cbe1316cc24c390c8a0914a988d088714cf7311c16bee3382c1f4eca7fd84279adb27f</odbc-con>
+	<user></user>
+	<password></password>
+	<dbms>ora</dbms>
+	<encoding>ISO-8859-1</encoding>
+	<xmlEncoding>ISO-8859-1</xmlEncoding>
+	<driver></driver>
+	<format-date>dd/MM/yyyy</format-date>
+	<thousand-separator>,</thousand-separator>
+	<decimal-separator>.</decimal-separator>
+	<language useDB="false" readDBeveryExec="true">es</language>
+	<temp-dir>D:\inetpub\wwwroot\buxis\Partials\temp</temp-dir>
+	<filegen-path>D:\inetpub\wwwroot\buxis\Partials\temp</filegen-path>
+	<rep-image-dir>D:\inetpub\wwwroot\buxis\Partials\temp</rep-image-dir></datosConexion>
