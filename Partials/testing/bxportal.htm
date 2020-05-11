@@ -1,0 +1,783 @@
+<html>
+<head>
+	<title>Buxis Portal</title>
+	<style>
+		SPAN							{ display:block;position:absolute;overflow:hidden;text-overflow:ellipsis; }
+		.bxAll							{ overflow:auto;background:none;border:none;border-width:0 0 0 0;padding:0 0 0 0;margin:0 0 0 0;font-family:Trebuchet MS, Tahoma, Arial Narrow, MS Sans Serif, Helvetica;line-height:0;font-size:0; }
+		.bxAll-IE						{}
+		.bxAll-IE6						{}
+		.bxAll-IE7						{}
+		.bxAll-FF						{}
+		.bxAll-windows					{}
+		.bxAll-unix						{}
+		.bxAll-mac						{}
+		.bxAll-linux					{}
+		.bxAll-strict					{}
+
+		.bxPage							{ display:block;position:absolute;overflow:auto;top:0;left:0;width:100%;height:100%; }
+		.bxFrame						{ display:block;position:absolute;overflow:auto;top:0;left:0;width:100%;height:100%; }
+
+		.bxLabel						{ display:block;position:absolute; }
+		.bxTimer						{ display:none;  }
+		.bxClock						{ display:block;position:absolute;left:0;bottom:0;width:100%;height:15;background:url(g0.png) 0 50%;text-align:right;padding:3 0 3 5;line-height:8pt;font-size:8pt; }
+		.bxAll-FF .bxClock				{ display:block;position:absolute;left:0;bottom:0;width:100%;height:10;background:url(g0.png) 0 50%;text-align:right;font-size:8pt; }
+
+		.bxSpliterV						{ display:block;position:absolute;overflow:hidden; }
+		.bxContainerV					{ display:block;position:static;float:left; }
+		.bxSeparatorV					{ display:block;position:static;float:left;width:1;border:none;background-color:threedface;cursor:e-resize; } /*{ float:left;width:2;border:groove thin; }*/
+
+		.bxSpliterH						{ display:block;position:absolute;overflow:hidden; }
+		.bxContainerH					{ display:block;position:static; }
+		.bxSeparatorH					{ display:block;position:static;height:1;border:none;background-color:threedface;cursor:n-resize; } /*{ height:2;border:groove thin; }*/
+
+		.bxPanel						{ border:none; position: absolute; top:100; left:100; font-family: Trebuchet MS; font-size: 8pt; }
+		.bxPaneltitle					{ top: 0; left: 0; width: 99%; height: 25; overflow: hidden; text-overflow: ellipsis; text-align: center; vertical-align: middle; padding-top: 3; position: relative; padding:0 0 0 0;line-height:25px;font-size:8pt; }
+		.bxPanelbody					{ background-color: none; width:100%; height:100%; position: relative; }
+		.bxPaneltopl					{ background: url(wintopl.gif) no-repeat; cursor:nw-resize; width:   5; height: 25; }
+		.bxPaneltopm					{ background: url(wintopm.gif) repeat-x ; cursor:move     ; height: 25; }
+		.bxPaneltopr					{ background: url(wintopr.gif) no-repeat; cursor:ne-resize; width:   5; height: 25; }
+		.bxPanelmidl					{ background: url(winmidl.gif) repeat-y ; cursor:e-resize ; width:   5; }
+		.bxPanelmidm					{ background: url(bg.png)               ; cursor:default  ; width: 400; height:200; }
+		.bxPanelmidr					{ background: url(winmidr.gif) repeat-y ; cursor:e-resize ; width:   5; }
+		.bxPanelbotl					{ background: url(winbotl.gif) no-repeat; cursor:ne-resize; width:   5; height:  5; }
+		.bxPanelbotm					{ background: url(winbotm.gif) repeat-x ; cursor:n-resize ; height:  5; }
+		.bxPanelbotr					{ background: url(winbotr.gif) no-repeat; cursor:nw-resize; width:   5; height:  5; }
+
+		.bxTabFolder					{ width: 320; height: 150; }
+		.bxTabContain					{ border-left: solid 1px #C8C8C8; border-right: solid 1px #C8C8C8; border-bottom: solid 1px #C8C8C8; background-color: #FFFFFF; position: relative; top: 0; left: 0; width: 100%; height: 100%; }
+		.bxTabButton					{ cursor: pointer; }
+		.bxTabF							{ background: url(tabf.gif) 0px   0px repeat-x ; height: 22; }
+		.bxTabL							{ background: url(tabl.gif) 0px -22px no-repeat; height: 22; color: #797979; width: 5; }
+		.bxTabM							{ background: url(tabm.gif) 0px -22px repeat-x ; height: 22; color: #797979; overflow: hidden; text-overflow: ellipsis; text-align: center; vertical-align: middle; padding-top: 3; position: relative; padding:0 0 0 0;line-height:20px;font-size:8pt; }
+		.bxTabR							{ background: url(tabr.gif) 0px -22px no-repeat; height: 22; color: #797979; width: 5; }
+		.bxTabLH						{ background: url(tabl.gif) 0px -44px no-repeat; height: 22; width: 5; }
+		.bxTabMH						{ background: url(tabm.gif) 0px -44px repeat-x ; height: 22; overflow: hidden; text-overflow: ellipsis; text-align: center; vertical-align: middle; padding-top: 3; position: relative; padding:0 0 0 0;line-height:20px;font-size:8pt; }
+		.bxTabRH						{ background: url(tabr.gif) 0px -44px no-repeat; height: 22; width: 5; }
+		.bxTabLS						{ background: url(tabl.gif) 0px   0px no-repeat; height: 22; width: 5; }
+		.bxTabMS						{ background: url(tabm.gif) 0px   0px repeat-x ; height: 22; overflow: hidden; text-overflow: ellipsis; text-align: center; vertical-align: middle; padding-top: 3; position: relative; padding:0 0 0 0;line-height:20px;font-size:8pt; }
+		.bxTabRS						{ background: url(tabr.gif) 0px   0px no-repeat; height: 22; width: 5; }
+
+		.bxGrid							{ background-color:#FAFAEE; }
+		.bxGridBox						{ background-color:#EEEEEE;border:threedface; }
+		.bxGridHeader					{ display:block;position:static;float:left;height:1;background-color:#FFFFFF;line-height:8pt;font-size:8pt; }
+
+		.bxNode							{ position:absolute;top:0;left:0;width:100;height:100;cursor:pointer; }
+		.bxAll-FF .bxNode				{ position:absolute;top:0;left:0;width:100;height:100;cursor:pointer;border:1px solid #ccc;-moz-border-radius:5; }
+
+		.bluearea						{ background-color:#F8F8FF;width:100%;height:100%;line-height:8pt;font-size:8pt; }
+		.redarea						{ background-color:#FFF8F8;width:100%;height:100%;line-height:8pt;font-size:8pt; }
+		.greenarea						{ background-color:#F8FFF8;width:100%;height:100%;line-height:8pt;font-size:8pt; }
+		.yellowarea						{ background-color:#FFFFF8;width:100%;height:100%;line-height:8pt;font-size:8pt; }
+		.silverarea						{ background-color:#F8F8F8;width:100%;height:100%;line-height:8pt;font-size:8pt; }
+
+		.aw-alternate-even				{ background: none }
+		.aw-alternate-odd				{ background: none }
+		.aw-grid-cell					{ border-right:  1px solid threedlightshadow; }
+		.aw-grid-row					{ border-bottom: 1px solid threedlightshadow; }
+	</style>
+	<script>
+		function toString(o)			{ 
+			switch (typeof(o)) {
+			case 'object':
+				var s = ''; for (var p in o) { s += (p+': '+((typeof(o[p])=='string')?"'":'')+o[p]+((typeof(o[p])=='string')?"'":'')+', ') }; return ('{'+s.left(s.length-2)+'}')
+			default:
+				return o.toString()
+			}
+		}
+		Object.prototype.toString		=	function()		{ return toString(this)					}
+		String.prototype.ltrim			=	function()		{ return this.replace(/(^\s*)/g,'')		}
+		String.prototype.rtrim			=	function()		{ return this.replace(/(\s*$)/g,'')		}
+		String.prototype.trim			=	function()		{ return this.ltrim().rtrim()			}
+		String.prototype.left			=	function(L)		{ return this.substr(0,L)				}
+		String.prototype.right			=	function(L)		{ return this.substr(this.length-L,L)	}
+		String.prototype.lpad			=	function(L,F)	{ var aux = this; while (aux.length < L) { aux = F + aux}		; return aux.left(L) }
+		String.prototype.rpad			=	function(L,F)	{ var aux = this; while (aux.length < L) { aux = aux + F}		; return aux.left(L) }
+		String.prototype.cpad			=	function(L,F)	{ var aux = this; while (aux.length < L) { aux = F + aux + F}	; return aux.left(L) }
+	</script>
+	<script>
+		var brokerType					=	'.asp'			// '', '.asp', '.jsp', '.php', etc.
+		var xmlVersion					=	'1.0'
+		var xmlEncoding					=	'ISO-8859-1'
+		var bxWindow					=	bxBaseObject(window);	//compatibiliza metodos de objetos entre distintos browsers
+		var bxApplication				=	bxWindow.top;	
+		var bxDocument					=	bxWindow.document
+		var bxNavigator					=	bxWindow.navigator
+		var bxBody						=	null					// document.body solo existe luego de concluido el evento load del objeto window, ver 
+		var bxPage						=	null					// El objeto bxPage es el container principal, un area de 100%x100% dentro de bxBody
+		bxWindow.isInitialized			=	function() { 
+												return typeof(bxWindow.initialized) != 'undefined'
+											}
+		bxWindow.initialize				=	function() {
+												if (bxWindow.isInitialized()) { return bxWindow }
+												bxWindow.status			= 'Initializing...'
+												bxWindow.initialized	= true
+												bxWindow.capture		= null
+												bxWindow.protocol		= bxDocument.location.protocol
+												bxWindow.host			= bxDocument.location.hostname
+												bxWindow.port			= bxDocument.location.port
+												bxWindow.parms			= bxDocument.location.search.right(bxDocument.location.search.length-1)
+												bxWindow.page			= bxDocument.location.pathname.substr(bxDocument.location.pathname.lastIndexOf('/')+1)
+												bxWindow.path			= bxDocument.location.pathname.left(bxDocument.location.pathname.lastIndexOf('/')+1).replace('/componentes/','/').replace('/testing/','/')
+												bxWindow.root			= bxWindow.protocol + '//' + bxWindow.host + ((bxWindow.port)?':'+bxWindow.port:'') + bxWindow.path
+												bxWindow.broker			= bxWindow.root + 'componentes/bxbroker' + brokerType
+												if (bxWindow == bxApplication) { //Inicializacion del objeto bxApplication
+													bxApplication.newTag			=	function(tag,id,type,fmt)	{ var o = bxBaseControl(bxDocument.createElement(tag)); o.id = id; o.type = type; o.className	= fmt; return o }													
+													bxApplication.browserName		=	'?'
+													bxApplication.browserVersion	=	0.0
+													bxApplication.browserOS			=	'?'
+													bxApplication.browserStrict		=	false
+													bxApplication.browserStrictX	=	0
+													bxApplication.browserStrictY	=	0
+													if (bxNavigator.userAgent.match(/MSIE ([0-9]+\.[0-9]+)/))		{ bxApplication.browserName		= 'IE'; bxApplication.browserVersion = parseFloat(RegExp.$1) } 
+													if (bxNavigator.userAgent.match(/Firefox\/([0-9]+\.[0-9]+)/))	{ bxApplication.browserName		= 'FF'; bxApplication.browserVersion = parseFloat(RegExp.$1) } 
+													if (bxNavigator.userAgent.match("Windows"))						{ bxApplication.browserOS		= 'windows'}
+													if (!bxNavigator.userAgent.match("Windows"))					{ bxApplication.browserOS		= 'unix'}
+													if (bxNavigator.userAgent.match("Mac OS"))						{ bxApplication.browserOS		= 'mac'}
+													if (bxNavigator.userAgent.match("Linux"))						{ bxApplication.browserOS		= 'linux'}
+													if (typeof(bxDocument.compatMode) != 'undefined')				{ bxApplication.browserStrict	= bxDocument.compatMode.match("CSS") }
+													if ((bxApplication.browserName == '?')||((bxApplication.browserName == 'IE')&&(bxApplication.browserVersion < 5.5))|((bxApplication.browserName == 'FF')&&(bxApplication.browserVersion < 1.5))) { window.alert('Unsupported browser version: '+bxApplication.browserName+' '+bxApplication.browserVersion+' on '+bxApplication.browserOS+'\nOnly Internet Explorer 5.5+ or FireFox 1.5+ versions are supported\n'+bxNavigator.userAgent) }
+													var htmldoc						= bxDocument.getElementsByTagName("html")[0]
+													htmldoc.className				+= ' bxAll'
+													htmldoc.className				+= ' bxAll-'+bxApplication.browserName
+													htmldoc.className				+= ' bxAll-'+bxApplication.browserOS
+													if (bxApplication.browserName == 'IE')							{ htmldoc.className += ' bxAll-'+bxApplication.browserVersion<7?'IE6':'IE7' }
+													if (bxApplication.browserStrict)								{ htmldoc.className += ' bxAll-strict'; bxApplication.browserStrictX = 8; bxApplication.browserStrictY = 4 }
+												}
+												bxWindow.attachEvent('onunload', bxWindow.dispose)
+												bxWindow.attachEvent('onresize', bxWindow.resizeAll)
+												bxBody					= bxBaseControl(bxDocument.body)
+												bxBody.className		= bxDocument.getElementsByTagName("html")[0].className
+												bxPage					= bxBody.addTag('span','bxPage','bxPage','bxPage')
+												if (typeof(main)=='function') { bxPage.asyncExecute(main) }
+												bxWindow.status			= 'Done...'
+												return bxWindow
+											}
+		bxWindow.dispose				=	function() {
+												bxWindow.status			= 'Disposing...'
+												bxWindow.detachEvent('onresize'	, bxWindow.resizeAll)
+												bxWindow.detachEvent('onunload'	, bxWindow.dispose)
+												bxWindow.detachEvent('onload'	, bxWindow.initialize)
+												if (bxWindow == bxApplication) { bxApplication = null }
+												bxBaseControlFree(bxPage)
+												bxBaseObjectFree(bxWindow)
+												bxPage					= null
+												bxBody					= null
+												bxNavigator				= null
+												bxDocument				= null
+												bxWindow				= null
+												window.status			= 'Done...'
+												return bxWindow
+											}
+		bxWindow.resizeAll				=	function() { bxPage.resizeAll() }
+		bxWindow.attachEvent('onload'	,	bxWindow.initialize)
+		function bxBaseEvent(e) { //uniformiza las propiedades del objeto "event" entre distintos browsers
+			if (typeof(e.x)=='undefined')			{ if (typeof(e.layerX)!='undefined') { e.x = e.layerX }				}
+			if (typeof(e.y)=='undefined')			{ if (typeof(e.layerY)!='undefined') { e.y = e.layerY }				}
+			if (typeof(e.srcElement)=='undefined')	{ if (typeof(e.target)!='undefined') { e.srcElement = e.target }	}
+		}
+		function bxBaseObject(obj) { //uniformiza las propiedades y metodos de los objetos DHTML entre distintos brwosers
+			if (typeof(obj.attachEvent)		== 'undefined')	{ if (typeof(obj.addEventListener)		!= 'undefined')	{ obj.attachEvent	= function(e,f)	{ if (bxWindow.capture) { bxWindow.addEventListener(e.replace(/^on/,'')	  ,f,false)	} else { obj.addEventListener(e.replace(/^on/,'')   ,f,false)	} } } }
+			if (typeof(obj.detachEvent)		== 'undefined')	{ if (typeof(obj.removeEventListener)	!= 'undefined')	{ obj.detachEvent	= function(e,f)	{ if (bxWindow.capture) { bxWindow.removeEventListener(e.replace(/^on/,''),f,false)	} else { obj.removeEventListener(e.replace(/^on/,''),f,false)	} } } }
+			if (typeof(obj.fireEvent)		== 'undefined')	{ if (typeof(obj.dispatchEvent)			!= 'undefined')	{ obj.fireEvent		= function(t,e)	{ if (bxWindow.capture) { capture.dispatchEvent(e)									} else { obj.dispatchEvent(e)									} } } }
+			if (typeof(obj.setCapture)		== 'undefined')	{ obj.setCapture		= function() { bxWindow.capture = this } }
+			if (typeof(obj.releaseCapture)	== 'undefined')	{ obj.releaseCapture	= function() { bxWindow.capture = null } }
+			obj.asyncExecute=	function(f,d)	{ var s=this,w=function(){f.call(s)}; return bxWindow.setTimeout(w,d?d:0) };
+			return obj
+		}
+		function bxBaseControl(obj) {
+			obj				=	bxBaseObject(obj)
+			obj.getTop		=	function(p)			{ if (typeof(p)=='undefined') { p = this.parentNode }; if (bxApplication.browserName=='IE') { return this.getBoundingClientRect().top   - p.getBoundingClientRect().top  } else { return bxDocument.getBoxObjectFor(this).screenY-bxDocument.getBoxObjectFor(p).screenY	} }
+			obj.getLeft		=	function(p)			{ if (typeof(p)=='undefined') { p = this.parentNode }; if (bxApplication.browserName=='IE') { return this.getBoundingClientRect().left  - p.getBoundingClientRect().left } else { return bxDocument.getBoxObjectFor(this).screenX-bxDocument.getBoxObjectFor(p).screenX	} }
+			obj.getRight	=	function(p)			{ if (typeof(p)=='undefined') { p = this.parentNode }; if (bxApplication.browserName=='IE') { return this.getBoundingClientRect().right - p.getBoundingClientRect().left } else { return this.getLeft(p)+this.getWidth()												} }
+			obj.getBottom	=	function(p)			{ if (typeof(p)=='undefined') { p = this.parentNode }; if (bxApplication.browserName=='IE') { return this.getBoundingClientRect().bottom- p.getBoundingClientRect().top  } else { return this.getTop(p) +this.getHeight()												} }
+			obj.getWidth	=	function()			{ return this.offsetWidth									} 
+			obj.getHeight	=	function()			{ return this.offsetHeight									} 
+			obj.show		=	function()			{ this.style.display = ''    ; return this					}
+			obj.hide		=	function()			{ this.style.display = 'none'; return this					}
+			obj.isVisible	=	function()			{ return this.style.display != 'none'						}
+			obj.lock		=	function()			{ this.disabled = true ; return this						}
+			obj.unlock		=	function()			{ this.disabled = false; return this						}
+			obj.isLocked	=	function()			{ return this.disabled										}
+			obj.resizeAll	=	function()			{ obj.resize(); for (var i = 0; i < obj.childNodes.length; i++) { if ((typeof(obj.childNodes.item(i).resizeAll)=='function')&&(typeof(obj.childNodes.item(i).asyncExecute)=='function')) { obj.childNodes.item(i).asyncExecute(obj.childNodes.item(i).resizeAll) } }; return obj }
+			obj.resize		=	function()			{ return this												}
+			obj.add			=	function(o)			{ return this.appendChild(o)								}
+			obj.addTag		=	function(t,i,y,f)	{ return this.appendChild(bxApplication.newTag(t,i,y,f))}
+			obj.hover		=	function(s,e) {
+									obj.className  = obj.className.replace(' bxhover','') + ' bxhover'
+									var endHover = function(event) { obj.className  = obj.className.replace(' bxhover',''); obj.detachEvent('onmouseout', endHover) }
+									obj.attachEvent('onmouseout'	, endHover);
+								}
+			obj.maximize	=	function()	{ obj.className = obj.className.replace(' bxMaximized','').replace(' bxMinimized','')+' bxMaximized'; obj.style.left = ''; obj.style.top = ''; obj.resize()	}
+			obj.restorize	=	function()	{ obj.className = obj.className.replace(' bxMaximized','').replace(' bxMinimized','')				; obj.style.left = ''; obj.style.top = ''; obj.resize()	}
+			obj.minimize	=	function()	{ obj.className = obj.className.replace(' bxMaximized','').replace(' bxMinimized','')+' bxMinimized'; obj.style.left = ''; obj.style.top = ''; obj.resize()	}
+			obj.startmove	=	function(s,e) {
+									var ox = s.getLeft(), oy = s.getTop(), sx = e.screenX, sy = e.screenY
+									var doResize	=	function(event) { 
+															bxBaseEvent(event)
+															s.style.left		= Math.max(0,Math.min(s.parentNode.getWidth()-s.getWidth(),ox+(event.screenX-sx)))
+															s.style.top			= Math.max(0,Math.min(s.parentNode.getHeight()-s.getHeight(),oy+(event.screenY-sy))) 
+														}
+									var endResize	=	function(event) { 
+															s.detachEvent('onmousemove'		, doResize)
+															s.detachEvent('onmouseup'		, endResize)
+															s.detachEvent('onlosecapture'	, endResize)
+															s.releaseCapture() 
+														}
+									s.setCapture()
+									s.attachEvent('onmousemove'		, doResize)
+									s.attachEvent('onmouseup'		, endResize)
+									s.attachEvent('onlosecapture'	, endResize)
+									e.cancelBubble = true
+								}
+			obj.startresize	=	function(s,e,dv,dh) {
+									var ow = s.getWidth(), oh = s.getHeight(), sx = e.screenX, sy = e.screenY
+									if (dv == undefined) { dv = 'b' }
+									if (dh == undefined) { dh = 'r' }
+									var doResize	=	function(event) { 
+															bxBaseEvent(event) 
+															if (dh=='l') { try { s.style.left	= ox+(event.screenX-sx); s.style.width	= ow-(event.screenX-sx) } catch(e) {} }
+															if (dv=='t') { try { s.style.top	= oy+(event.screenY-sy); s.style.height = oh-(event.screenY-sy) } catch(e) {} }
+															if (dh=='r') { try { s.style.width	= ow+(event.screenX-sx)	} catch(e) {} }
+															if (dv=='b') { try { s.style.height	= oh+(event.screenY-sy) } catch(e) {} }
+															s.resize() 
+														}
+									var endResize	=	function(event) { 
+															s.detachEvent('onmousemove'		, doResize) 
+															s.detachEvent('onmouseup'		, endResize) 
+															s.detachEvent('onlosecapture'	, endResize) 
+															s.releaseCapture() 
+														}
+									s.setCapture();
+									s.attachEvent('onmousemove'		, doResize);
+									s.attachEvent('onmouseup'		, endResize);
+									s.attachEvent('onlosecapture'	, endResize);
+									e.cancelBubble = true; 
+								}
+			//obj.attachEvent('onresize'	, obj.resizeAll) //OJO: Puede volverse muy pesado!!!
+			//obj.attachEvent('onmouseover'	, obj.hover)
+			obj.oncontextmenu	= function(event) { return false }
+			obj.onselectstart	= function(event) { return false }
+			return obj
+		}
+		function bxBaseObjectFree(obj) { //Libera propiedades, metodos y eventos agregados por bxBaseObject
+			
+		}
+		function bxBaseControlFree(obj) { //Libera propiedades, metodos y eventos agregados por bxBaseControl
+			obj.detachEvent('onresize', obj.resizeAll)
+			bxBaseObjectFree(obj)
+		}
+		//Rutinas para compatibilizar el manejo de XML y XPath entre distintos browsers
+		function createServer()					{ var backend = null; if (window.XMLHttpRequest) { backend = new XMLHttpRequest() } else if (window.ActiveXObject) {  try { backend = new ActiveXObject("Msxml2.XMLHTTP") } catch (e) { try { backend = new ActiveXObject("Microsoft.XMLHTTP") } catch (e) {} } }; if (!backend) { alert('ERROR: Cannot create an XMLHTTP instance') }; return backend }
+		function createDOMDocument(t)			{ return loadXML('<'+t+'/>') }
+		function loadXML(xml)					{ var doc = null; if (window.DOMParser) { try { doc = (new DOMParser()).parseFromString(xml,'text/xml') } catch(e) { doc = (new DOMParser()).parseFromString('<ERROR>'+e.description+'</ERROR>','text/xml') } } else if (window.ActiveXObject) {  try { doc = new ActiveXObject('MSXML2.DOMDOCUMENT.3.0'); try { doc.loadXML(xml) } catch(e) { doc.loadXML('<ERROR>'+e.description+'</ERROR>') } } catch (e) { doc = null } }; if (!doc) { alert('ERROR: Cannot create an XMLDocument instance') }; return doc }
+		function toXMLString(doc)				{ if (bxApplication.browserName=='IE') { return doc.xml } else { var pre = '<?xml version="1.0"?>\n'; if (doc.documentElement.childNodes.length==0) { return pre+'<'+doc.documentElement.tagName+xmlAttributes(doc.documentElement)+'/>' } else { return pre+'<'+doc.documentElement.tagName+xmlAttributes(doc.documentElement)+'>'+xmlChilds(doc.documentElement)+'</'+doc.documentElement.tagName+'>' } } }
+		function xmlAttributes(e)				{ var res = ''; if (e.attributes) { for (var i = 0; i < e.attributes.length; i++) {  res += ' '+e.attributes.item(i).nodeName+'="'+e.attributes.item(i).nodeValue+'"' } }; return res }
+		function xmlChilds(e)					{ var res = ''; for (var i = 0; i < e.childNodes.length; i++) { if (e.childNodes.item(i).nodeType==3) { res += e.childNodes.item(i).nodeValue } else if (e.childNodes.item(i).childNodes.length==0) { res += '<'+e.childNodes.item(i).tagName+xmlAttributes(e.childNodes.item(i))+'/>' } else {  res += '<'+e.childNodes.item(i).tagName+xmlAttributes(e.childNodes.item(i))+'>'+xmlChilds(e.childNodes.item(i))+'</'+e.childNodes.item(i).tagName+'>' } }; return res }
+		function xmlSelectSingleNode(doc,exp)	{ try { return doc.selectSingleNode(exp) } catch(e) { if (window.XPathEvaluator) { return (new XPathEvaluator()).evaluate(exp, doc, null, 9, null).singleNodeValue } else { alert('ERROR: no se pudo instanciar XPathEvaluator.') } } }
+		function xmlSelectNodes(doc,exp)		{ try { return doc.selectNodes(exp)      } catch(e) { if (window.XPathEvaluator) { return (new XPathEvaluator()).evaluate(exp, doc, null, 7, null)                 } else { alert('ERROR: no se pudo instanciar XPathEvaluator.') } } }
+		function xmlNodesLength(s)				{ if (typeof(s.length)!='undefined') { return s.length  } else { return s.snapshotLength  } }
+		function xmlNodesItem(s,i)				{ if (typeof(s.length)!='undefined') { return s.item(i) } else { return s.snapshotItem(i) } }
+		function xmlGetText(n)					{ if (bxApplication.browserName == 'IE') { return n.text } else { return n.firstChild.nodeValue } }
+		function xmlSetText(n,t)				{ if (bxApplication.browserName == 'IE') {  n.text = t  } else {  if ((n.firstChild)&&(n.firstChild.nodeType==3)) { n.firstChild.nodeValue = t } else  { n.appendChild(n.ownerDocument.createTextNode(t)) } }; return n }
+		function XmlToDom(strXML)				{ return loadXML(strXML) }
+		function XmlToObj(xml)					{ var res = {}; res.childs = [], res.atribs = []; res.get = function(c) { if (c.toString().isNumber()) { return this[this.childs[c]].text } else { return this[c.toString().toUpperCase()].text } }; for (var i = 0; i < xml.attributes.length; i++) { if (xml.attributes.item(i).name != undefined) { res[xml.attributes.item(i).name] = xml.attributes.item(i).value; res.atribs[i] = xml.attributes.item(i).name } }; for (var i = 0; i < xml.childNodes.length; i++) { if (xml.childNodes.item(i).tagName!= undefined) { res[xml.childNodes.item(i).tagName.toUpperCase()] = XmlToObj(xml.childNodes.item(i)); res.childs[i] = xml.childNodes.item(i).tagName.toUpperCase() } }; try { res.text = xmlGetText(xml) } catch(e) {}; return res }
+		function parseXML(strXML)				{ return XmlToObj(XmlToDom(strXML).documentElement) }
+		function resToObj(xmlData)				{ var objResult = {}; objResult._source	= xmlData; oNodeList = xmlSelectSingleNode(xmlData,'//VALUES').childNodes; for (var i=0; i < oNodeList.length; i++) { var fldName	= oNodeList.item(i).nodeName; objResult[fldName.toUpperCase()]	= oNodeList.item(i).text; objResult[i] = oNodeList.item(i).text }; return objResult }
+		function XmlError(xml)					{ var lst = xml.getElementsByTagName('ERROR'); if (lst.length == 0) { return '' } else { return lst.item(0).text } }
+
+		//webServices class, usa rutinas de compatibilizacion XML y XPath
+		function Service(strID, objExtras, fnOnDone, strType, url) {
+			this.id										= strID
+			this.done									= false
+			this.type									= (((strType   == undefined) || (strType   == null) || (strType   == '')) ? 'DATA'					: strType	)
+			this.extras									= (((objExtras == undefined) || (objExtras == null) || (objExtras == '')) ? ''						: objExtras	)
+			this.fnOnDone								= (((fnOnDone  == undefined) || (fnOnDone  == null) || (fnOnDone  == '')) ? function(){}			: fnOnDone	)
+			this.url									= (((fnOnDone  == undefined) || (url       == null) || (url       == '')) ? bxApplication.broker	: url		)
+			this.XMLSend								= createDOMDocument('SERVICE')
+			this.XMLResult								= createDOMDocument('EMPTY')
+			this.plainText								= ''
+			this.serviceNode							= this.XMLSend.documentElement				; this.serviceNode.setAttribute('ID', this.id); this.serviceNode.setAttribute('TYPE', this.type)
+			this.parametersNode							= this.XMLSend.createElement('PARAMETERS')	; this.serviceNode.appendChild(this.parametersNode)
+			this.keysNode								= this.XMLSend.createElement('KEYS')		; this.serviceNode.appendChild(this.keysNode)
+			this.resultNode								= this.XMLResult.documentElement
+			this.XMLSend.insertBefore(this.XMLSend.createProcessingInstruction('xml', 'version="'+xmlVersion+'" encoding="'+xmlEncoding+'"'), this.XMLSend.childNodes.item(0))
+			this.changeService							= function (id,t)	{ this.id = id; this.type = (((t == undefined) || (t == null))?this.type:t); this.serviceNode.setAttribute('ID', this.id); this.serviceNode.setAttribute('TYPE', this.type); return this }
+			this.setParameter							= function (id,v,x)	{ if (x != undefined) { v = x }; if (v == undefined) { v = '' }; var par = xmlSelectSingleNode(this.parametersNode,"//PARAMETER[@ID = '"+id+"']"); if (par==null) { par = this.XMLSend.createElement('PARAMETER'); par.setAttribute('ID', id); this.parametersNode.appendChild(this.XMLSend.createTextNode('\n')); this.parametersNode.appendChild(par) }; xmlSetText(par,v); return this }
+			this.getParameter							= function (id)		{ var par = xmlSelectSingleNode(this.parametersNode,"//PARAMETER[@ID = '"+id+"']")	; return ((par==null)?'':xmlGetText(par)) }
+			this.setParametersFrom						= function (col,pre){ if (pre == undefined) { pre = '' }; for (var par in col) { if (par.left(pre.length) == pre) { try { this.setParameter(par.substr(pre.length),col[par].getValue()) } catch(e) { window.status = 'ERROR: '+e.description } } }; return this }
+			this.setKey									= function (id,t,v)	{ var key = xmlSelectSingleNode(this.keysNode,"//KEY[@ID = '"+id+"']")				; if (key==null) { key = this.XMLSend.createElement('KEY'); key.setAttribute('ID', id)	; key.setAttribute('TYPE', t); this.keysNode.appendChild(key) }; xmlSetText(key,v); return this }
+			this.getKey									= function (id)		{ var key = xmlSelectSingleNode(this.keysNode,"//KEY[@ID = '"+id+"']")				; return ((key==null)?'':xmlGetText(key)) }
+			this.setTable								= function (t)		{ var tbl = xmlSelectSingleNode(this.serviceNode,'//TABLE')							; if (tbl==null) { tbl = this.XMLSend.createElement('TABLE')									; this.serviceNode.appendChild(tbl)	}; xmlSetText(tbl,t); return this }
+			this.getTable								= function ()		{ var tbl = xmlSelectSingleNode(this.serviceNode,'//TABLE')							; return ((tbl==null)?'':xmlGetText(tbl)) }
+			this.setEfDate								= function (f)		{ var fec = xmlSelectSingleNode(this.serviceNode,'//EFDATE')						; if (fec==null) { fec = this.XMLSend.createElement('EFDATE'); fec.setAttribute('TYPE','DATE')	; this.serviceNode.appendChild(fec)	}; xmlSetText(fec,f); return this }
+			this.getEfDate								= function ()		{ var fec = xmlSelectSingleNode(this.serviceNode,'//EFDATE')						; return ((fec==null)?'':xmlGetText(fec)) }
+			this.get									= function (tag)	{ var res = xmlSelectNodes(this.XMLResult,'//'+tag); return res }
+			this.nodeCount								= function (tag)	{ return xmlNodesLength(this.get(tag)) }
+			this.getNode								= function (tag,i)	{ if (i == undefined) { i = 0 }; return XmlToObj(xmlNodesItem(this.get(tag),i)) }
+			this.recCount								= function ()		{ return xmlNodesLength(this.get('RECORD')) }
+			this.totCount								= function ()		{ var data = xmlSelectSingleNode(this.XMLResult,'//DATAVAL[@COUNT]'); if (data) { return data.getAttribute('COUNT') } else { return this.recCount()} }
+			this.getRecord								= function (i)		{ if (i == undefined) { i = 0 }; return XmlToObj(xmlNodesItem(this.get('RECORD'),i)) }
+			this.colCount								= function ()		{ return xmlNodesLength(this.get('FIELD')) }
+			this.getColumn								= function (i)		{ if (i == undefined) { i = 0 }; return XmlToObj(xmlNodesItem(this.get('FIELD'),i)) }
+			this.hasErrors								= function ()		{ var lst = this.XMLResult.getElementsByTagName('ERROR'); return (lst.length > 0) }
+			this.errorMsg								= function ()		{ var lst = this.XMLResult.getElementsByTagName('ERROR'); if (lst.length == 0) { return '' } else { return lst.item(0).text } }
+			this.rowsAfected							= function ()		{ try { return parseInt(xmlGetText(this.XMLResult.documentElement).split(':')[1]) } catch(e) { return 0 } }
+			this.run									= function (ASYNC)	{ 															
+															var srv							=	this
+															var hdl							=	function() {
+																									if (srv.XMLHTTP.readyState == 4) {
+																										if (srv.XMLHTTP.status == 200) {
+																											srv.done		= true
+																											srv.plainText	= srv.XMLHTTP.responseText
+																											srv.XMLResult	= loadXML(srv.XMLHTTP.responseText)
+																											if (srv.hasErrors()) { srv.debug() }
+																											srv.fnOnDone(srv)
+																										} else {
+																											alert('ERROR: There was a problem with the XMLHTTP request.'+srv.XMLHTTP.status)
+																										}
+																									}															
+																								}
+															srv.XMLHTTP						=	createServer()
+															srv.XMLHTTP.onreadystatechange	=	hdl
+															srv.XMLHTTP.open('POST',srv.url,(ASYNC==true))
+															srv.XMLHTTP.setRequestHeader('Content-Type', 'application/xml')
+															srv.XMLHTTP.send(srv.XMLSend)
+															if ((ASYNC!=true)&&(bxApplication.browserName!='IE')) { hdl() }
+															return srv
+														}
+			this.debug									= function ()		{ bxPage.add(WSDEBUG(((this.errorMsg()=='')?'Depurando el Servicio de Datos '+this.id+'':this.errorMsg()),this.XMLSend.xml.replace(/></g,'>\n<'),this.plainText,this.XMLResult.xml.replace(/></g,'>\n<'),this.id)); return this }
+			this.release								= function ()		{ xmlSelectNodes(this.XMLResult,'//*').removeAll(); xmlSelectNodes(this.XMLSend,'//*').removeAll(); this.extras = null; this.XMLResult = null; this.XMLSend = null }
+			return this
+		}
+		function LABEL(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('span',id,'label','bxLabel')
+			obj.innerHTML	=	tip
+			obj.setValue	=	function(t)	{ obj.innerHTML = t; return obj	}
+			obj.getValue	=	function()	{ return obj.innerHTML			}
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function TIMER(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('span',id,'timer','bxTimer')
+			obj.timeout		=	1000
+			obj.refresh		=	function() { obj.action(); obj.asyncExecute(obj.refresh,obj.timeout) }
+			obj.action		=	function() { }
+			obj.asyncExecute(obj.refresh,obj.timeout)
+			return obj
+		}
+		function CLOCK(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('span',id,'clock','bxClock')
+			obj.title		=	tip
+			obj.refresh		=	function() { obj.innerHTML = (new Date()).toLocaleString()+'&nbsp;&nbsp;&nbsp;'; obj.asyncExecute(obj.refresh,1000) }
+			obj.asyncExecute(obj.refresh,1000)
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function PAGE(id,tip,x,y,w,h) {
+			var obj					=	bxApplication.newTag('iframe',id,'bxframe','bxFrame')
+			obj.open				=	function(URL) { if (URL != '') { if (URL.indexOf("[TOP]") == 0) { var LNK = URL.split("[TOP]"); window.navigate(LNK[1]) } else { obj.src = URL } }; return obj }
+			obj.FRAMEBORDER			=	'NO'
+			obl.ALLOWTRANSPARENCY	=	true
+			obj.SCROLLING			=	'AUTO'
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function VSPLIT(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('span',id,'vspliter','bxSpliterV')
+			obj.containers	=	[]
+			obj.separators	=	[]
+			obj.resize		=	function ()		{ 
+									if (obj.separators.length > 0) { 
+										obj.containers[obj.containers.length-1].style.width = Math.max(0,obj.getWidth() - obj.separators[obj.separators.length-1].getRight()) 
+									} 
+								} 
+			obj.add			=	function(o,w,r)	{ 
+									if (obj.containers.length > 0) { 
+										obj.containers[obj.containers.length-1].style.width = obj.containers[obj.containers.length-1].defaultWidth
+										var sep				=	this.addTag('span',o.id+'.separator','vspliter.separator','bxSeparatorV'); this.separators.push(sep)
+										sep.style.height	=	'100%'
+										sep.startmove		=	function(s,e) {
+																	var pc = s.previousSibling, nc = s.nextSibling, o = e.screenX, wp = pc.getWidth(), wn = nc.getWidth()
+																	var doResize	=	function(event) { 
+																							bxBaseEvent(event)
+																							if ((wp+(event.screenX-o)>=0)&&(wn-(event.screenX-o)>=0)) { 
+																								pc.style.width = Math.max(0,wp+(event.screenX-o))
+																								nc.style.width = Math.max(0,wn-(event.screenX-o)) 
+																								if (bxApplication.browserName == 'FF') {  
+																									pc.firstChild.style.width = Math.max(0,wp+(event.screenX-o))
+																									nc.firstChild.style.width = Math.max(0,wn-(event.screenX-o)) 
+																								}
+																							} 
+																						}
+																	var endResize	=	function(event) { 
+																							s.detachEvent('onmousemove'		, doResize) 
+																							s.detachEvent('onmouseup'		, endResize) 
+																							s.detachEvent('onlosecapture'	, endResize) 
+																							s.releaseCapture() 
+																						}
+																	s.setCapture();
+																	s.attachEvent('onmousemove'		, doResize);
+																	s.attachEvent('onmouseup'		, endResize);
+																	s.attachEvent('onlosecapture'	, endResize);
+																	e.cancelBubble	=	true; 
+																}
+										if (r==true) { sep.attachEvent('onmousedown',function (event) { bxBaseEvent(event); sep.startmove(event.srcElement,event) }) } else { sep.style.cursor = 'default' }
+									}
+									var cnt					=	this.addTag('span',o.id+'.container','vspliter.container','bxContainerV'); this.containers.push(cnt)
+									cnt.defaultWidth		=	w
+									cnt.style.width			=	w
+									cnt.style.height		=	'100%'
+									cnt.appendChild(o)
+									if (bxApplication.browserName == 'FF') { o.style.width = w }
+									obj.resize()
+									return o
+								}
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function HSPLIT(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('span',id,'hspliter','bxSpliterH')
+			obj.containers	=	[]
+			obj.separators	=	[]
+			obj.add			=	function(o,h,r) { 
+									if (obj.containers.length > 0) { 
+										obj.containers[obj.containers.length-1].style.height = obj.containers[obj.containers.length-1].defaultHeight
+										var sep				=	this.addTag('span',o.id+'.separator','hspliter.separator','bxSeparatorH'); this.separators.push(sep)
+										sep.style.width		=	'100%'
+										sep.startmove		=	function(s,e) {
+																	var pc = s.previousSibling, nc = s.nextSibling, o = e.screenY, hp = pc.getHeight(), hn = nc.getHeight()
+																	var doResize	=	function(event) { 
+																							bxBaseEvent(event)
+																							if ((hp+(event.screenY-o)>=0)&&(hn-(event.screenY-o)>=0)) { 
+																								pc.style.height = Math.max(0,hp+(event.screenY-o)) 
+																								nc.style.height = Math.max(0,hn-(event.screenY-o)) 
+																								if (bxApplication.browserName == 'FF') {  
+																									pc.firstChild.style.height = Math.max(0,hp+(event.screenY-o)) 
+																									nc.firstChild.style.height = Math.max(0,hn-(event.screenY-o)) 
+																								}
+																							} 
+																						}
+																	var endResize	=	function(event) { 
+																							s.detachEvent('onmousemove'		, doResize) 
+																							s.detachEvent('onmouseup'		, endResize) 
+																							s.detachEvent('onlosecapture'	, endResize) 
+																							s.releaseCapture() 
+																						}
+																	s.setCapture();
+																	s.attachEvent('onmousemove'		, doResize);
+																	s.attachEvent('onmouseup'		, endResize);
+																	s.attachEvent('onlosecapture'	, endResize);
+																	e.cancelBubble	=	true; 
+																}
+										if (r==true) { sep.attachEvent('onmousedown',function (event) { bxBaseEvent(event); sep.startmove(event.srcElement,event) }) } else { sep.style.cursor = 'default' }
+									}
+									var cnt					=	this.addTag('span',o.id+'.container','hspliter.container','bxContainerH'); this.containers.push(cnt)
+									cnt.defaultHeight		=	h
+									cnt.style.height		=	h
+									cnt.style.width			=	'100%'
+									cnt.appendChild(o)
+									if (bxApplication.browserName == 'FF') { o.style.height = h }
+									obj.resize()
+									return o
+								}
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function PANEL(id,tip,x,y,w,h) {
+			var obj				= bxApplication.newTag('table',id,'panel','bxPanel'); obj.cellPadding = 0; obj.cellSpacing = 0
+			obj.titlebar		=	obj.insertRow(-1)
+			obj.bodyarea		=	obj.insertRow(-1)
+			obj.statusbar		=	obj.insertRow(-1)
+			obj.titlebarTL		=	bxBaseControl(obj.titlebar.insertCell(-1));  obj.titlebarTL.className	= 'bxPaneltopl'
+			obj.titlebarTM		=	bxBaseControl(obj.titlebar.insertCell(-1));  obj.titlebarTM.className	= 'bxPaneltopm'
+			obj.titlebarTR		=	bxBaseControl(obj.titlebar.insertCell(-1));  obj.titlebarTR.className	= 'bxPaneltopr'
+			obj.bodyareaML		=	bxBaseControl(obj.bodyarea.insertCell(-1));  obj.bodyareaML.className	= 'bxPanelmidl'
+			obj.bodyareaMM		=	bxBaseControl(obj.bodyarea.insertCell(-1));  obj.bodyareaMM.className	= 'bxPanelmidm'
+			obj.bodyareaMR		=	bxBaseControl(obj.bodyarea.insertCell(-1));  obj.bodyareaMR.className	= 'bxPanelmidr'
+			obj.statusbarBL		=	bxBaseControl(obj.statusbar.insertCell(-1)); obj.statusbarBL.className	= 'bxPanelbotl'
+			obj.statusbarBM		=	bxBaseControl(obj.statusbar.insertCell(-1)); obj.statusbarBM.className	= 'bxPanelbotm'
+			obj.statusbarBR		=	bxBaseControl(obj.statusbar.insertCell(-1)); obj.statusbarBR.className	= 'bxPanelbotr'
+			obj.body			=	obj.bodyareaMM.add(bxApplication.newTag('span',id+'.body' ,'panel.body' ,'bxPanelBody'))
+			obj.titlebar.txt	=	obj.titlebarTM.add(bxApplication.newTag('span',id+'.title','panel.title','bxPanelTitle')); obj.titlebar.txt.innerHTML = tip
+			obj.add				=	function(o)	{ obj.body.add(o); obj.resize(); return o }
+			obj.startresize		=	function(s,e,dv,dh) {
+										var ow = obj.bodyareaMM.getWidth(), oh = obj.bodyareaMM.getHeight(), ox = obj.getLeft(), oy = obj.getTop(), sx = e.screenX, sy = e.screenY, pw = obj.parentNode.getWidth(), ph = obj.parentNode.getHeight()
+										if (dv == undefined) { dv = 'b' }
+										if (dh == undefined) { dh = 'r' }
+										var doResize	=	function(event) { 
+																bxBaseEvent(event) 
+																if (dh=='l') { try { if (ox+(event.screenX-sx) >= 0) { obj.style.left = ox+(event.screenX-sx); obj.bodyareaMM.style.width  = ow-(event.screenX-sx) } } catch(e) {} }
+																if (dv=='t') { try { if (oy+(event.screenY-sy) >= 0) { obj.style.top  = oy+(event.screenY-sy); obj.bodyareaMM.style.height = oh-(event.screenY-sy) } } catch(e) {} }
+																var x = obj.parentNode.getWidth() - obj.bodyareaMM.getLeft(obj.parentNode) - 5, y = obj.parentNode.getHeight() - obj.bodyareaMM.getTop(obj.parentNode) - 5
+																if (dh=='r') { try { if (ow+(event.screenX-sx) <= x) { obj.bodyareaMM.style.width  = ow+(event.screenX-sx) } } catch(e) {} }
+																if (dv=='b') { try { if (oh+(event.screenY-sy) <= y) { obj.bodyareaMM.style.height = oh+(event.screenY-sy) } } catch(e) {} }
+																s.resize() 
+															}
+										var endResize	=	function(event) { 
+																obj.detachEvent('onmousemove'	, doResize) 
+																obj.detachEvent('onmouseup'		, endResize) 
+																obj.detachEvent('onlosecapture'	, endResize) 
+																obj.releaseCapture() 
+															}
+										s.setCapture();
+										s.attachEvent('onmousemove'		, doResize);
+										s.attachEvent('onmouseup'		, endResize);
+										s.attachEvent('onlosecapture'	, endResize);
+										e.cancelBubble = true; 
+									}
+			obj.titlebarTL.attachEvent(		'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'t','l')	})
+			obj.titlebarTM.attachEvent(		'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startmove(obj,event)				})
+			obj.titlebarTR.attachEvent(		'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'t','r')	})
+			obj.bodyareaML.attachEvent(		'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'m','l')	})
+			obj.bodyareaMR.attachEvent(		'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'m','r')	})
+			obj.statusbarBL.attachEvent(	'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'b','l')	})
+			obj.statusbarBM.attachEvent(	'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'b','m')	})
+			obj.statusbarBR.attachEvent(	'onmousedown'	,	function (event) { bxBaseEvent(event); obj.startresize(obj,event,'b','r')	})
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function TABFOLDER(id,tip,x,y,w,h)	{
+			var obj				=	bxApplication.newTag('table',id,'tabfolder','bxTabFolder'); obj.cellPadding = 0; obj.cellSpacing = 0; obj.border = 0
+			obj.tabsrow			=	bxBaseControl(obj.insertRow(-1)); obj.tabsrow.style.height = 22
+			obj.controw			=	bxBaseControl(obj.insertRow(-1))
+			obj.tabsfiller		=	bxBaseControl(obj.tabsrow.insertCell(-1)); obj.tabsfiller.className = 'bxTabF'
+			obj.containcel		=	bxBaseControl(obj.controw.insertCell(-1)); 
+			obj.contain			=	obj.containcel.addTag('span',id+'.contain','','bxTabContain')
+			obj.tabs			=	[]
+			obj.resize			=	function() {
+										for (var i = 0; i < obj.tabs.length; i++) { obj.rows.item(0).cells.item(i).style.width = obj.tabs[i].getWidth() }
+										if (obj.tabs.length > 0) { obj.tabsfiller.style.width = obj.getWidth() - obj.tabs[obj.tabs.length-1].getRight() }
+									}
+			obj.addTab			=	function(l) {
+										var i					=	obj.tabs.length
+										obj.tabs[i]				=	obj.rows.item(0).cells.item(i).addTag('table','bxTab','bxTab','bxTab'); obj.tabs[i].cellPadding = 0; obj.tabs[i].cellSpacing = 0; obj.tabs[i].border = 0; obj.rows.item(0).cells.item(i).className = ''
+										obj.tabs[i].select		=	function() { for (var t = 0; t < obj.tabs.length; t++) { obj.tabs[t].imagel.className = (t==i)?'bxTabLS':'bxTabL' ; obj.tabs[t].imagem.className = (t==i)?'bxTabMS':'bxTabM' ; obj.tabs[t].imager.className = (t==i)?'bxTabRS':'bxTabR' };  }
+										obj.tabs[i].button		=	bxBaseControl(obj.tabs[i].insertRow(-1))		; obj.tabs[i].button.className = 'bxTabButton'
+										obj.tabs[i].imagel		=	bxBaseControl(obj.tabs[i].button.insertCell(-1)); obj.tabs[i].imagel.className = 'bxTabL'
+										obj.tabs[i].imagem		=	bxBaseControl(obj.tabs[i].button.insertCell(-1)); obj.tabs[i].imagem.className = 'bxTabM'; obj.tabs[i].imagem.innerHTML = l; obj.tabs[i].imagem.noWrap = true
+										obj.tabs[i].imager		=	bxBaseControl(obj.tabs[i].button.insertCell(-1)); obj.tabs[i].imager.className = 'bxTabR'
+										obj.rows.item(0).cells.item(i).style.width = obj.tabs[i].getWidth()+9
+										obj.tabs[i].imagem.attachEvent('onmouseover', function() { if (obj.tabs[i].imagem.className != 'bxTabMS') { obj.tabs[i].imagel.className = 'bxTabLH'; obj.tabs[i].imagem.className = 'bxTabMH'; obj.tabs[i].imager.className = 'bxTabRH'} })
+										obj.tabs[i].imagem.attachEvent('onmouseout' , function() { if (obj.tabs[i].imagem.className != 'bxTabMS') { obj.tabs[i].imagel.className = 'bxTabL' ; obj.tabs[i].imagem.className = 'bxTabM' ; obj.tabs[i].imager.className = 'bxTabR' } })
+										obj.tabs[i].imagem.attachEvent('onmousedown', function() { obj.tabs[i].select() })
+										if (i==0) { obj.tabs[i].select() }
+										obj.tabsfiller			=	bxBaseControl(obj.tabsrow.insertCell(-1)); obj.tabsfiller.className = 'bxTabF'; obj.tabsfiller.style.width = obj.getWidth() - obj.tabs[i].getRight()
+										obj.containcel.colSpan	=	i+2
+									}
+			obj.attachEvent('onresize',obj.resize) //OJO: en fireFox no esta disparando el evento resize del objeto
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function NODE(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('fieldset',id,'node','bxNode')
+			obj.attachEvent('onmousedown',function (event) { bxBaseEvent(event); obj.style.cursor = 'move'; obj.startmove(event.srcElement,event) })
+			if (x) { obj.style.left   = x; obj.style.position = 'absolute' }
+			if (y) { obj.style.top    = y; obj.style.position = 'absolute' }
+			if (w) { obj.style.width  = w }
+			if (h) { obj.style.height = h }
+			return obj
+		}
+		function REPEATER(id,tip,x,y,w,h) {
+			var obj			=	bxApplication.newTag('span',id,'repeater','bxRepeater')
+			obj.addTemplate	=	function(t)	{}
+			obj.addBlock	=	function(b)	{}
+		}
+		function BLOCK(id,tip,x,y,w,h) {
+		}
+		function GRID(id,tip,x,y,w,h)	{
+			var grid					=	bxApplication.newTag('span',id,				'grid'										,'bxGrid')
+			grid.box					=	grid.addTag('span',id,						'grid.box'									,'bxGridBox')
+			grid.scrollarea				=	grid.box.addTag('span',id,					'grid.scrollarea'							,'bxGridScroll')
+			grid.scrollarea.box			=	grid.scrollarea.addTag('span',id,			'grid.scrollarea.box'						,'bxGridScrollBox')
+			grid.scrollbars				=	grid.scrollarea.box.addTag('span',id,		'grid.scrollbars'							,'bxGridScrollBars')
+			grid.scrollarea.content		=	grid.scrollarea.addTag('span',id,			'grid.scrollarea.content'					,'bxGridScrollContent')
+			grid.content				=	grid.scrollarea.content.addTag('span',id,	'grid.content'								,'bxGridContent')
+			grid.content.box			=	grid.content.addTag('span',id,				'grid.content.box'							,'bxGridContentBox')
+			grid.headersarea			=	grid.content.box.addTag('span',id,			'grid.headersarea'							,'bxGridHeadersArea')
+			grid.headers				=	grid.headersarea.addTag('span',id,			'grid.headers'								,'bxGridHeaders')
+			grid.headers.selector		=	grid.headers.addTag('span',id,				'grid.headers.selector'						,'bxGridHeaderMark')
+			grid.headers.selector.text	=	grid.headers.selector.addTag('span',id,		'grid.headers.selector.text'				,'bxText')
+			grid.headers.count			=	0
+			grid.headers.item			=	[]
+			grid.headers.add			=	function(id,label) {
+												var hdr											= grid.headers.count++
+												grid.headers.item[hdr]							= grid.headers.addTag('span',id,				'grid.header'				,'bxGridHeader')
+												grid.headers.item[hdr].text						= grid.headers.item[hdr].addTag('span',id,		'grid.header.text'			,'bxText')
+												grid.headers.item[hdr].sort						= grid.headers.item[hdr].addTag('span',id,		'grid.header.sort'			,'bxSortNone')
+												grid.headers.item[hdr].separator				= grid.headers.addTag('span',id,				'grid.header.sparator'		,'bxGridSeparator')
+												grid.headers.item[hdr].text.innerHTML			= label
+												grid.headers.item[hdr].i						= hdr
+												grid.headers.item[hdr].name						= id
+												grid.headers.item[hdr].attachEvent(				'onmousedown'	, function(event) { grid.headers.item[hdr].sort()		})
+												grid.headers.item[hdr].separator.attachEvent(	'onmousedown'	, function(event) { grid.headers.item[hdr].separator.startMove(event) })
+												grid.scrollbars.style.width						= grid.headers.item[hdr].getRight() - grid.getLeft()+ 1
+												for (var i = 0; i < grid.rows.count; i++) { grid.rows.item[i].addCell(id) }
+												grid.headers.item[hdr].resizeColumn				= function() { for (var i = 0; i < grid.rows.count; i++) { grid.rows.item[i].cells.item[this.i].style.width = this.style.width }; grid.scrollbars.style.width = grid.headersarea.scrollLeft + grid.headers.item[grid.headers.count-1].getRight() - grid.getLeft()+ 1; grid.applyScroll() }
+												grid.headers.item[hdr].mouseover				= function() { this.className	 = this.className.replace(' aw-mouseover-header','')+' aw-mouseover-header'	}
+												grid.headers.item[hdr].mouseout					= function() { this.className	 = this.className.replace(' aw-mouseover-header','') }
+												grid.headers.item[hdr].sort						= function() { for (var i = 0; i < grid.headers.count; i++) { if (i!=hdr) { grid.headers.item[i].className = grid.headers.item[i].className.replace('bxSortAsc','bxSortNone').replace('bxSortAsc','bxSortNone') } }; if (this.className.indexOf('aw-sort-none')>0) { this.className = this.className.replace('aw-sort-none','aw-sort-ascending') } else if (this.className.indexOf('bxSortAsc')>0) { this.className = this.className.replace('bxSortAsc','bxSortDesc') } else { this.className = this.className.replace('bxSortDesc','bxSortAsc') } }
+												grid.headers.item[hdr].separator.startMove		= function(e){
+																									var o = e.screenX, s = this, t = s.previousSibling, w = t.offsetWidth
+																									var doResize	= function() { var e; try {e=event} catch(x) {e=arguments[0]}; t.style.width = Math.max(20,w+(e.screenX-o)) }
+																									var endResize	= function() { s.detachEvent('onmousemove', doResize); s.detachEvent('onmouseup', endResize); s.detachEvent('onlosecapture', endResize); s.releaseCapture(); t.resizeColumn() }
+																									s.setCapture();
+																									s.attachEvent('onmousemove'		, doResize);
+																									s.attachEvent('onmouseup'		, endResize);
+																									s.attachEvent('onlosecapture'	, endResize);
+																									e.cancelBubble = true; 
+																								}
+												return grid.headers.item[hdr]
+											}
+
+			grid.rowsarea				=	grid.content.box.addTag('span',id,				'grid.rowsarea'								,'bxGridRowsArea')
+			grid.rows					=	grid.rowsarea.addTag('span',id,					'grid.rows'									,'bxGridRowa')
+			grid.rows.count				=	0
+			grid.rows.item				=	[]
+			grid.rows.add				=	function() {
+												var row											= grid.rows.count++
+												grid.rows.item[row]								= grid.rows.addTag('span',id,							'grid.row'					,'bxGridRow'+((row%2==0)?' bxEvenRow':' bxOddRow'))
+												grid.rows.item[row].selector					= grid.rows.item[row].addTag('span',id,					'grid.row.selector'			,'aw-item-template aw-templates-imagetext aw-row-selector')
+												grid.rows.item[row].selector.box				= grid.rows.item[row].selector.addTag('span',id,		'grid.row.selector.box'		,'aw-item-box')
+												grid.rows.item[row].selector.image				= grid.rows.item[row].selector.box.addTag('span',id,	'grid.row.selector.image'	,'aw-item-image aw-image-none') 
+												grid.rows.item[row].selector.ruler				= grid.rows.item[row].selector.box.addTag('span',id,	'grid.row.selector.ruler'	,'aw-item-ruler') 
+												grid.rows.item[row].selector.text				= grid.rows.item[row].selector.box.addTag('span',id,	'grid.row.selector.text'	,'aw-item-text') 
+												grid.rows.item[row].selector.style.width		= 30
+												grid.rows.item[row].selector.text.innerHTML		= (row+1)
+												grid.rows.item[row].cells						= {count: 0, item: []}
+												grid.rows.item[row].cells.add					= function(id) { 
+																									var col								= this.cells.count++
+																									this.cells.item[col]				= this.addTag('span',id,					'grid.cell'			,'bxGridCell')
+																									this.cells.item[col].text			= this.cells.item[col].addTag('span',id,	'grid.cell.text'	,'bxText')
+																									this.cells.item[col].i				= col
+																									this.cells.item[col].name			= id
+																									this.cells.item[col].attachEvent('onmousedown'	, function(event) { grid.rows.item[row].cells.item[col].select()    })
+																									this.cells.item[col].select			= function() { this.className+= ' aw-selected-cell' }
+																									this.cells.item[col].setValue		= function(v){ this.innerHTML = v}
+																									return this.cells.item[col]
+																								}
+												grid.rows.item[row].i							= row
+												grid.rows.item[row].addCell						= grid.rows.item[row].cells.add											
+												for (var i = 0; i < grid.headers.count; i++) { grid.rows.item[row].addCell(grid.headers.item[i]) }
+												grid.scrollbars.style.height					= grid.rows.item[row].getBottom() - grid.getTop()+ 1
+												return grid.rows.item[row]
+											}
+			grid.tabIndex								= -1
+			grid.hideFocus								= true
+			grid.scrollbars.style.width					= 0
+			grid.scrollbars.style.height				= 0
+			grid.headersarea.style.visibility			='inherit'
+			grid.headersarea.style.height				= 20
+			grid.headers.style.height					= 20
+			grid.headers.selector.style.width			= 30
+			grid.headers.selector.text.innerHTML		= '#'
+			grid.rowsarea.style.top						= 20
+			grid.rowsarea.style.bottom					= 0
+			grid.selection								= {mode:'cell',items:[],maxSelected:1}
+			grid.setSelectorsVisibility					= function(c)		{ this.headers.selector.style.display = c?'':'none'; for (var i = 0; i < this.rows.count; i++) { this.rows.item[i].selector.style.display = c?'':'none' }; this.scrollbars.style.width = this.headersarea.scrollLeft + this.headers.item[this.headers.count-1].getRight() - this.getLeft()+ 1; this.applyScroll() }
+			grid.applyScroll							= function(w)		{ if (w) { this.scrollarea.box.scrollTop -= w } else { this.headersarea.scrollLeft = this.scrollarea.box.scrollLeft; this.rowsarea.scrollLeft = this.scrollarea.box.scrollLeft; this.rowsarea.scrollTop = this.scrollarea.box.scrollTop } }
+			grid.attachEvent('oncontextmenu'			, function(event)	{ return false })
+			grid.attachEvent('onselectstart'			, function(event)	{ return false })
+			grid.attachEvent('onkeydown'				, function(event)	{ })
+			grid.attachEvent('onkeypress'				, function(event)	{ })
+			grid.scrollarea.attachEvent('onresize'		, function(event)	{ })
+			grid.scrollarea.attachEvent('DOMMouseScroll', function(event)	{ grid.applyScroll(event.detail*(-10)) })
+			grid.scrollarea.attachEvent('onmousewheel'	, function(event)	{ grid.applyScroll(event.wheelDelta/2) })
+			grid.scrollarea.box.attachEvent('onscroll'	, function(event)	{ grid.applyScroll() })
+			grid.addHeader								= grid.headers.add
+			grid.addRow									= grid.rows.add
+			if (x) { grid.style.left   = x; grid.style.position = 'absolute' }
+			if (y) { grid.style.top    = y; grid.style.position = 'absolute' }
+			if (w) { grid.style.width  = w }
+			if (h) { grid.style.height = h }
+			return grid
+		}
+	</script>
+</head>
+<body>
+	<script>
+		function main() {			
+			var spliter	= bxPage.add(HSPLIT('main','Principal',0,0,'100%','100%'))
+			var header	= spliter.add(bxApplication.newTag('span','header','','bluearea' )	,'10%',true); header.innerHTML = 'Header'
+			var detail	= spliter.add(VSPLIT('details','Principal',0,0,'100%','100%')		,'85%',true)
+			var footer	= spliter.add(bxApplication.newTag('span','footer','','greenarea')	,'05%',true); footer.innerHTML = 'Footer'
+			var menus	= detail.add(bxApplication.newTag('span','menu','','redarea' )		,'20%',true); menus.innerHTML = 'Menu'
+			var spage	= detail.add(bxApplication.newTag('span','view','','yellowarea' )	,'65%',true); //spage.innerHTML = 'Detail' 
+			var refes	= detail.add(bxApplication.newTag('span','quik','','silverarea' )	,'15%',true); refes.innerHTML = 'Quick Links'
+			
+			header.add(CLOCK('lahora','Hora Local'))
+
+			var panel	= spage.add(PANEL('x','Panel Flotante'))
+
+			var folder  = panel.add(TABFOLDER('y','Solapas','2%','5%','96%','90%'))
+			folder.addTab('Primera')
+			folder.addTab('Segunda mas larga')
+			folder.addTab('Tercera')
+
+			var srv		= new Service('ServicesList'); srv.run()
+			for (var i = 0; i < srv.recCount(); i++) { var REG = srv.getRecord(i); menus.innerHTML += '<br/>'+REG['DSC'].text }
+
+//			var rowsCount = 50, colsCount = 5; tabsCount = 5
+//			var grilla = panel.add(GRID('','',0,0,'100%','100%'))
+//			for (var h = 0; h < colsCount; h++) { var hdr = grilla.addHeader(h,'Columna '+(h+1)) }		
+//			for (var r = 0; r < rowsCount; r++) { var row = grilla.addRow(); for (var c = 0; c < colsCount; c++) { row.cells.item[c].setValue('Celda ('+(r+1)+','+(c+1)+')') } }
+//
+//			var nodo	= panel.add(NODE())
+//			var spliter2= spage.add(HSPLIT('main2','Principal',0,0,'100%','100%'))						; 
+//			var header2 = spliter2.add(bxApplication.newTag('span','header','','bluearea' )	,'10%',true); header2.innerHTML = 'Header2'
+//			var detail2 = spliter2.add(VSPLIT('details2','Principal',0,0,'100%','100%')		,'85%',true)
+//			var footer2 = spliter2.add(bxApplication.newTag('span','footer2','','greenarea'),'05%',true); footer2.innerHTML = 'Footer2'
+//			var menus2  = detail2.add(bxApplication.newTag('span','menu2','','redarea' )	,'20%',true); menus2.innerHTML = 'Menu2'
+//			var spage2  = detail2.add(bxApplication.newTag('span','view2','','yellowarea' )	,'65%',true); spage2.innerHTML = 'Detail2';
+//			var refes2  = detail2.add(bxApplication.newTag('span','quik2','','silverarea' )	,'15%',true); refes2.innerHTML = 'Quick Links2'
+
+			//if (bxApplication.browserName == 'FF') { window.alert(bxPage.getHeight()+','+detail.getHeight()+','+spliter2.getHeight()) }
+
+//			var grupo  = spliter.add(GROUP('','probando...',0,0,200,200));		//grupo.style.position = 'absolute'
+//			var folder = spliter.add(TABS('','',0,200,200,200));				//folder.style.position = 'absolute'
+//			for (var t = 0; t < tabsCount; t++) { folder.addTab('Solapa '+t) }; folder.hideTab(2); folder.selectTab(0)
+		} 
+		function GROUP(id,tip,x,y,w,h)	{
+			var group									=	bxApplication.newTag('span',id,'group','aw-system-control aw-item-control aw-ui-group aw-text-normal','fieldset')
+			group.legend								=	group.addTag('span',id,'group.legend','aw-item-legend','legend')
+			group.legend.image							=	group.legend.addTag('span',id,'group.legend.image','aw-item-image aw-image-none')
+			group.legend.ruler							=	group.legend.addTag('span',id,'group.legend.ruler','aw-item-ruler')
+			group.legend.text							=	group.legend.addTag('span',id,'group.legend.text' ,'aw-item-text')
+			group.legend.text.innerHTML					=	tip
+			group.content								=	group.addTag('span',id,'group.content','aw-item-box')
+			group.tabIndex								=	-1
+			group.hideFocus								=	true
+			group.attachEvent('oncontextmenu'			, function(event)	{ return false })
+			group.attachEvent('onselectstart'			, function(event)	{ return false })
+			group.attachEvent('onkeydown'				, function(event)	{ })
+			group.attachEvent('onkeypress'				, function(event)	{ })
+			if (x) { group.style.left   = x; group.style.position = 'absolute' }
+			if (y) { group.style.top    = y; group.style.position = 'absolute' }
+			if (w) { group.style.width  = w }
+			if (h) { group.style.height = h }
+			return group
+		}
+	</script>
+	<noscript><h1>This page requires Java Script enabled</h1></noscript>
+</body>
+</html>

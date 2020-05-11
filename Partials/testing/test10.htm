@@ -1,0 +1,39 @@
+<HTML>
+	<HEAD>
+		<SCRIPT>
+			function load() { 
+				var grafica1	= getObject('GRAFICA1') 
+				grafica1.load	= function(strXML) {
+										var grafica = this.object
+										grafica.SetVariable('_root.dataURL',"")
+										grafica.SetVariable('_root.isNewData',"1")
+										grafica.SetVariable('_root.newData',strXML)
+										grafica.TGotoLabel('/', 'JavaScriptHandler')
+								}
+				grafica1.load("<graph xaxisname='Trimestre' yaxisname='Ventas' caption='Ventas por Trimestre 2006' subCaption='(Expresadas en U$D)' numberPrefix='U$D ' decimalPrecision='2'><set name='1er Trimestre' value='253500' color='0099FF'/><set name='2do Trimestre' value='454500' color='FF9933'/><set name='3er Trimestre' value='453500' color='FF66CC'/> <set name='4to Trimestre' value='483500' color='CCCC00'/></graph>")
+				var grafica2		= document.createElement('DIV'); document.body.appendChild(grafica2)
+				strHTML	 = '<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="450" HEIGHT="300" ALIGN="">'
+				strHTML += '<PARAM NAME=movie		VALUE="../Charts/FC_2_3_Column3D.swf">'
+				strHTML += '<PARAM NAME=FlashVars	VALUE="&chartWidth=450&chartHeight=300&dataXML=<graph/>">'
+				strHTML += '</OBJECT>'				
+				grafica2.innerHTML	= strHTML
+				grafica2.load		= function(strXML) {
+										var grafica = this.childNodes(0).object
+										grafica.SetVariable('_root.dataURL',"")
+										grafica.SetVariable('_root.isNewData',"1")
+										grafica.SetVariable('_root.newData',strXML)
+										grafica.TGotoLabel('/', 'JavaScriptHandler')
+									}
+				
+				grafica2.load("<graph xaxisname='Trimestre' yaxisname='Ventas' caption='Ventas por Trimestre 2006' subCaption='(Expresadas en U$D)' numberPrefix='U$D ' decimalPrecision='2'><set name='1er Trimestre' value='253500' color='0099FF'/><set name='2do Trimestre' value='454500' color='FF9933'/><set name='3er Trimestre' value='453500' color='FF66CC'/> <set name='4to Trimestre' value='483500' color='CCCC00'/></graph>")
+			}
+			function getObject(objectName) { if (navigator.appName.indexOf("Microsoft") !=-1) { return window[objectName] } else { return document[objectName] } }
+		</SCRIPT>
+	</HEAD>
+	<BODY onload="load()">
+		<OBJECT id="GRAFICA1" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" WIDTH="450" HEIGHT="300" ALIGN="">
+			<PARAM NAME=movie		VALUE="../Charts/FC_2_3_Column3D.swf">
+			<PARAM NAME=FlashVars	VALUE="&chartWidth=450&chartHeight=300&dataXML=<graph/>">
+		</OBJECT>
+	</BODY>
+</HTML>
