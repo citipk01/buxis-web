@@ -1,0 +1,18 @@
+﻿<objects xmlns="http://www.springframework.net" xmlns:db="http://www.springframework.net/database" default-autowire="byName">
+
+  <object id="CombosController" type="Buxis.Web.Controllers.CombosController, Buxis.Web" scope="request" />
+  <object id="EmpleadoController" type="Buxis.Web.Controllers.EmpleadoController, Buxis.Web" scope="request" />
+  <object id="GananciasController" type="Buxis.Web.Controllers.GananciasController, Buxis.Web" scope="request" />
+  <object id="LiquidacionController" type="Buxis.Web.Controllers.LiquidacionController, Buxis.Web" scope="request" />
+  <object id="LoginController" type="Buxis.Web.Controllers.LoginController, Buxis.Web" scope="request" />
+  <object id="LogoutController" type="Buxis.Web.Controllers.LogoutController, Buxis.Web" scope="request" />
+  <object id="MaestroEmpleadosController" type="Buxis.Web.Controllers.MaestroEmpleadosController, Buxis.Web" scope="request" />
+  <object id="ProcesoController" type="Buxis.Web.Controllers.ProcesoController, Buxis.Web" scope="request" />
+  <object id="HomeController" type="Buxis.Web.Controllers.HomeController, Buxis.Web" scope="request" />
+  <object id="SecurityWebApi" type="Buxis.Web.Seguridad.SecurityWebApi, Buxis.Web" />
+  <object id="IntegracionController" type="Buxis.Web.Controllers.IntegracionController, Buxis.Web" scope="request"/>
+  <!--<db:provider id="DbProvider" provider="${OracleDbContext.providerName}" connectionString="${OracleDbContext.connectionString}" />-->
+
+  <object id="BuxisDbContext" type="Buxis.Domain.Concrete.BuxisDbContext, Buxis.Domain" />
+
+</objects>

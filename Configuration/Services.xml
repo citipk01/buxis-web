@@ -1,0 +1,16 @@
+<objects xmlns="http://www.springframework.net" default-autowire="byName">
+
+  <object id="CodigosService" type="Buxis.Services.Services.Impl.CodigosService, Buxis.Services" />
+  <object id="EmpleadoService" type="Buxis.Services.Services.Impl.EmpleadoService, Buxis.Services" />
+  <object id="EmpresaService" type="Buxis.Services.Services.Impl.EmpresaService, Buxis.Services" />
+  <object id="LiquidacionService" type="Buxis.Services.Services.Impl.LiquidacionService, Buxis.Services" />
+  <object id="MaestroEmpleadosService" type="Buxis.Services.Services.Impl.MaestroEmpleadosService, Buxis.Services" />
+  <object id="NavegacionService" type="Buxis.Services.Services.Impl.NavegacionService, Buxis.Services" />
+  <object id="NivelService" type="Buxis.Services.Services.Impl.NivelService, Buxis.Services" />
+  <object id="ProcesoService" type="Buxis.Services.Services.Impl.ProcesoService, Buxis.Services" />
+  <object id="ReporteImpuestoGananciaService" type="Buxis.Services.Services.Impl.ReporteImpuestoGananciaService, Buxis.Services" />
+  
+  <object id="PermisoWebService" type="Buxis.Services.Services.Impl.PermisoWebService, Buxis.Services" />
+  <object id="ParametrosService" type="Buxis.Services.Services.Impl.ParametrosService, Buxis.Services" />
+  
+</objects>

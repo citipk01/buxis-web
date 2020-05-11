@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=301880
+  -->
+<configuration>
+  <configSections>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <section name="oracle.manageddataaccess.client" type="OracleInternal.Common.ODPMSectionHandler, Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
+    <sectionGroup name="spring">
+      <section name="context" type="Spring.Context.Support.MvcContextHandler, Spring.Web.Mvc3" />
+    </sectionGroup>
+    <sectionGroup name="elmah">
+      <section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah" />
+      <section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah" />
+      <section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah" />
+      <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah" />
+    </sectionGroup>
+  </configSections>
+  <connectionStrings>
+    <add name="OracleDbContext" providerName="Oracle.ManagedDataAccess.Client" connectionString="DATA SOURCE= 169.167.147.211:2432/HRTEST;USER ID=BX_PORTAL;PASSWORD=ENTRADA8" />
+    <add name="Buxis.Domain.Concrete.EFDbContext" connectionString="DATA SOURCE= 169.167.147.211:2432/HRTEST;USER ID=BX_PORTAL;PASSWORD=ENTRADA8" providerName="System.Data.SqlClient" />
+    <add name="Buxis.Domain.Concrete.MyHistoryContext" connectionString="DATA SOURCE= 169.167.147.211:2432/HRTEST;USER ID=BX_PORTAL;PASSWORD=ENTRADA8" providerName="System.Data.SqlClient" />
+    <!-- 
+       <connectionStrings configProtectionProvider="RsaProtectedConfigurationProvider">
+      <add name="OracleDbContext" providerName="Oracle.ManagedDataAccess.Client" connectionString="DATA SOURCE= LACARGLXAP019:2432/HRTEST;USER ID=BX_PORTAL;PASSWORD=ENTRADA8" />
+    <add name="Buxis.Domain.Concrete.EFDbContext" connectionString="DATA SOURCE= LACARGLXAP019:2432/HRTEST;USER ID=BX_PORTAL;PASSWORD=ENTRADA8" providerName="System.Data.SqlClient" />
+    <add name="Buxis.Domain.Concrete.MyHistoryContext" connectionString="DATA SOURCE= LACARGLXAP019:2432/HRTEST;USER ID=BX_PORTAL;PASSWORD=ENTRADA8" providerName="System.Data.SqlClient" />
+
+    -->
+    <!--
+      <EncryptedData Type="http://www.w3.org/2001/04/xmlenc#Element" xmlns="http://www.w3.org/2001/04/xmlenc#">
+        <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+        <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+          <EncryptedKey xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5" />
+            <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+              <KeyName>Rsa Key</KeyName>
+            </KeyInfo>
+            <CipherData>
+              <CipherValue>iC3Ny0xONaC69cUNSS4N+L/Pk4vNHSPFsUiUV98XcqV7RPHE+oylidtrnyxiliod1BbY2lV2Mt/17Q/p4pe+SGrC6B2kykwxrLmpzSyS0uzfOW+IkDyKLriSxwklSRbx6Tb3amv/m7imIkUuVU8ngMPX2IP4iaQjj4T91brjlp4RRNSHGNulyUg0uf42ngjxdYYEIMvJzADUabu4xJVmmVgMLRHwWdqJF0vXiQLywHbLu0liEMuppxvw3gZtphgISPt1QTZu7cnAqc21gPEXREs5/YxQW5ALmdGuV4Yr1pr5KmIukN8CLY49bTebWaf0XEHZC3CHXmH4kSDldexhKw==</CipherValue>
+            </CipherData>
+          </EncryptedKey>
+        </KeyInfo>
+        <CipherData>
+          <CipherValue>7PwW7E0XqvYufGuOJxggpmo5/h/yy7t7mxvmV2vumiIVqPUlOW/Smky02Nkz7fX65UWQwtSchKjft/kX/N5za1M06k43dyhTX4MBvjZdkoMqEICqzSMIYW9a7PTVJQ5B/bL5ktZBUErG4htdNbj+2l9ckdDe6Ps+QD9nLjw8Txn7th0Y99V34h5DO2bO0tPQlNMjjWB/JhVkAH83t8HaeVc6+ers/n89Z/nhT0syt5onopFkEkPM4Ri1IUsCs8q9XW6f1j4dkjfmyNHNQZZs5+6wlIvjPoc1T3yPI67nK5ljuqrHUzlCKhpo2cjPKx6aBTPS/usfzEMjVm0UytB12mhOdnh/6dmMaBSbtV+3yX1pS9OSe7hkK5J8/XDtdcXzW7w/PcdigrLMVtoVer2xgrBNgy8rxGO2Io/BI2YXuFe/d3KoZZXlwrTt7G3TfAe4n/OMllNbgXJQxbNjKLm85w9jN6diWjlTa6Vges3Nqki3ClAdxbld5E+m4sVhZoPSsy8BbD4M9jn8C0iT9+ymwJ4UqS/DMCv3dI4AvuG/oJdrzn69fvNuko0TXN4vqDPTPegz4L16IQmTLszh/SNi6q6CvW/nKzqXsIoGUnFfv81OhobCh6v8rOIsC+nA8FT5PuSoMtJG4RACImKZB7XFuBGaAcleyRq141IX4thMgjCeXZoTaZlBwFgg4UlYeO5Zw5sJLWHS77CV5aAhchbUVCTCXGPtRUJN0opIHT1mkN4mLHCiydR6D3rVuMh7eVurdz1ZSKrnD1eOqp/UbCq8ErP9FhBeejS7zjcQQ9V5m8yEG/knBRnaMA==</CipherValue>
+        </CipherData>
+      </EncryptedData>
+    -->
+  </connectionStrings>
+  <spring>
+    <context>
+      <resource uri="~/Configuration/Services.xml" />
+      <resource uri="~/Configuration/Assemblers.xml" />
+      <resource uri="~/Configuration/Strategies.xml" />
+      <resource uri="~/Configuration/Controllers.xml" />
+      <resource uri="~/Configuration/Seguridad.xml" />
+    </context>
+  </spring>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="SecurityBaseUrl" value="http://lacargbaas192:8100/buxis/Partials/asp/bxbroker.asp" />
+    <add key="SecurityCookie" value="buxisseg" />
+    <add key="LoginServiceName" value="CITI.LOGIN" />
+    <add key="LoginResourceName" value="" />
+    <add key="LogoutServiceName" value="CITI.LOGOUT" />
+    <add key="LogoutResourceName" value="" />
+    <add key="CheckTokenServiceName" value="TKN.CHK" />
+    <add key="CheckTokenResourceName" value="" />
+    <add key="ChangePasswordServiceName" value="CITI.CHANGE.PWD" />
+    <add key="ChangePasswordResourceName" value="" />
+    <add key="ResponseFormat" value="json" />
+    <add key="DBSchema" value="BASEARG" />
+    <add key="elmah.mvc.disableHandler" value="false" />
+    <add key="elmah.mvc.disableHandleErrorFilter" value="false" />
+    <add key="elmah.mvc.requiresAuthentication" value="false" />
+    <add key="elmah.mvc.IgnoreDefaultRoute" value="false" />
+    <add key="elmah.mvc.allowedRoles" value="*" />
+    <add key="elmah.mvc.allowedUsers" value="*" />
+    <add key="elmah.mvc.route" value="elmah" />
+    <add key="elmah.mvc.UserAuthCaseSensitive" value="true" />
+  </appSettings>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+    <providers>
+      <provider invariantName="Oracle.ManagedDataAccess.Client" type="Oracle.ManagedDataAccess.EntityFramework.EFOracleProviderServices, Oracle.ManagedDataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
+    </providers>
+  </entityFramework>
+  <system.web>
+    <compilation targetFramework="4.5.1" debug="true" />
+    <httpRuntime targetFramework="4.5.1" />
+    <globalization fileEncoding="utf-8" requestEncoding="utf-8" responseEncoding="utf-8" enableClientBasedCulture="true" culture="es-AR" uiCulture="es" />
+    <httpModules>
+      <add name="Spring" type="Spring.Context.Support.WebSupportModule, Spring.Web" />
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" />
+      <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" />
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" />
+    </httpModules>
+    <httpHandlers>
+      <add verb="POST,GET,HEAD" path="elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" />
+    </httpHandlers>
+  </system.web>
+  <system.webServer>
+    <httpErrors errorMode="Detailed" existingResponse="Replace">
+      <remove statusCode="403" />
+      <error statusCode="403" responseMode="ExecuteURL" path="/buxis/Login/Login" />
+      <remove statusCode="401" />
+      <error statusCode="401" responseMode="ExecuteURL" path="/buxis/Home/AccessDenied" />
+    </httpErrors>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules>
+      <add name="Spring" type="Spring.Context.Support.WebSupportModule, Spring.Web" />
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler" />
+      <add name="ErrorMail" type="Elmah.ErrorMailModule, Elmah" preCondition="managedHandler" />
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler" />
+    </modules>
+    <handlers>
+        <add name="html" path="*.html" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Either" />
+    </handlers>
+        <directoryBrowse enabled="true" />		
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" culture="neutral" publicKeyToken="30ad4fe6b2a6aeed" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.2.0" newVersion="5.2.2.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <publisherPolicy apply="no" />
+        <assemblyIdentity name="Oracle.ManagedDataAccess" publicKeyToken="89b483f429c47342" culture="neutral" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Spring.Web" publicKeyToken="65e474d141e25e07" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.45000" newVersion="1.3.2.40943" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Spring.Core" publicKeyToken="65e474d141e25e07" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.0.0.45000" newVersion="1.3.2.40943" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="1.2.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.data>
+    <DbProviderFactories>
+      <remove invariant="Oracle.ManagedDataAccess.Client" />
+      <add name="ODP.NET, Managed Driver" invariant="Oracle.ManagedDataAccess.Client" description="Oracle Data Provider for .NET, Managed Driver" type="Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
+    </DbProviderFactories>
+  </system.data>
+  <oracle.manageddataaccess.client>
+    <version number="*">
+      <dataSources>
+        <dataSource alias="SampleDataSource" descriptor="(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=localhost)(PORT=2432))(CONNECT_DATA=(SERVICE_NAME=ORCL))) " />
+      </dataSources>
+    </version>
+  </oracle.manageddataaccess.client>
+</configuration>

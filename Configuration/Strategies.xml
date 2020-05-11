@@ -1,0 +1,6 @@
+<objects xmlns="http://www.springframework.net" default-autowire="byName">
+
+  <object id="DetalleGananciasNavegacionStrategy" type="Buxis.Services.Strategies.DetalleGananciasNavegacionStrategy, Buxis.Services" />
+  <object id="DetalleLiquidacionNavegacionStrategy" type="Buxis.Services.Strategies.DetalleLiquidacionNavegacionStrategy, Buxis.Services" />
+  <object id="MaestroEmpleadosNavegacionStrategy" type="Buxis.Services.Strategies.MaestroEmpleadosNavegacionStrategy, Buxis.Services" />
+</objects>

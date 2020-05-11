@@ -1,0 +1,179 @@
+﻿<error errorId="5b044b8b-116c-4dab-9cc0-2460987e56c0" host="LACARGBAAS192" type="Newtonsoft.Json.JsonReaderException" message="Unexpected character encountered while parsing value: &lt;. Path '', line 0, position 0." source="Newtonsoft.Json" detail="System.AggregateException: One or more errors occurred. ---&gt; Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: &lt;. Path '', line 0, position 0.&#xD;&#xA;   at Newtonsoft.Json.JsonTextReader.ParseValue()&#xD;&#xA;   at Newtonsoft.Json.JsonTextReader.Read()&#xD;&#xA;   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)&#xD;&#xA;   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)&#xD;&#xA;   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)&#xD;&#xA;   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)&#xD;&#xA;   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)&#xD;&#xA;   at Buxis.Web.ApiConsumer.WebApiConsumer.&lt;PostAsync&gt;d__9`2.MoveNext()&#xD;&#xA;   --- End of inner exception stack trace ---&#xD;&#xA;   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)&#xD;&#xA;   at Buxis.Web.Seguridad.SecurityWebApi.ExecuteService[T](SecurityCredential credential, String resourceName, String serviceName)&#xD;&#xA;   at Buxis.Web.Seguridad.SecurityWebApi.ConfirmCredentials(SecurityCredential credentials)&#xD;&#xA;   at Buxis.Web.Seguridad.WebServiceAuthentication.AuthorizeCore(HttpContextBase httpContext)&#xD;&#xA;   at System.Web.Mvc.AuthorizeAttribute.OnAuthorization(AuthorizationContext filterContext)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__19(AsyncCallback asyncCallback, Object asyncState)&#xD;&#xA;---&gt; (Inner Exception #0) Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing value: &lt;. Path '', line 0, position 0.&#xD;&#xA;   at Newtonsoft.Json.JsonTextReader.ParseValue()&#xD;&#xA;   at Newtonsoft.Json.JsonTextReader.Read()&#xD;&#xA;   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)&#xD;&#xA;   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)&#xD;&#xA;   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)&#xD;&#xA;   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)&#xD;&#xA;   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)&#xD;&#xA;   at Buxis.Web.ApiConsumer.WebApiConsumer.&lt;PostAsync&gt;d__9`2.MoveNext()&lt;---&#xD;&#xA;" time="2020-05-05T15:51:44.3177876Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.9,es;q=0.8&#xD;&#xA;HTTP_COOKIE:ASP.NET_SessionId=giegazjfqpxvfidgbac01div; ASPSESSIONIDQASCCCQC=MLBJEGJBKKMCPHDPLPDHGEGE; ASPSESSIONIDSCTBBBTD=NGEDPEAAGGEEOFKICBGLLGGF; buxisseg=token=A4E896F1A1E43D61E053D393A7A9D46E&amp;username=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSRwTTwozrp/ZEhthw5KRHr34VzLW93CWUT1VcbfksQRY1kHq+BohWkPqcfz6xC9XSv5U/OrK4f4dQUYbMGxPFUwf0AhS5LLvPeTEbANWw/HLWnlnxsiRZyTNE9pP2cf6Di02O3Fr5chP7mT+lf//ZTX/a07h/7oYDT0tdT1lIacx2AOrRtLe0zOFPYbRva34gU9nwgneZoNOcXevM6yY4/SjR7Nk+W+zswj8dgZfmqPg9XXCB0SvovIKw7MQsTtaWaees51VwAgAwAcRsBgEAAA==&amp;nombre=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBShVyTcmvmnWXu8PH4fezL3sWBbo8UE1Rfxh84O2FiZLaWHEg9XwNEK0h9kZaSX7jY4cOqTv8nO0YZHtkpyDD/2/HatW/evE5cU//wfQBQzYzKt6vvzpkneXfn/if6ts6+9y4rPE26I7L2gdePm6fEOa6tZTv4stjimrSKoKpgeElByJ90ttdrUq/8e7rX9bHnx5m1H/VuPDGaoPHhXAqLaH3vw0sOQDOdXXxey8p272fdkhGoqcB3cuG7n1d/1bi0ZMVpO08M0Gta0xL2/u4co5tXbvp8ujXBxDkwZa6wXuBrPbEAL9uZM0NZAUfJLrUmAQAA&amp;permisos=H4sIAAAAAAAEAAFWA6n8AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAosmVxF9V+UaeDKzhsTFgEgQAAAACAAAAAAAQZgAAAAEAACAAAAA+MZOJUru7YgkRioRCR777vYrHoIP8+SSgsMGFpHBgrAAAAAAOgAAAAAIAACAAAADgRehgnmIS6FChokqFLj638PTVP9wk91UjU/4Tx27TK4ACAACL0s+MaYvqEdh7YdNp2LRGi3qN68p7tqb9duiHAKdeoMF7aHs7UZOzNyMcHvHxjWHXkpZYz38XR5RayPzbkwYtNrGKyOh7W91avmlN6tZ93PBNe2vrFwzrQUxyf3RS3QQswI69vN9As8X1fWrkGmUCTSWTp9jUKOWSSYqWL4fhSNw2tgkwz3rHrZlevLzF0V8fP+XELsVGLGG4TcvurxR33gpdWkNa92w2xnjgrdQ3YCvBbsnfA1NqzC2wIQ7TzkB+VGRJ1KStpsc/suBqh70uSI/U5IE4LL9DvFfXWGgps/CZ1JHkBw/C3W7N/JDuVr6kiZyZrMu68ct4hz/Epj5gOiXLHIrAP51lrrnGfEeIbn4wrUrLtZLG5hafpB7rh1T8yPlJFdknYQf2rZgKoHSEq2d0aHNJx5f7lqfWxCpLgb1n3em+hixH4vcdyYIRCzGGgUrmziX19iXNfCYiOZXoZUoIg+MhfmcOrBLq7/p5GpUq/5TTjTA2wk9KqPPJ8qIuLaz/h6K1P4KiPGcMr8/KnqgUNjIf0GME2myZpLoRugdOx6fef681B04RhgMZHTfd05J3y+uYL8TUABtZH83pThGwGFwclFBPTiwhKV4xcIbgACQsLP9DvSi91oWt+luZQslq1kD6J8TOw4Gz3+1W8jJ7qjJo3d1BYFnXDHdAxsCRKu1cNiKXQ9Hx62rWhRxI5uPLZAmQEUHaYchnUw7TGuft7TmqMe2otf2bpogigAAVNXgZlwfDdKbBQqLEft1Dsz+97+wR1GvxqCljm5oOlph5MFIHnJ5oJMjB+ER4ybV+227DoUKQNTCVHnpWYbspuo4yVD+9DqblCMd+ALAOQAAAAOGeUU3cxzDehbRtaa4TOj5J3WkDqFHzzSfJe/EXat2LSif7qMpoHAdMC7SXu48DTcwT05uMZwdwBpH9RH+/13sRqt+BVgMAAA==&amp;status=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSxRdEHborLsc1vwoTm7S9p63z++F+zblnVD2m+jooHWm5ClLP1wDRClJf/i9fUOdhaE+Wyb1auRo+x02WK0vcAjmvFJlv8jRuEH0AUsM40dlJXv5uZ18W20GvSwl/eZcxfY/i2va8l0t//60fk447ANXc7/7jc3bb/uWVK35IHhK7Kr9JfabZHinuaW80KmusWsLOW12w1jiRFzhhc8j7xa/kFgSsX5n8caaI5P6+V+lSgk1lewBymMtX9gAAAA==&#xD;&#xA;HTTP_HOST:lacargbaas192:8100&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: en-US,en;q=0.9,es;q=0.8&#xD;&#xA;Cookie: ASP.NET_SessionId=giegazjfqpxvfidgbac01div; ASPSESSIONIDQASCCCQC=MLBJEGJBKKMCPHDPLPDHGEGE; ASPSESSIONIDSCTBBBTD=NGEDPEAAGGEEOFKICBGLLGGF; buxisseg=token=A4E896F1A1E43D61E053D393A7A9D46E&amp;username=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSRwTTwozrp/ZEhthw5KRHr34VzLW93CWUT1VcbfksQRY1kHq+BohWkPqcfz6xC9XSv5U/OrK4f4dQUYbMGxPFUwf0AhS5LLvPeTEbANWw/HLWnlnxsiRZyTNE9pP2cf6Di02O3Fr5chP7mT+lf//ZTX/a07h/7oYDT0tdT1lIacx2AOrRtLe0zOFPYbRva34gU9nwgneZoNOcXevM6yY4/SjR7Nk+W+zswj8dgZfmqPg9XXCB0SvovIKw7MQsTtaWaees51VwAgAwAcRsBgEAAA==&amp;nombre=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBShVyTcmvmnWXu8PH4fezL3sWBbo8UE1Rfxh84O2FiZLaWHEg9XwNEK0h9kZaSX7jY4cOqTv8nO0YZHtkpyDD/2/HatW/evE5cU//wfQBQzYzKt6vvzpkneXfn/if6ts6+9y4rPE26I7L2gdePm6fEOa6tZTv4stjimrSKoKpgeElByJ90ttdrUq/8e7rX9bHnx5m1H/VuPDGaoPHhXAqLaH3vw0sOQDOdXXxey8p272fdkhGoqcB3cuG7n1d/1bi0ZMVpO08M0Gta0xL2/u4co5tXbvp8ujXBxDkwZa6wXuBrPbEAL9uZM0NZAUfJLrUmAQAA&amp;permisos=H4sIAAAAAAAEAAFWA6n8AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAosmVxF9V+UaeDKzhsTFgEgQAAAACAAAAAAAQZgAAAAEAACAAAAA+MZOJUru7YgkRioRCR777vYrHoIP8+SSgsMGFpHBgrAAAAAAOgAAAAAIAACAAAADgRehgnmIS6FChokqFLj638PTVP9wk91UjU/4Tx27TK4ACAACL0s+MaYvqEdh7YdNp2LRGi3qN68p7tqb9duiHAKdeoMF7aHs7UZOzNyMcHvHxjWHXkpZYz38XR5RayPzbkwYtNrGKyOh7W91avmlN6tZ93PBNe2vrFwzrQUxyf3RS3QQswI69vN9As8X1fWrkGmUCTSWTp9jUKOWSSYqWL4fhSNw2tgkwz3rHrZlevLzF0V8fP+XELsVGLGG4TcvurxR33gpdWkNa92w2xnjgrdQ3YCvBbsnfA1NqzC2wIQ7TzkB+VGRJ1KStpsc/suBqh70uSI/U5IE4LL9DvFfXWGgps/CZ1JHkBw/C3W7N/JDuVr6kiZyZrMu68ct4hz/Epj5gOiXLHIrAP51lrrnGfEeIbn4wrUrLtZLG5hafpB7rh1T8yPlJFdknYQf2rZgKoHSEq2d0aHNJx5f7lqfWxCpLgb1n3em+hixH4vcdyYIRCzGGgUrmziX19iXNfCYiOZXoZUoIg+MhfmcOrBLq7/p5GpUq/5TTjTA2wk9KqPPJ8qIuLaz/h6K1P4KiPGcMr8/KnqgUNjIf0GME2myZpLoRugdOx6fef681B04RhgMZHTfd05J3y+uYL8TUABtZH83pThGwGFwclFBPTiwhKV4xcIbgACQsLP9DvSi91oWt+luZQslq1kD6J8TOw4Gz3+1W8jJ7qjJo3d1BYFnXDHdAxsCRKu1cNiKXQ9Hx62rWhRxI5uPLZAmQEUHaYchnUw7TGuft7TmqMe2otf2bpogigAAVNXgZlwfDdKbBQqLEft1Dsz+97+wR1GvxqCljm5oOlph5MFIHnJ5oJMjB+ER4ybV+227DoUKQNTCVHnpWYbspuo4yVD+9DqblCMd+ALAOQAAAAOGeUU3cxzDehbRtaa4TOj5J3WkDqFHzzSfJe/EXat2LSif7qMpoHAdMC7SXu48DTcwT05uMZwdwBpH9RH+/13sRqt+BVgMAAA==&amp;status=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSxRdEHborLsc1vwoTm7S9p63z++F+zblnVD2m+jooHWm5ClLP1wDRClJf/i9fUOdhaE+Wyb1auRo+x02WK0vcAjmvFJlv8jRuEH0AUsM40dlJXv5uZ18W20GvSwl/eZcxfY/i2va8l0t//60fk447ANXc7/7jc3bb/uWVK35IHhK7Kr9JfabZHinuaW80KmusWsLOW12w1jiRFzhhc8j7xa/kFgSsX5n8caaI5P6+V+lSgk1lewBymMtX9gAAAA==&#xD;&#xA;Host: lacargbaas192:8100&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/1/ROOT/buxis" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\inetpub\wwwroot\buxis\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="1" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/1" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="163.35.7.93" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/buxis/Integracion/RenderPartial" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\inetpub\wwwroot\buxis\Integracion\RenderPartial" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="actionCode=VAC_SOL" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="163.35.16.13" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="163.35.16.13" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="8702" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/buxis/Integracion/RenderPartial" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="lacargbaas192" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="8100" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/buxis/Integracion/RenderPartial" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.9,es;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="ASP.NET_SessionId=giegazjfqpxvfidgbac01div; ASPSESSIONIDQASCCCQC=MLBJEGJBKKMCPHDPLPDHGEGE; ASPSESSIONIDSCTBBBTD=NGEDPEAAGGEEOFKICBGLLGGF; buxisseg=token=A4E896F1A1E43D61E053D393A7A9D46E&amp;username=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSRwTTwozrp/ZEhthw5KRHr34VzLW93CWUT1VcbfksQRY1kHq+BohWkPqcfz6xC9XSv5U/OrK4f4dQUYbMGxPFUwf0AhS5LLvPeTEbANWw/HLWnlnxsiRZyTNE9pP2cf6Di02O3Fr5chP7mT+lf//ZTX/a07h/7oYDT0tdT1lIacx2AOrRtLe0zOFPYbRva34gU9nwgneZoNOcXevM6yY4/SjR7Nk+W+zswj8dgZfmqPg9XXCB0SvovIKw7MQsTtaWaees51VwAgAwAcRsBgEAAA==&amp;nombre=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBShVyTcmvmnWXu8PH4fezL3sWBbo8UE1Rfxh84O2FiZLaWHEg9XwNEK0h9kZaSX7jY4cOqTv8nO0YZHtkpyDD/2/HatW/evE5cU//wfQBQzYzKt6vvzpkneXfn/if6ts6+9y4rPE26I7L2gdePm6fEOa6tZTv4stjimrSKoKpgeElByJ90ttdrUq/8e7rX9bHnx5m1H/VuPDGaoPHhXAqLaH3vw0sOQDOdXXxey8p272fdkhGoqcB3cuG7n1d/1bi0ZMVpO08M0Gta0xL2/u4co5tXbvp8ujXBxDkwZa6wXuBrPbEAL9uZM0NZAUfJLrUmAQAA&amp;permisos=H4sIAAAAAAAEAAFWA6n8AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAosmVxF9V+UaeDKzhsTFgEgQAAAACAAAAAAAQZgAAAAEAACAAAAA+MZOJUru7YgkRioRCR777vYrHoIP8+SSgsMGFpHBgrAAAAAAOgAAAAAIAACAAAADgRehgnmIS6FChokqFLj638PTVP9wk91UjU/4Tx27TK4ACAACL0s+MaYvqEdh7YdNp2LRGi3qN68p7tqb9duiHAKdeoMF7aHs7UZOzNyMcHvHxjWHXkpZYz38XR5RayPzbkwYtNrGKyOh7W91avmlN6tZ93PBNe2vrFwzrQUxyf3RS3QQswI69vN9As8X1fWrkGmUCTSWTp9jUKOWSSYqWL4fhSNw2tgkwz3rHrZlevLzF0V8fP+XELsVGLGG4TcvurxR33gpdWkNa92w2xnjgrdQ3YCvBbsnfA1NqzC2wIQ7TzkB+VGRJ1KStpsc/suBqh70uSI/U5IE4LL9DvFfXWGgps/CZ1JHkBw/C3W7N/JDuVr6kiZyZrMu68ct4hz/Epj5gOiXLHIrAP51lrrnGfEeIbn4wrUrLtZLG5hafpB7rh1T8yPlJFdknYQf2rZgKoHSEq2d0aHNJx5f7lqfWxCpLgb1n3em+hixH4vcdyYIRCzGGgUrmziX19iXNfCYiOZXoZUoIg+MhfmcOrBLq7/p5GpUq/5TTjTA2wk9KqPPJ8qIuLaz/h6K1P4KiPGcMr8/KnqgUNjIf0GME2myZpLoRugdOx6fef681B04RhgMZHTfd05J3y+uYL8TUABtZH83pThGwGFwclFBPTiwhKV4xcIbgACQsLP9DvSi91oWt+luZQslq1kD6J8TOw4Gz3+1W8jJ7qjJo3d1BYFnXDHdAxsCRKu1cNiKXQ9Hx62rWhRxI5uPLZAmQEUHaYchnUw7TGuft7TmqMe2otf2bpogigAAVNXgZlwfDdKbBQqLEft1Dsz+97+wR1GvxqCljm5oOlph5MFIHnJ5oJMjB+ER4ybV+227DoUKQNTCVHnpWYbspuo4yVD+9DqblCMd+ALAOQAAAAOGeUU3cxzDehbRtaa4TOj5J3WkDqFHzzSfJe/EXat2LSif7qMpoHAdMC7SXu48DTcwT05uMZwdwBpH9RH+/13sRqt+BVgMAAA==&amp;status=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSxRdEHborLsc1vwoTm7S9p63z++F+zblnVD2m+jooHWm5ClLP1wDRClJf/i9fUOdhaE+Wyb1auRo+x02WK0vcAjmvFJlv8jRuEH0AUsM40dlJXv5uZ18W20GvSwl/eZcxfY/i2va8l0t//60fk447ANXc7/7jc3bb/uWVK35IHhK7Kr9JfabZHinuaW80KmusWsLOW12w1jiRFzhhc8j7xa/kFgSsX5n8caaI5P6+V+lSgk1lewBymMtX9gAAAA==" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="lacargbaas192:8100" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="actionCode">
+      <value string="VAC_SOL" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="ASP.NET_SessionId">
+      <value string="giegazjfqpxvfidgbac01div" />
+    </item>
+    <item name="ASPSESSIONIDQASCCCQC">
+      <value string="MLBJEGJBKKMCPHDPLPDHGEGE" />
+    </item>
+    <item name="ASPSESSIONIDSCTBBBTD">
+      <value string="NGEDPEAAGGEEOFKICBGLLGGF" />
+    </item>
+    <item name="buxisseg">
+      <value string="token=A4E896F1A1E43D61E053D393A7A9D46E&amp;username=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSRwTTwozrp/ZEhthw5KRHr34VzLW93CWUT1VcbfksQRY1kHq+BohWkPqcfz6xC9XSv5U/OrK4f4dQUYbMGxPFUwf0AhS5LLvPeTEbANWw/HLWnlnxsiRZyTNE9pP2cf6Di02O3Fr5chP7mT+lf//ZTX/a07h/7oYDT0tdT1lIacx2AOrRtLe0zOFPYbRva34gU9nwgneZoNOcXevM6yY4/SjR7Nk+W+zswj8dgZfmqPg9XXCB0SvovIKw7MQsTtaWaees51VwAgAwAcRsBgEAAA==&amp;nombre=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBShVyTcmvmnWXu8PH4fezL3sWBbo8UE1Rfxh84O2FiZLaWHEg9XwNEK0h9kZaSX7jY4cOqTv8nO0YZHtkpyDD/2/HatW/evE5cU//wfQBQzYzKt6vvzpkneXfn/if6ts6+9y4rPE26I7L2gdePm6fEOa6tZTv4stjimrSKoKpgeElByJ90ttdrUq/8e7rX9bHnx5m1H/VuPDGaoPHhXAqLaH3vw0sOQDOdXXxey8p272fdkhGoqcB3cuG7n1d/1bi0ZMVpO08M0Gta0xL2/u4co5tXbvp8ujXBxDkwZa6wXuBrPbEAL9uZM0NZAUfJLrUmAQAA&amp;permisos=H4sIAAAAAAAEAAFWA6n8AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAosmVxF9V+UaeDKzhsTFgEgQAAAACAAAAAAAQZgAAAAEAACAAAAA+MZOJUru7YgkRioRCR777vYrHoIP8+SSgsMGFpHBgrAAAAAAOgAAAAAIAACAAAADgRehgnmIS6FChokqFLj638PTVP9wk91UjU/4Tx27TK4ACAACL0s+MaYvqEdh7YdNp2LRGi3qN68p7tqb9duiHAKdeoMF7aHs7UZOzNyMcHvHxjWHXkpZYz38XR5RayPzbkwYtNrGKyOh7W91avmlN6tZ93PBNe2vrFwzrQUxyf3RS3QQswI69vN9As8X1fWrkGmUCTSWTp9jUKOWSSYqWL4fhSNw2tgkwz3rHrZlevLzF0V8fP+XELsVGLGG4TcvurxR33gpdWkNa92w2xnjgrdQ3YCvBbsnfA1NqzC2wIQ7TzkB+VGRJ1KStpsc/suBqh70uSI/U5IE4LL9DvFfXWGgps/CZ1JHkBw/C3W7N/JDuVr6kiZyZrMu68ct4hz/Epj5gOiXLHIrAP51lrrnGfEeIbn4wrUrLtZLG5hafpB7rh1T8yPlJFdknYQf2rZgKoHSEq2d0aHNJx5f7lqfWxCpLgb1n3em+hixH4vcdyYIRCzGGgUrmziX19iXNfCYiOZXoZUoIg+MhfmcOrBLq7/p5GpUq/5TTjTA2wk9KqPPJ8qIuLaz/h6K1P4KiPGcMr8/KnqgUNjIf0GME2myZpLoRugdOx6fef681B04RhgMZHTfd05J3y+uYL8TUABtZH83pThGwGFwclFBPTiwhKV4xcIbgACQsLP9DvSi91oWt+luZQslq1kD6J8TOw4Gz3+1W8jJ7qjJo3d1BYFnXDHdAxsCRKu1cNiKXQ9Hx62rWhRxI5uPLZAmQEUHaYchnUw7TGuft7TmqMe2otf2bpogigAAVNXgZlwfDdKbBQqLEft1Dsz+97+wR1GvxqCljm5oOlph5MFIHnJ5oJMjB+ER4ybV+227DoUKQNTCVHnpWYbspuo4yVD+9DqblCMd+ALAOQAAAAOGeUU3cxzDehbRtaa4TOj5J3WkDqFHzzSfJe/EXat2LSif7qMpoHAdMC7SXu48DTcwT05uMZwdwBpH9RH+/13sRqt+BVgMAAA==&amp;status=H4sIAAAAAAAEAGNkYGC40DP3PqPoRcGeKoYD/oemv2YEii06OfVIfOhPt3k8ax5uNEwQYgGKMTGAgEAakAAqUQBSxRdEHborLsc1vwoTm7S9p63z++F+zblnVD2m+jooHWm5ClLP1wDRClJf/i9fUOdhaE+Wyb1auRo+x02WK0vcAjmvFJlv8jRuEH0AUsM40dlJXv5uZ18W20GvSwl/eZcxfY/i2va8l0t//60fk447ANXc7/7jc3bb/uWVK35IHhK7Kr9JfabZHinuaW80KmusWsLOW12w1jiRFzhhc8j7xa/kFgSsX5n8caaI5P6+V+lSgk1lewBymMtX9gAAAA==" />
+    </item>
+  </cookies>
+</error>

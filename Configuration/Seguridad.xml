@@ -1,0 +1,3 @@
+<objects xmlns="http://www.springframework.net" default-autowire="byName">
+  <object id="WebServiceAuthentication" type="Buxis.Web.Seguridad.WebServiceAuthentication, Buxis.Web" scope="application" />
+</objects>
